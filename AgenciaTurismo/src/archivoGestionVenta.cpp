@@ -1,0 +1,319 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+
+#include "archivoGestionVenta.h"
+
+ArchivoGestionVenta::ArchivoGestionVenta() {
+    strcpy(_nombreArchivo, "ventas.dat");
+}
+
+bool ArchivoGestionVenta::guardarRegistro(GestionVenta reg) {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "ab");
+
+    if (pFile == nullptr) {
+        return false;
+    }
+
+    bool escribio =
+        fwrite(
+            &reg,
+            sizeof(GestionVenta),
+            1,
+            pFile
+        );
+
+    fclose(pFile);
+
+    return escribio;
+}
+
+GestionVenta ArchivoGestionVenta::leerRegistro(int posicion) {
+
+    GestionVenta reg;
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return reg;
+    }
+
+    fseek(
+        pFile,
+        sizeof(GestionVenta) * posicion,
+        SEEK_SET
+    );
+
+    fread(
+        &reg,
+        sizeof(GestionVenta),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    return reg;
+}
+
+int ArchivoGestionVenta::contarRegistros() {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return 0;
+    }
+
+    fseek(
+        pFile,
+        0,
+        SEEK_END
+    );
+
+    int cantidad =
+        ftell(pFile) /
+        sizeof(GestionVenta);
+
+    fclose(pFile);
+
+    return cantidad;
+}
+
+int ArchivoGestionVenta::buscarRegistro(int idVenta) {
+
+    GestionVenta reg;
+
+    int cantidad =
+        contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (
+            reg.getIdVenta() == idVenta
+        ) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
+
+    int posicion =
+        buscarRegistro(idVenta);
+
+    if (posicion == -1) {
+
+        cout
+            << "VENTA NO ENCONTRADA"
+            << endl;
+
+        return;
+    }
+
+    GestionVenta reg =
+        leerRegistro(posicion);
+
+    reg.mostrarVenta();
+}
+
+void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
+
+    GestionVenta reg;
+
+    int cantidad =
+        contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (
+            reg.getEstado() &&
+            reg.getEstadoVenta() == 1
+        ) {
+
+            reg.mostrarVenta();
+
+            cout << endl;
+        }
+    }
+}
+
+void ArchivoGestionVenta::listarTransaccionesCanceladas() {
+
+    GestionVenta reg;
+
+    int cantidad =
+        contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (
+            reg.getEstado() &&
+            reg.getEstadoVenta() == 2
+        ) {
+
+            reg.mostrarVenta();
+
+            cout << endl;
+        }
+    }
+}
+
+void ArchivoGestionVenta::listarTransaccionesPendientes() {
+
+    GestionVenta reg;
+
+    int cantidad =
+        contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (
+            reg.getEstado() &&
+            reg.getEstadoVenta() == 0
+        ) {
+
+            reg.mostrarVenta();
+
+            cout << endl;
+        }
+    }
+}
+
+void ArchivoGestionVenta::agregarVenta() {
+
+    GestionVenta reg;
+
+    reg.crearVenta();
+
+    if (
+        guardarRegistro(reg)
+    ) {
+        cout
+            << "VENTA REGISTRADA"
+            << endl;
+    }
+    else {
+        cout
+            << "ERROR AL GUARDAR"
+            << endl;
+    }
+}
+
+void ArchivoGestionVenta::confirmarVenta(int idVenta) {
+
+    int posicion =
+        buscarRegistro(idVenta);
+
+    if (posicion == -1) {
+
+        cout
+            << "VENTA NO ENCONTRADA"
+            << endl;
+
+        return;
+    }
+
+    GestionVenta reg =
+        leerRegistro(posicion);
+
+    reg.confirmarVenta();
+
+    FILE *pFile;
+
+    pFile = fopen(
+        _nombreArchivo,
+        "rb+"
+    );
+
+    if (pFile == nullptr) {
+        return;
+    }
+
+    fseek(
+        pFile,
+        sizeof(GestionVenta) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(GestionVenta),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout
+        << "VENTA CONFIRMADA"
+        << endl;
+}
+
+void ArchivoGestionVenta::cancelarVenta(int idVenta) {
+
+    int posicion =
+        buscarRegistro(idVenta);
+
+    if (posicion == -1) {
+
+        cout
+            << "VENTA NO ENCONTRADA"
+            << endl;
+
+        return;
+    }
+
+    GestionVenta reg =
+        leerRegistro(posicion);
+
+    reg.cancelarVenta();
+
+    FILE *pFile;
+
+    pFile = fopen(
+        _nombreArchivo,
+        "rb+"
+    );
+
+    if (pFile == nullptr) {
+        return;
+    }
+
+    fseek(
+        pFile,
+        sizeof(GestionVenta) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(GestionVenta),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout
+        << "VENTA CANCELADA"
+        << endl;
+}
