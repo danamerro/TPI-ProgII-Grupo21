@@ -38,12 +38,14 @@
 		</Compiler>
 		<Unit filename="include/archivoCliente.h" />
 		<Unit filename="include/archivoGestionVenta.h" />
+		<Unit filename="include/archivoVuelo.h" />
 		<Unit filename="include/cliente.h" />
 		<Unit filename="include/gestionVenta.h" />
 		<Unit filename="include/vuelo.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/archivoCliente.cpp" />
 		<Unit filename="src/archivoGestionVenta.cpp" />
+		<Unit filename="src/archivoVuelo.cpp" />
 		<Unit filename="src/cliente.cpp" />
 		<Unit filename="src/gestionVenta.cpp" />
 		<Unit filename="src/vuelo.cpp" />
