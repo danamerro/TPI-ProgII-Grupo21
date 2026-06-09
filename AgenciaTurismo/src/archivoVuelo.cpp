@@ -212,12 +212,18 @@ void ArchivoVuelo::modificarVuelo(int idVuelo) {
 
 void ArchivoVuelo::agregarVuelo(){
     Vuelo reg;
-    reg.cargarVuelo();
 
-    if(existeVuelo(reg.getIdVuelo())){
+    int id;
+    cout << "Ingrese ID del vuelo: ";
+    cin >> id;
+
+    if(existeVuelo(id)){
         cout << "YA EXISTE UN VUELO CON ESE ID" << endl;
         return;
     }
+
+    reg.setIdVuelo(id);
+    reg.cargarDatosVuelo();
 
     if(guardarRegistro(reg)){
         cout << "VUELO GUARDADO CORRECTAMENTE";

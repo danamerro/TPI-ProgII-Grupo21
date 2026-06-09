@@ -36,6 +36,7 @@ class Vuelo
         void setEstado(bool valor);
 
         void cargarVuelo();
+        void cargarDatosVuelo();
         void mostrarVuelo() const;
 
 

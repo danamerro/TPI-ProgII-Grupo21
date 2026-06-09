@@ -70,6 +70,10 @@ void Vuelo::cargarVuelo(){
     cout << "Ingrese ID del vuelo: ";
     cin >> _idVuelo;
 
+    cargarDatosVuelo();
+}
+
+void Vuelo::cargarDatosVuelo(){
     cout << "Ingrese duracion del vuelo: ";
     cin >> _duracion;
 
