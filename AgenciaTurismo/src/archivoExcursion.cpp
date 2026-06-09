@@ -212,12 +212,18 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
 
 void ArchivoExcursion::agregarExcursion(){
     Excursion reg;
-    reg.cargarExcursion();
 
-    if(existeExcursion(reg.getIdExcursion())){
+    int id;
+    cout << "Ingrese ID de la excursion: ";
+    cin >> id;
+
+    if(existeExcursion(id)){
         cout << "YA EXISTE UNA EXCURSION CON ESE ID" << endl;
         return;
     }
+
+    reg.setIdExcursion(id);
+    reg.cargarDatosExcursion();
 
     if(guardarRegistro(reg)){
         cout << "EXCURSION GUARDADA CORRECTAMENTE";

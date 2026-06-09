@@ -69,6 +69,10 @@ void Excursion::cargarExcursion(){
     cout << "Ingrese ID de la excursion: ";
     cin >> _idExcursion;
 
+    cargarDatosExcursion();
+}
+
+void Excursion::cargarDatosExcursion(){
     cout << "Ingrese duracion de la excursion: ";
     cin >> _duracion;
 
