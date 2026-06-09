@@ -32,6 +32,7 @@ class Traslado
         void setEstado(bool valor);
 
         void cargarTraslado();
+        void cargarDatosTraslado();
         void mostrarTraslado() const;
 
 

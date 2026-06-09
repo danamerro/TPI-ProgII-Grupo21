@@ -212,12 +212,18 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
 
 void ArchivoTraslado::agregarTraslado(){
     Traslado reg;
-    reg.cargarTraslado();
 
-    if(existeTraslado(reg.getIdTraslado())){
+    int id;
+    cout << "Ingrese ID del traslado: ";
+    cin >> id;
+
+    if(existeTraslado(id)){
         cout << "YA EXISTE UN TRASLADO CON ESE ID" << endl;
         return;
     }
+
+    reg.setIdTraslado(id);
+    reg.cargarDatosTraslado();
 
     if(guardarRegistro(reg)){
         cout << "TRASLADO GUARDADO CORRECTAMENTE";
