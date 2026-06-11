@@ -115,6 +115,10 @@ void Paquete::cargarPaquete(){
     cout << "Ingrese ID del paquete: ";
     cin >> _idPaquete;
 
+    cargarDatosPaquete();
+}
+
+void Paquete::cargarDatosPaquete(){
     cout << "Ingrese precio del paquete: ";
     cin >> _precio;
 

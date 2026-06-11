@@ -212,12 +212,18 @@ void ArchivoPaquete::modificarPaquete(int idPaquete) {
 
 void ArchivoPaquete::agregarPaquete(){
     Paquete reg;
-    reg.cargarPaquete();
 
-    if(existePaquete(reg.getIdPaquete())){
+    int id;
+    cout << "Ingrese ID del paquete: ";
+    cin >> id;
+
+    if(existePaquete(id)){
         cout << "YA EXISTE UN PAQUETE CON ESE ID" << endl;
         return;
     }
+
+    reg.setIdPaquete(id);
+    reg.cargarDatosPaquete();
 
     if(guardarRegistro(reg)){
         cout << "PAQUETE GUARDADO CORRECTAMENTE";
