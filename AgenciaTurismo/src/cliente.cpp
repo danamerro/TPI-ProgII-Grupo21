@@ -18,11 +18,11 @@ Cliente::Cliente() {
     _estado = true;
 }
 
-void Cliente::setID(int valor){
+void Cliente::setIdCliente(int valor){
     _idCliente = valor;
 }
 
-int Cliente::getID() const{
+int Cliente::getIdCliente() const{
     return _idCliente;
 }
 
@@ -83,34 +83,61 @@ bool Cliente::getEstado() const{
 }
 
 void Cliente::cargarCliente(){
+    cout << "Ingrese ID del cliente: ";
+    cin >> _idCliente;
 
-    cout<<"ID: ";
-    cin>>_idCliente;
-
-    cout<<"DNI: ";
-    cin>>_dni;
-
-    cin.ignore();
-
-    cout<<"Nombre: ";
-    cin.getline(_nombre,20);
-
-    cout<<"Apellido: ";
-    cin.getline(_apellido,20);
-
-    cout<<"Telefono: ";
-    cin>>_telefono;
+    cout << "Ingrese dni del cliente: ";
+    cin >> _dni;
 
     cin.ignore();
 
-    cout<<"Direccion: ";
-    cin.getline(_direccion,20);
+    cout << "Ingrese nombre del cliente: ";
+    cin.getline(_nombre, 20);
 
-    cout<<"Email: ";
-    cin.getline(_email,20);
+    cout << "Ingrese apellido del cliente: ";
+    cin.getline(_apellido, 20);
+
+    cout << "Ingrese telefono del cliente: ";
+    cin  >>_telefono;
+
+    cin.ignore();
+
+    cout << "Ingrese direccion del cliente: ";
+    cin.getline(_direccion, 50);
+
+    cout << "Ingrese email del cliente: ";
+    cin.getline(_email, 20);
 
     _estado = true;
 }
+
+void Cliente::cargarDatosCliente(){
+    cout << "Ingrese dni del cliente: ";
+    cin >> _dni;
+
+    cin.ignore();
+
+    cout << "Ingrese nombre del cliente: ";
+    cin.getline(_nombre, 20);
+
+    cout << "Ingrese apellido del cliente: ";
+    cin.getline(_apellido, 20);
+
+    cout << "Ingrese telefono del cliente: ";
+    cin  >>_telefono;
+
+    cin.ignore();
+    cout << "Ingrese direccion del cliente: ";
+    cin.getline(_direccion, 50);
+
+    cout << "Ingrese email del cliente: ";
+    cin.getline(_email, 20);
+
+    _estado = true;
+
+}
+
+
 
 void Cliente::mostrarCliente() const{
 

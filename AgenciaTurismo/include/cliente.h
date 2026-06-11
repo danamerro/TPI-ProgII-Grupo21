@@ -15,8 +15,8 @@ class Cliente {
     public:
         Cliente();
 
-        void setID(int valor);
-        int getID() const;
+        void setIdCliente(int valor);
+        int getIdCliente() const;
 
         void setDni(int valor);
         int getDni() const;
@@ -40,5 +40,6 @@ class Cliente {
         bool getEstado() const;
 
         void cargarCliente();
+        void cargarDatosCliente();
         void mostrarCliente() const;
 };

@@ -90,7 +90,7 @@ int ArchivoCliente::buscarRegistro(int idCliente) {
 
         reg = leerRegistro(i);
 
-        if (reg.getID() == idCliente) {
+        if (reg.getIdCliente() == idCliente) {
             return i;
         }
     }
@@ -225,13 +225,17 @@ void ArchivoCliente::agregarCliente() {
 
     Cliente reg;
 
-    reg.cargarCliente();
+    int id;
+    cout << "Ingrese ID del cliente: ";
+    cin >> id;
 
-    if (existeCliente(reg.getID())) {
-
+    if (existeCliente(id)){
         cout << "YA EXISTE UN CLIENTE CON ESE ID" << endl;
         return;
     }
+
+    reg.setIdCliente(id);
+    reg.cargarDatosCliente();
 
     if (guardarRegistro(reg)) {
         cout << "CLIENTE GUARDADO CORRECTAMENTE" << endl;
