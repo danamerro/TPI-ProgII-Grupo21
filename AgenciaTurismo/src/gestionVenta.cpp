@@ -107,27 +107,32 @@ float GestionVenta::calcularTotal() {
 
 void GestionVenta::crearVenta() {
 
-    cout << "ID Venta: ";
+    cout << "Ingrese ID Venta: ";
     cin >> _idVenta;
 
-    cout << "ID Cliente: ";
+    crearDatosVenta();
+}
+
+void GestionVenta::crearDatosVenta() {
+
+    cout << "Ingrese ID Cliente: ";
     cin >> _idCliente;
 
-    cout << "ID Paquete: ";
+    cout << "Ingrese ID Paquete: ";
     cin >> _idPaquete;
 
     cin.ignore();
 
-    cout << "Fecha Venta (dd/mm/yyyy): ";
+    cout << "Ingrese Fecha Venta (dd/mm/yyyy): ";
     cin.getline(_fechaVenta, 11);
 
-    cout << "Fecha Viaje (dd/mm/yyyy): ";
+    cout << "Ingrese Fecha Viaje (dd/mm/yyyy): ";
     cin.getline(_fechaViaje, 11);
 
-    cout << "Cantidad de Cupos: ";
+    cout << "Ingrese Cantidad de Cupos: ";
     cin >> _cantidadCupos;
 
-    cout << "Precio Unitario: ";
+    cout << "Ingrese Precio Unitario: ";
     cin >> _precioUnitario;
 
     _total = calcularTotal();

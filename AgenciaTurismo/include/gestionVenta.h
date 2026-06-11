@@ -47,6 +47,7 @@ class GestionVenta {
         void setEstado(bool estado);
 
         void crearVenta();
+        void crearDatosVenta();
         void confirmarVenta();
         void cancelarVenta();
         float calcularTotal();

@@ -16,12 +16,14 @@ class ArchivoGestionVenta {
         ArchivoGestionVenta();
 
         void mostrarVentaByID(int idVenta);
+        void listarVentas();
         void listarTransaccionesFinalizadas();
         void listarTransaccionesCanceladas();
         void listarTransaccionesPendientes();
 
         // Metodo agregados (utiles)
         void agregarVenta();
+        bool existeVenta(int idVenta);
         void confirmarVenta(int idVenta);
         void cancelarVenta(int idVenta);
 };

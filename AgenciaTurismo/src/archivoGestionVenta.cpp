@@ -129,6 +129,26 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
     reg.mostrarVenta();
 }
 
+void ArchivoGestionVenta::listarVentas() {
+
+    GestionVenta reg;
+
+    int cantidad =
+        contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (reg.getEstado()) {
+
+            reg.mostrarVenta();
+
+            cout << endl;
+        }
+    }
+}
+
 void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
 
     GestionVenta reg;
@@ -202,7 +222,19 @@ void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
 
-    reg.crearVenta();
+    int id;
+    cout << "ID Venta: ";
+    cin >> id;
+
+    if (existeVenta(id)) {
+        cout
+            << "YA EXISTE UNA VENTA CON ESE ID"
+            << endl;
+        return;
+    }
+
+    reg.setIdVenta(id);
+    reg.crearDatosVenta();
 
     if (
         guardarRegistro(reg)
@@ -216,6 +248,11 @@ void ArchivoGestionVenta::agregarVenta() {
             << "ERROR AL GUARDAR"
             << endl;
     }
+}
+
+bool ArchivoGestionVenta::existeVenta(int idVenta) {
+
+    return buscarRegistro(idVenta) != -1;
 }
 
 void ArchivoGestionVenta::confirmarVenta(int idVenta) {
