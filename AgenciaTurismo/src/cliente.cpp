@@ -127,3 +127,10 @@ void Cliente::mostrarCliente() const{
     cout<<"Direccion: "<<_direccion<<endl;
     cout<<"Email: "<<_email<<endl;
 }
+
+void Cliente::mostrarContacto() const{
+    cout << "Nombre: " << _nombre << " " << _apellido << endl;
+    cout << "Telefono: " << _telefono << endl;
+    cout << "Email: " << _email << endl;
+    cout << "Direccion: " << _direccion << endl;
+}

@@ -19,6 +19,7 @@ class ArchivoCliente {
         void eliminarCliente(int idCliente);
         void listarClientes();
         void listarClientesDadosDeBaja();
+        void listarDirectorioContacto();
         void mostrarClienteById(int idCliente);
 
         // Metodo agregados (utiles)

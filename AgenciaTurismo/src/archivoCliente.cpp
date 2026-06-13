@@ -223,6 +223,25 @@ void ArchivoCliente::listarClientesDadosDeBaja() {
     }
 }
 
+void ArchivoCliente::listarDirectorioContacto() {
+
+    Cliente reg;
+
+    int cantidad = contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+
+        reg = leerRegistro(i);
+
+        if (reg.getEstado()) {
+
+            reg.mostrarContacto();
+
+            cout << endl;
+        }
+    }
+}
+
 void ArchivoCliente::mostrarClienteById(int idCliente) {
 
     int posicion = buscarRegistro(idCliente);
