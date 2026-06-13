@@ -18,6 +18,7 @@ class ArchivoCliente {
         void modificarCliente(int idCliente);
         void eliminarCliente(int idCliente);
         void listarClientes();
+        void listarClientesDadosDeBaja();
         void mostrarClienteById(int idCliente);
 
         // Metodo agregados (utiles)
