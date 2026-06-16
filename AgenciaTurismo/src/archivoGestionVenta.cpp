@@ -6,87 +6,7 @@ using namespace std;
 
 #include "archivoGestionVenta.h"
 
-ArchivoGestionVenta::ArchivoGestionVenta() {
-    strcpy(_nombreArchivo, "ventas.dat");
-}
-
-bool ArchivoGestionVenta::guardarRegistro(GestionVenta reg) {
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "ab");
-
-    if (pFile == nullptr) {
-        return false;
-    }
-
-    bool escribio =
-        fwrite(
-            &reg,
-            sizeof(GestionVenta),
-            1,
-            pFile
-        );
-
-    fclose(pFile);
-
-    return escribio;
-}
-
-GestionVenta ArchivoGestionVenta::leerRegistro(int posicion) {
-
-    GestionVenta reg;
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return reg;
-    }
-
-    fseek(
-        pFile,
-        sizeof(GestionVenta) * posicion,
-        SEEK_SET
-    );
-
-    fread(
-        &reg,
-        sizeof(GestionVenta),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    return reg;
-}
-
-int ArchivoGestionVenta::contarRegistros() {
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return 0;
-    }
-
-    fseek(
-        pFile,
-        0,
-        SEEK_END
-    );
-
-    int cantidad =
-        ftell(pFile) /
-        sizeof(GestionVenta);
-
-    fclose(pFile);
-
-    return cantidad;
-}
+ArchivoGestionVenta::ArchivoGestionVenta() : Archivo<GestionVenta>("ventas.dat"){}
 
 int ArchivoGestionVenta::buscarRegistro(int idVenta) {
 
@@ -274,35 +194,9 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
 
     reg.confirmarVenta();
 
-    FILE *pFile;
-
-    pFile = fopen(
-        _nombreArchivo,
-        "rb+"
-    );
-
-    if (pFile == nullptr) {
-        return;
+    if (modificarRegistro(reg, posicion)) {
+        cout << "VENTA CONFIRMADA" << endl;
     }
-
-    fseek(
-        pFile,
-        sizeof(GestionVenta) * posicion,
-        SEEK_SET
-    );
-
-    fwrite(
-        &reg,
-        sizeof(GestionVenta),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    cout
-        << "VENTA CONFIRMADA"
-        << endl;
 }
 
 void ArchivoGestionVenta::cancelarVenta(int idVenta) {
@@ -324,33 +218,7 @@ void ArchivoGestionVenta::cancelarVenta(int idVenta) {
 
     reg.cancelarVenta();
 
-    FILE *pFile;
-
-    pFile = fopen(
-        _nombreArchivo,
-        "rb+"
-    );
-
-    if (pFile == nullptr) {
-        return;
+    if (modificarRegistro(reg, posicion)) {
+        cout << "VENTA CANCELADA" << endl;
     }
-
-    fseek(
-        pFile,
-        sizeof(GestionVenta) * posicion,
-        SEEK_SET
-    );
-
-    fwrite(
-        &reg,
-        sizeof(GestionVenta),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    cout
-        << "VENTA CANCELADA"
-        << endl;
 }

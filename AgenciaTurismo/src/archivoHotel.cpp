@@ -5,76 +5,7 @@
 
 using namespace std;
 
-ArchivoHotel::ArchivoHotel()
-{
-    strcpy(_nombreArchivo,"hoteles.dat");
-}
-
-bool ArchivoHotel::guardarRegistro(Hotel reg){
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo,"ab");
-
-    if(pFile == nullptr){
-        return false;
-    }
-
-    bool escribio = fwrite(&reg, sizeof(Hotel), 1, pFile);
-
-    fclose(pFile);
-
-    return escribio;
-}
-
-Hotel ArchivoHotel::leerRegistro(int posicion) {
-
-    Hotel reg;
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return reg;
-    }
-
-    fseek(
-        pFile,
-        sizeof(Hotel) * posicion,
-        SEEK_SET
-    );
-
-    fread(
-        &reg,
-        sizeof(Hotel),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    return reg;
-}
-
-int ArchivoHotel::contarRegistros() {
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return 0;
-    }
-
-    fseek(pFile, 0, SEEK_END);
-
-    int cantidad =
-        ftell(pFile) / sizeof(Hotel);
-
-    fclose(pFile);
-
-    return cantidad;
-}
+ArchivoHotel::ArchivoHotel(): Archivo<Hotel>("hoteles.dat"){}
 
 int ArchivoHotel::buscarRegistro(int idHotel) {
 
@@ -94,7 +25,6 @@ int ArchivoHotel::buscarRegistro(int idHotel) {
     return -1;
 }
 
-
 void ArchivoHotel::eliminarHotel(int idHotel){
     int posicion = buscarRegistro(idHotel);
     if(posicion == -1){
@@ -106,31 +36,9 @@ void ArchivoHotel::eliminarHotel(int idHotel){
 
     reg.setEstado(false);
 
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb+");
-
-    if(pFile == nullptr){
-        return;
+    if(modificarRegistro(reg, posicion)){
+        cout << "HOTEL ELIMINADO" << endl;
     }
-
-    fseek(
-        pFile,
-        sizeof(Hotel) * posicion,
-        SEEK_SET
-    );
-
-    fwrite(
-        &reg,
-        sizeof(Hotel),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    cout << "HOTEL ELIMINADO" << endl;
-
 }
 
 void ArchivoHotel::mostrarHotelByID(int idHotel){
@@ -184,30 +92,9 @@ void ArchivoHotel::modificarHotel(int idHotel) {
 
     reg.cargarHotel();
 
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo,"rb+");
-
-    if(pFile == nullptr){
-        return;
+    if(modificarRegistro(reg, posicion)){
+        cout << "HOTEL MODIFICADO"<< endl;
     }
-
-    fseek(
-          pFile,
-          sizeof(Hotel) * posicion,
-          SEEK_SET
-          );
-
-    fwrite(
-           &reg,
-          sizeof(Hotel),
-           1,
-          pFile
-          );
-
-  fclose(pFile);
-
-  cout << "HOTEL MODIFICADO"<< endl;
 }
 
 void ArchivoHotel::agregarHotel(){

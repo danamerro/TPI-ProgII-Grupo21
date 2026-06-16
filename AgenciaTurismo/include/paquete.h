@@ -6,8 +6,8 @@ class Paquete
         int _idPaquete;
         float _precio;
         int _cupo;
-        char _nombre[20];
-        char _descripcion[20];
+        char _nombre[50];
+        char _descripcion[200];
         char _destino[100];
         bool _estado;
         int _idHotel;
