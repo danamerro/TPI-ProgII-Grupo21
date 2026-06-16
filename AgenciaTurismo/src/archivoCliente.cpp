@@ -5,9 +5,80 @@
 using namespace std;
 
 #include "archivoCliente.h"
-#include "cliente.h"
 
-ArchivoCliente::ArchivoCliente() : Archivo<Cliente>("clientes.dat"){}
+ArchivoCliente::ArchivoCliente() {
+    strcpy(_nombreArchivo, "clientes.dat");
+}
+
+// Métodos auxiliares internos
+
+bool ArchivoCliente::guardarRegistro(Cliente reg) {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "ab");
+
+    if (pFile == nullptr) {
+        return false;
+    }
+
+    bool escribio =
+        fwrite(&reg, sizeof(Cliente), 1, pFile);
+
+    fclose(pFile);
+
+    return escribio;
+}
+
+Cliente ArchivoCliente::leerRegistro(int posicion) {
+
+    Cliente reg;
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return reg;
+    }
+
+    fseek(
+        pFile,
+        sizeof(Cliente) * posicion,
+        SEEK_SET
+    );
+
+    fread(
+        &reg,
+        sizeof(Cliente),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    return reg;
+}
+
+int ArchivoCliente::contarRegistros() {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return 0;
+    }
+
+    fseek(pFile, 0, SEEK_END);
+
+    int cantidad =
+        ftell(pFile) / sizeof(Cliente);
+
+    fclose(pFile);
+
+    return cantidad;
+}
 
 int ArchivoCliente::buscarRegistro(int idCliente) {
 
@@ -27,6 +98,9 @@ int ArchivoCliente::buscarRegistro(int idCliente) {
     return -1;
 }
 
+
+// Métodos pactados por diagrama (paso3)
+
 void ArchivoCliente::modificarCliente(int idCliente) {
 
     int posicion = buscarRegistro(idCliente);
@@ -45,9 +119,30 @@ void ArchivoCliente::modificarCliente(int idCliente) {
 
     reg.cargarCliente();
 
-    if (modificarRegistro(reg, posicion)) {
-        cout << "CLIENTE MODIFICADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb+");
+
+    if (pFile == nullptr) {
+        return;
     }
+
+    fseek(
+        pFile,
+        sizeof(Cliente) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(Cliente),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout << "CLIENTE MODIFICADO" << endl;
 }
 
 void ArchivoCliente::eliminarCliente(int idCliente) {
@@ -64,9 +159,30 @@ void ArchivoCliente::eliminarCliente(int idCliente) {
 
     reg.setEstado(false);
 
-    if (modificarRegistro(reg, posicion)) {
-        cout << "CLIENTE ELIMINADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb+");
+
+    if (pFile == nullptr) {
+        return;
     }
+
+    fseek(
+        pFile,
+        sizeof(Cliente) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(Cliente),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout << "CLIENTE ELIMINADO" << endl;
 }
 
 void ArchivoCliente::listarClientes() {
@@ -140,6 +256,8 @@ void ArchivoCliente::mostrarClienteById(int idCliente) {
 
     reg.mostrarCliente();
 }
+
+// Metodo agregados (utiles)
 
 void ArchivoCliente::agregarCliente() {
 

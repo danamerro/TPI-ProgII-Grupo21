@@ -1,10 +1,15 @@
 #pragma once
 
-#include "archivo.h"
 #include "cliente.h"
 
-class ArchivoCliente : public Archivo<Cliente> {
+class ArchivoCliente {
     private:
+        char _nombreArchivo[20];
+
+        // Métodos auxiliares internos
+        bool guardarRegistro(Cliente reg);
+        Cliente leerRegistro(int posicion);
+        int contarRegistros();
         int buscarRegistro(int idCliente);
 
     public:
@@ -17,6 +22,7 @@ class ArchivoCliente : public Archivo<Cliente> {
         void listarDirectorioContacto();
         void mostrarClienteById(int idCliente);
 
+        // Metodo agregados (utiles)
         void agregarCliente();
         bool existeCliente(int idCliente);
 };

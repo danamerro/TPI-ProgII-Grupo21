@@ -5,7 +5,76 @@
 
 using namespace std;
 
-ArchivoVuelo::ArchivoVuelo() : Archivo<Vuelo>("vuelos.dat"){}
+ArchivoVuelo::ArchivoVuelo()
+{
+    strcpy(_nombreArchivo,"vuelos.dat");
+}
+
+bool ArchivoVuelo::guardarRegistro(Vuelo reg){
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo,"ab");
+
+    if(pFile == nullptr){
+        return false;
+    }
+
+    bool escribio = fwrite(&reg, sizeof(Vuelo), 1, pFile);
+
+    fclose(pFile);
+
+    return escribio;
+}
+
+Vuelo ArchivoVuelo::leerRegistro(int posicion) {
+
+    Vuelo reg;
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return reg;
+    }
+
+    fseek(
+        pFile,
+        sizeof(Vuelo) * posicion,
+        SEEK_SET
+    );
+
+    fread(
+        &reg,
+        sizeof(Vuelo),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    return reg;
+}
+
+int ArchivoVuelo::contarRegistros() {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return 0;
+    }
+
+    fseek(pFile, 0, SEEK_END);
+
+    int cantidad =
+        ftell(pFile) / sizeof(Vuelo);
+
+    fclose(pFile);
+
+    return cantidad;
+}
 
 int ArchivoVuelo::buscarRegistro(int idVuelo) {
 
@@ -37,9 +106,31 @@ void ArchivoVuelo::eliminarVuelo(int idVuelo){
 
     reg.setEstado(false);
 
-    if(modificarRegistro(reg, posicion)){
-        cout << "VUELO ELIMINADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb+");
+
+    if(pFile == nullptr){
+        return;
     }
+
+    fseek(
+        pFile,
+        sizeof(Vuelo) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(Vuelo),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout << "VUELO ELIMINADO" << endl;
+
 }
 
 void ArchivoVuelo::mostrarVueloByID(int idVuelo){
@@ -75,6 +166,7 @@ void ArchivoVuelo::listarVuelos() {
             cout << endl;
         }
     }
+
 }
 
 void ArchivoVuelo::modificarVuelo(int idVuelo) {
@@ -92,9 +184,30 @@ void ArchivoVuelo::modificarVuelo(int idVuelo) {
 
     reg.cargarVuelo();
 
-    if(modificarRegistro(reg, posicion)){
-        cout << "VUELO MODIFICADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo,"rb+");
+
+    if(pFile == nullptr){
+        return;
     }
+
+    fseek(
+          pFile,
+          sizeof(Vuelo) * posicion,
+          SEEK_SET
+          );
+
+    fwrite(
+           &reg,
+          sizeof(Vuelo),
+           1,
+          pFile
+          );
+
+  fclose(pFile);
+
+  cout << "VUELO MODIFICADO"<< endl;
 }
 
 void ArchivoVuelo::agregarVuelo(){

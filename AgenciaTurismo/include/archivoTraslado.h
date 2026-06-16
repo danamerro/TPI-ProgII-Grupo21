@@ -1,11 +1,16 @@
 #pragma once
 
-#include "archivo.h"
 #include "traslado.h"
 
 
-class ArchivoTraslado : public Archivo<Traslado> {
+class ArchivoTraslado
+{
     private:
+        char _nombreArchivo[20];
+
+        bool guardarRegistro(Traslado reg);
+        Traslado leerRegistro(int posicion);
+        int contarRegistros();
         int buscarRegistro(int idTraslado);
     public:
         ArchivoTraslado();

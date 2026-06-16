@@ -42,5 +42,4 @@ class Cliente {
         void cargarCliente();
         void cargarDatosCliente();
         void mostrarCliente() const;
-        void mostrarContacto() const;
 };
