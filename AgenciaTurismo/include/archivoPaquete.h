@@ -1,17 +1,16 @@
 #pragma once
 
+#include "archivo.h"
 #include "paquete.h"
 
 
-class ArchivoPaquete
-{
+class ArchivoPaquete :public Archivo<Paquete>{
     private:
-        char _nombreArchivo[20];
-
-        bool guardarRegistro(Paquete reg);
-        Paquete leerRegistro(int posicion);
-        int contarRegistros();
         int buscarRegistro(int idPaquete);
+        int obtenerCantidadRegistrosServicio(int tipoServicio);
+        void procesarAsistenciaServicio(const char* nombreServicio, int tipoServicio);
+        int enlazarServicioGenerico(const char* nombreServicio, int tipoServicio);
+
     public:
         ArchivoPaquete();
 

@@ -1,16 +1,10 @@
 #pragma once
 
+#include "archivo.h"
 #include "vuelo.h"
 
-
-class ArchivoVuelo
-{
+class ArchivoVuelo : public Archivo<Vuelo> {
     private:
-        char _nombreArchivo[20];
-
-        bool guardarRegistro(Vuelo reg);
-        Vuelo leerRegistro(int posicion);
-        int contarRegistros();
         int buscarRegistro(int idVuelo);
     public:
         ArchivoVuelo();

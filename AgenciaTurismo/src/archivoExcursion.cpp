@@ -5,76 +5,7 @@
 
 using namespace std;
 
-ArchivoExcursion::ArchivoExcursion()
-{
-    strcpy(_nombreArchivo,"excursiones.dat");
-}
-
-bool ArchivoExcursion::guardarRegistro(Excursion reg){
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo,"ab");
-
-    if(pFile == nullptr){
-        return false;
-    }
-
-    bool escribio = fwrite(&reg, sizeof(Excursion), 1, pFile);
-
-    fclose(pFile);
-
-    return escribio;
-}
-
-Excursion ArchivoExcursion::leerRegistro(int posicion) {
-
-    Excursion reg;
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return reg;
-    }
-
-    fseek(
-        pFile,
-        sizeof(Excursion) * posicion,
-        SEEK_SET
-    );
-
-    fread(
-        &reg,
-        sizeof(Excursion),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    return reg;
-}
-
-int ArchivoExcursion::contarRegistros() {
-
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb");
-
-    if (pFile == nullptr) {
-        return 0;
-    }
-
-    fseek(pFile, 0, SEEK_END);
-
-    int cantidad =
-        ftell(pFile) / sizeof(Excursion);
-
-    fclose(pFile);
-
-    return cantidad;
-}
+ArchivoExcursion::ArchivoExcursion(): Archivo<Excursion>("excursiones.dat"){}
 
 int ArchivoExcursion::buscarRegistro(int idExcursion) {
 
@@ -94,7 +25,6 @@ int ArchivoExcursion::buscarRegistro(int idExcursion) {
     return -1;
 }
 
-
 void ArchivoExcursion::eliminarExcursion(int idExcursion){
     int posicion = buscarRegistro(idExcursion);
     if(posicion == -1){
@@ -106,31 +36,9 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
 
     reg.setEstado(false);
 
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo, "rb+");
-
-    if(pFile == nullptr){
-        return;
+    if(modificarRegistro(reg, posicion)){
+        cout << "EXCURSION ELIMINADA" << endl;
     }
-
-    fseek(
-        pFile,
-        sizeof(Excursion) * posicion,
-        SEEK_SET
-    );
-
-    fwrite(
-        &reg,
-        sizeof(Excursion),
-        1,
-        pFile
-    );
-
-    fclose(pFile);
-
-    cout << "EXCURSION ELIMINADA" << endl;
-
 }
 
 void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
@@ -184,30 +92,9 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
 
     reg.cargarExcursion();
 
-    FILE *pFile;
-
-    pFile = fopen(_nombreArchivo,"rb+");
-
-    if(pFile == nullptr){
-        return;
+    if(modificarRegistro(reg, posicion)){
+        cout << "EXCURSION MODIFICADA"<< endl;
     }
-
-    fseek(
-          pFile,
-          sizeof(Excursion) * posicion,
-          SEEK_SET
-          );
-
-    fwrite(
-           &reg,
-          sizeof(Excursion),
-           1,
-          pFile
-          );
-
-  fclose(pFile);
-
-  cout << "EXCURSION MODIFICADA"<< endl;
 }
 
 void ArchivoExcursion::agregarExcursion(){
