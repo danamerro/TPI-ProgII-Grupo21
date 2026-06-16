@@ -1,10 +1,15 @@
 #pragma once
 
-#include "archivo.h"
 #include "gestionVenta.h"
 
-class ArchivoGestionVenta : public Archivo<GestionVenta> {
+class ArchivoGestionVenta {
     private:
+        char _nombreArchivo[20];
+
+        // Métodos auxiliares internos
+        bool guardarRegistro(GestionVenta reg);
+        GestionVenta leerRegistro(int posicion);
+        int contarRegistros();
         int buscarRegistro(int idVenta);
 
     public:

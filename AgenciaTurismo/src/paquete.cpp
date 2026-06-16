@@ -24,11 +24,7 @@ Paquete::Paquete() {
 }
 
 void Paquete::setIdPaquete(int valor){
-    if(valor > 0 ){
-       _idPaquete = valor;
-    } else {
-       _idPaquete = 0;
-    }
+    _idPaquete = valor;
 }
 
 int Paquete::getIdPaquete() const{
@@ -132,13 +128,25 @@ void Paquete::cargarDatosPaquete(){
     cin.ignore();
 
     cout << "Ingrese nombre del paquete: ";
-    cin.getline(_nombre, 50);
+    cin.getline(_nombre, 20);
 
     cout << "Ingrese descripcion del paquete: ";
-    cin.getline(_descripcion, 200);
+    cin.getline(_descripcion, 20);
 
     cout << "Ingrese destino del paquete: ";
     cin.getline(_destino, 100);
+
+    cout << "Ingrese ID del hotel: ";
+    cin >> _idHotel;
+
+    cout << "Ingrese ID del traslado: ";
+    cin >> _idTraslado;
+
+    cout << "Ingrese ID de la excursion: ";
+    cin >> _idExcursion;
+
+    cout << "Ingrese ID del vuelo: ";
+    cin >> _idVuelo;
 
     _estado = true;
 }

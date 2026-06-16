@@ -1,10 +1,16 @@
 #pragma once
-#include "archivo.h"
+
 #include "excursion.h"
 
 
-class ArchivoExcursion : public Archivo<Excursion> {
+class ArchivoExcursion
+{
     private:
+        char _nombreArchivo[20];
+
+        bool guardarRegistro(Excursion reg);
+        Excursion leerRegistro(int posicion);
+        int contarRegistros();
         int buscarRegistro(int idExcursion);
     public:
         ArchivoExcursion();

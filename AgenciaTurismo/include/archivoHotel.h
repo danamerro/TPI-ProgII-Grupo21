@@ -1,12 +1,17 @@
 #pragma once
 
-#include "archivo.h"
 #include "hotel.h"
 
-class ArchivoHotel : public Archivo<Hotel> {
-    private:
-        int buscarRegistro(int idHotel);
 
+class ArchivoHotel
+{
+    private:
+        char _nombreArchivo[20];
+
+        bool guardarRegistro(Hotel reg);
+        Hotel leerRegistro(int posicion);
+        int contarRegistros();
+        int buscarRegistro(int idHotel);
     public:
         ArchivoHotel();
 
@@ -14,6 +19,7 @@ class ArchivoHotel : public Archivo<Hotel> {
         void mostrarHotelByID(int idHotel);
         void listarHoteles();
         void modificarHotel(int idHotel);
+
         void agregarHotel();
         bool existeHotel(int idHotel);
 };

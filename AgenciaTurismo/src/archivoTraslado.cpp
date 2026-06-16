@@ -5,8 +5,76 @@
 
 using namespace std;
 
-ArchivoTraslado::ArchivoTraslado() : Archivo<Traslado>("traslados.dat"){}
+ArchivoTraslado::ArchivoTraslado()
+{
+    strcpy(_nombreArchivo,"traslados.dat");
+}
 
+bool ArchivoTraslado::guardarRegistro(Traslado reg){
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo,"ab");
+
+    if(pFile == nullptr){
+        return false;
+    }
+
+    bool escribio = fwrite(&reg, sizeof(Traslado), 1, pFile);
+
+    fclose(pFile);
+
+    return escribio;
+}
+
+Traslado ArchivoTraslado::leerRegistro(int posicion) {
+
+    Traslado reg;
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return reg;
+    }
+
+    fseek(
+        pFile,
+        sizeof(Traslado) * posicion,
+        SEEK_SET
+    );
+
+    fread(
+        &reg,
+        sizeof(Traslado),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    return reg;
+}
+
+int ArchivoTraslado::contarRegistros() {
+
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb");
+
+    if (pFile == nullptr) {
+        return 0;
+    }
+
+    fseek(pFile, 0, SEEK_END);
+
+    int cantidad =
+        ftell(pFile) / sizeof(Traslado);
+
+    fclose(pFile);
+
+    return cantidad;
+}
 
 int ArchivoTraslado::buscarRegistro(int idTraslado) {
 
@@ -35,11 +103,33 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
     }
 
     Traslado reg = leerRegistro(posicion);
+
     reg.setEstado(false);
 
-    if(modificarRegistro(reg, posicion)){
-        cout << "TRASLADO ELIMINADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo, "rb+");
+
+    if(pFile == nullptr){
+        return;
     }
+
+    fseek(
+        pFile,
+        sizeof(Traslado) * posicion,
+        SEEK_SET
+    );
+
+    fwrite(
+        &reg,
+        sizeof(Traslado),
+        1,
+        pFile
+    );
+
+    fclose(pFile);
+
+    cout << "TRASLADO ELIMINADO" << endl;
 
 }
 
@@ -58,6 +148,9 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
     else{
         cout << "TRASLADO ELIMINADO" << endl;
     }
+
+
+
 }
 
 void ArchivoTraslado::listarTraslados() {
@@ -73,6 +166,7 @@ void ArchivoTraslado::listarTraslados() {
             cout << endl;
         }
     }
+
 }
 
 void ArchivoTraslado::modificarTraslado(int idTraslado) {
@@ -90,9 +184,30 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
 
     reg.cargarTraslado();
 
-    if(modificarRegistro(reg, posicion)){
-        cout << "TRASLADO MODIFICADO" << endl;
+    FILE *pFile;
+
+    pFile = fopen(_nombreArchivo,"rb+");
+
+    if(pFile == nullptr){
+        return;
     }
+
+    fseek(
+          pFile,
+          sizeof(Traslado) * posicion,
+          SEEK_SET
+          );
+
+    fwrite(
+           &reg,
+          sizeof(Traslado),
+           1,
+          pFile
+          );
+
+  fclose(pFile);
+
+  cout << "TRASLADO MODIFICADO"<< endl;
 }
 
 void ArchivoTraslado::agregarTraslado(){
