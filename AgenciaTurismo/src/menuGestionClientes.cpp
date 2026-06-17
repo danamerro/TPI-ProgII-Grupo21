@@ -84,6 +84,7 @@ void MenuGestionClientes::subMenuConsultas() {
     char nombre[20];
     char apellido[20];
     char email[20];
+    bool estado;
     ArchivoCliente archivo;
 
     do {
@@ -136,6 +137,14 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByEmail(email);
                 break;
             case 6:
+                cout << "Ingrese el estado del cliente a consultar: " << endl;
+                cout << "1 = Activo" << endl;
+                cout << "0 = Dado de baja" << endl;
+                cout << "Opcion: ";
+                cin >> estado;
+                cout << "-----------------------------------------" << endl;
+                archivo.mostrarClienteByEstado(estado);
+                break;
             case 7:
             case 8:
                 cout << endl << "...falta agregar" << endl;

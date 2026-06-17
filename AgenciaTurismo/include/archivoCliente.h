@@ -20,6 +20,7 @@ class ArchivoCliente : public Archivo<Cliente> {
         void mostrarClienteByNombre(const char* nombre);
         void mostrarClienteByApellido(const char* apellido);
         void mostrarClienteByEmail(const char* email);
+        void mostrarClienteByEstado(bool estado);
         void agregarCliente();
         bool existeCliente(int idCliente);
 };
