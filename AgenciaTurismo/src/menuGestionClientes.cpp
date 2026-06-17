@@ -107,6 +107,10 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteById(idAux);
                 break;
             case 2:
+                cout << "Ingrese DNI del cliente a consultar: ";
+                cin >> idAux;
+                archivo.mostrarClienteByDni(idAux);
+                break;
             case 3:
             case 4:
             case 5:
