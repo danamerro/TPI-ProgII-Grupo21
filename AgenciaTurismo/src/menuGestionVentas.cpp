@@ -180,7 +180,16 @@ void MenuGestionVentas::subMenuConsultas() {
                 cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 5:
-                cout << endl << "...falta agregar" << endl;
+                cin.ignore();
+                cout << "Ingrese la fecha de viaje (dd/mm/yyyy) (0 para volver): ";
+                cin.getline(fecha, 11);
+                if (strcmp(fecha, "0") == 0) {
+                    break;
+                }
+                cout << endl;
+                archivo.mostrarVentasByFechaViaje(fecha);
+                cout << "Proceso finalizado." << endl;
+                cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 0:
                 cout << "Regresando al menu de ventas..." << endl;
