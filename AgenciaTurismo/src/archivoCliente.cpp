@@ -304,6 +304,26 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
 
 }
 
+void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Cliente reg = leerRegistro(i);
+
+        if(strcasecmp(reg.getDireccion(), direccion)==0){
+            reg.mostrarCliente();
+            cout << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+            cout << "CLIENTE NO ENCONTRADO" << endl;
+        }
+
+}
+
 void ArchivoCliente::mostrarClienteByTelefono(int telefono){
     int cantidad = contarRegistros();
 

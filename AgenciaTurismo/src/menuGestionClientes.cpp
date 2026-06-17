@@ -85,6 +85,7 @@ void MenuGestionClientes::subMenuConsultas() {
     char apellido[20];
     char email[20];
     bool estado;
+    char direccion[50];
     ArchivoCliente archivo;
 
     do {
@@ -151,9 +152,15 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByTelefono(idAux);
                 break;
             case 8:
-                cout << endl << "...falta agregar" << endl;
+                char direccion[50];
+                cin.ignore();
+                cout << "Ingrese la direccion del cliente a consultar: ";
+                cin.getline(direccion, 50);
+                cout << "-----------------------------------------" << endl;
+                archivo.mostrarClienteByDireccion(direccion);
                 break;
             case 0:
+                cout << "Regresando al menu de clientes..." << endl;
                 break;
             default:
                 cout << "Opcion invalida." << endl;
