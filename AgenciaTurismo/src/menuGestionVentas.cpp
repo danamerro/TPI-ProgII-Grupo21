@@ -137,7 +137,11 @@ void MenuGestionVentas::subMenuConsultas() {
             case 1:
                 cout << "Ingrese el ID de la venta: ";
                 cin >> idAux;
+                cout << "-----------------------------------------" << endl;
                 archivo.mostrarVentaByID(idAux);
+                cout << "-----------------------------------------" << endl;
+                cout << "Proceso finalizado." << endl;
+                cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 2:
             case 3:
