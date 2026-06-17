@@ -2,6 +2,7 @@
 #include "menuPrincipal.h"
 #include "menuGestionClientes.h"
 #include "menuGestionPaquetes.h"
+#include "menuGestionVentas.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ void MenuPrincipal::mostrarOpciones() const {
     cout << "=========================================" << endl;
     cout << "1. Gestion de Clientes" << endl;
     cout << "2. Gestion de Paquetes" << endl;
+    cout << "3. Gestion de Ventas" << endl;
     cout << "0. Salir" << endl;
     cout << "=========================================" << endl;
     cout << "Seleccione una opcion: ";
@@ -34,6 +36,11 @@ void MenuPrincipal::ejecutar() {
             case 2: {
                 MenuGestionPaquetes menuPaquetes;
                 menuPaquetes.ejecutar();
+                break;
+            }
+            case 3: {
+                MenuGestionVentas menuVentas;
+                menuVentas.ejecutar();
                 break;
             }
             case 0:

@@ -142,25 +142,22 @@ void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
 
-    int id;
-    cout << "ID Venta: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if (existeVenta(id)) {
-        cout
-            << "YA EXISTE UNA VENTA CON ESE ID"
-            << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdVenta(1);
+    } else {
+        GestionVenta ultima = leerRegistro(cantidad - 1);
+        reg.setIdVenta(ultima.getIdVenta() + 1);
     }
 
-    reg.setIdVenta(id);
     reg.crearDatosVenta();
 
     if (
         guardarRegistro(reg)
     ) {
         cout
-            << "VENTA REGISTRADA"
+            << "VENTA REGISTRADA (ID " << reg.getIdVenta() << ")"
             << endl;
     }
     else {
