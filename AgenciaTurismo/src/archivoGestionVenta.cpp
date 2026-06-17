@@ -49,6 +49,26 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
     reg.mostrarVenta();
 }
 
+void ArchivoGestionVenta::mostrarVentasByIdCliente(int idCliente) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (reg.getIdCliente() == idCliente) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "El cliente no tiene ventas registradas." << endl;
+    }
+}
+
 void ArchivoGestionVenta::listarVentas() {
 
     GestionVenta reg;
