@@ -81,6 +81,7 @@ void MenuGestionClientes::ejecutar() {
 void MenuGestionClientes::subMenuConsultas() {
     int subOpcion;
     int idAux;
+    char nombre[20];
     ArchivoCliente archivo;
 
     do {
@@ -112,6 +113,12 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByDni(idAux);
                 break;
             case 3:
+                char nombre[20];
+                cin.ignore();
+                cout << "Ingrese nombre del cliente a consultar: ";
+                cin.getline(nombre, 20);
+                archivo.mostrarClienteByNombre(nombre);
+                break;
             case 4:
             case 5:
             case 6:
