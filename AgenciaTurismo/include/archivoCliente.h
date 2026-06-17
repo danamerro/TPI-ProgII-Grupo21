@@ -10,8 +10,8 @@ class ArchivoCliente : public Archivo<Cliente> {
     public:
         ArchivoCliente();
 
-        void modificarCliente(int idCliente);
-        void eliminarCliente(int idCliente);
+        void modificarCliente();
+        void eliminarCliente();
         void listarClientes();
         void listarClientesDadosDeBaja();
         void listarDirectorioContacto();

@@ -27,45 +27,112 @@ int ArchivoCliente::buscarRegistro(int idCliente) {
     return -1;
 }
 
-void ArchivoCliente::modificarCliente(int idCliente) {
+void ArchivoCliente::modificarCliente() {
 
-    int posicion = buscarRegistro(idCliente);
+    int cantidad = contarRegistros();
+    int idModificar;
+    int posicion;
+    bool idValido = false;
 
-    if (posicion == -1) {
-
-        cout << "CLIENTE NO ENCONTRADO" << endl;
+    if (cantidad == 0) {
+        cout << endl << "--------------------------------------------------" << endl;
+        cout << "No hay ningun cliente registrado para modificar." << endl;
+        cout << "--------------------------------------------------" << endl;
         return;
     }
+
+    cout << endl << "==================================================" << endl;
+    cout << "CLIENTES ACTIVOS DISPONIBLES PARA MODIFICAR:" << endl;
+    cout << "==================================================" << endl;
+    listarClientes();
+    cout << "==================================================" << endl;
+
+    do {
+        cout << "Ingrese el ID del cliente a modificar (0 para volver): ";
+        cin >> idModificar;
+
+        if (idModificar == 0) {
+            return;
+        }
+
+        posicion = buscarRegistro(idModificar);
+
+        if (posicion == -1) {
+            cout << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
+            cout << "--------------------------------------------------------------------------" << endl;
+        } else {
+            Cliente regAux = leerRegistro(posicion);
+            if (!regAux.getEstado()) {
+                cout << "Ese cliente fue dado de baja del sistema." << endl;
+                cout << "--------------------------------------------------------------------------" << endl;
+            } else {
+                idValido = true;
+            }
+        }
+    } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
 
-    cout << endl;
-    cout << "INGRESE LOS NUEVOS DATOS" << endl;
-    cout << endl;
+    cout << endl << "--- MODIFICANDO CLIENTE ID: " << idModificar << " ---" << endl;
+    cout << "Ingrese los nuevos datos:" << endl << endl;
 
-    reg.cargarCliente();
+    reg.cargarDatosCliente();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << "CLIENTE MODIFICADO" << endl;
+        cout << endl << "CLIENTE MODIFICADO" << endl;
     }
 }
 
-void ArchivoCliente::eliminarCliente(int idCliente) {
+void ArchivoCliente::eliminarCliente() {
 
-    int posicion = buscarRegistro(idCliente);
+    int cantidad = contarRegistros();
+    int idEliminar;
+    int posicion;
+    bool idValido = false;
 
-    if (posicion == -1) {
-
-        cout << "CLIENTE NO ENCONTRADO" << endl;
+    if (cantidad == 0) {
+        cout << endl << "--------------------------------------------------" << endl;
+        cout << "No hay ningun cliente registrado para eliminar." << endl;
+        cout << "--------------------------------------------------" << endl;
         return;
     }
+
+    cout << endl << "==================================================" << endl;
+    cout << "CLIENTES ACTIVOS DISPONIBLES PARA ELIMINAR:" << endl;
+    cout << "==================================================" << endl;
+    listarClientes();
+    cout << "==================================================" << endl;
+
+    do {
+        cout << "Ingrese el ID del cliente a eliminar (0 para volver): ";
+        cin >> idEliminar;
+
+        if (idEliminar == 0) {
+            return;
+        }
+
+        posicion = buscarRegistro(idEliminar);
+
+        if (posicion == -1) {
+            cout << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
+            cout << "--------------------------------------------------------------------------" << endl;
+        } else {
+            Cliente regAux = leerRegistro(posicion);
+            if (!regAux.getEstado()) {
+                cout << "Ese cliente ya fue dado de baja del sistema." << endl;
+                cout << "--------------------------------------------------------------------------" << endl;
+            } else {
+                idValido = true;
+            }
+        }
+    } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
 
     reg.setEstado(false);
 
     if (modificarRegistro(reg, posicion)) {
-        cout << "CLIENTE ELIMINADO" << endl;
+        cout << endl << "CLIENTE ELIMINADO" << endl;
     }
 }
 
@@ -145,20 +212,19 @@ void ArchivoCliente::agregarCliente() {
 
     Cliente reg;
 
-    int id;
-    cout << "Ingrese ID del cliente: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if (existeCliente(id)){
-        cout << "YA EXISTE UN CLIENTE CON ESE ID" << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdCliente(1);
+    } else {
+        Cliente ultimo = leerRegistro(cantidad - 1);
+        reg.setIdCliente(ultimo.getIdCliente() + 1);
     }
 
-    reg.setIdCliente(id);
     reg.cargarDatosCliente();
 
     if (guardarRegistro(reg)) {
-        cout << "CLIENTE GUARDADO CORRECTAMENTE" << endl;
+        cout << "CLIENTE GUARDADO CORRECTAMENTE (ID " << reg.getIdCliente() << ")" << endl;
     }
     else {
         cout << "ERROR AL GUARDAR CLIENTE" << endl;
