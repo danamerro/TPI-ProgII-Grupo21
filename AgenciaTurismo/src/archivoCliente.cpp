@@ -304,6 +304,20 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
 
 }
 
+void ArchivoCliente::mostrarClienteByTelefono(int telefono){
+    int cantidad = contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+        Cliente reg = leerRegistro(i);
+
+        if(reg.getTelefono()== telefono){
+            reg.mostrarCliente();
+            return;
+        }
+    }
+    cout << "CLIENTE NO ENCONTRADO" << endl;
+}
+
 void ArchivoCliente::agregarCliente() {
 
     Cliente reg;

@@ -146,6 +146,10 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByEstado(estado);
                 break;
             case 7:
+                cout << "Ingrese el numero del cliente a consultar: ";
+                cin >> idAux;
+                archivo.mostrarClienteByTelefono(idAux);
+                break;
             case 8:
                 cout << endl << "...falta agregar" << endl;
                 break;
