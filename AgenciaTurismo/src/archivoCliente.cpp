@@ -264,6 +264,26 @@ void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
 
 }
 
+void ArchivoCliente::mostrarClienteByEmail(const char* email){
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Cliente reg = leerRegistro(i);
+
+        if(strcasecmp(reg.getEmail(), email)==0){
+            reg.mostrarCliente();
+            cout << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+            cout << "CLIENTE NO ENCONTRADO" << endl;
+        }
+
+}
+
 void ArchivoCliente::agregarCliente() {
 
     Cliente reg;

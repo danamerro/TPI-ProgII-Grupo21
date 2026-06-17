@@ -19,6 +19,7 @@ class ArchivoCliente : public Archivo<Cliente> {
         void mostrarClienteByDni(int dni);
         void mostrarClienteByNombre(const char* nombre);
         void mostrarClienteByApellido(const char* apellido);
+        void mostrarClienteByEmail(const char* email);
         void agregarCliente();
         bool existeCliente(int idCliente);
 };

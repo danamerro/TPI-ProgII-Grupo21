@@ -83,6 +83,7 @@ void MenuGestionClientes::subMenuConsultas() {
     int idAux;
     char nombre[20];
     char apellido[20];
+    char email[20];
     ArchivoCliente archivo;
 
     do {
@@ -128,6 +129,12 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByApellido(apellido);
                 break;
             case 5:
+                char email[20];
+                cin.ignore();
+                cout << "Ingrese el email del cliente a consultar: ";
+                cin.getline(email, 20);
+                archivo.mostrarClienteByEmail(email);
+                break;
             case 6:
             case 7:
             case 8:
