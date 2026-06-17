@@ -155,6 +155,16 @@ void MenuGestionVentas::subMenuConsultas() {
                 cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 3:
+                cout << "Ingrese el ID del paquete (0 para volver): ";
+                cin >> idAux;
+                if (idAux == 0) {
+                    break;
+                }
+                cout << endl;
+                archivo.mostrarVentasByIdPaquete(idAux);
+                cout << "Proceso finalizado." << endl;
+                cout << "Volviendo al subMenu Consultas..." << endl;
+                break;
             case 4:
                 cout << endl << "...falta agregar" << endl;
                 break;

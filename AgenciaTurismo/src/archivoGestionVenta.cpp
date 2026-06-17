@@ -36,9 +36,7 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
 
     if (posicion == -1) {
 
-        cout
-            << "VENTA NO ENCONTRADA"
-            << endl;
+        cout<< "VENTA NO ENCONTRADA"<< endl;
 
         return;
     }
@@ -66,6 +64,28 @@ void ArchivoGestionVenta::mostrarVentasByIdCliente(int idCliente) {
 
     if (!encontrada) {
         cout << "El cliente no tiene ventas registradas." << endl;
+        cout << endl;
+    }
+}
+
+void ArchivoGestionVenta::mostrarVentasByIdPaquete(int idPaquete) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (reg.getIdPaquete() == idPaquete) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "No hay ventas registradas para ese paquete." << endl;
+        cout << endl;
     }
 }
 
