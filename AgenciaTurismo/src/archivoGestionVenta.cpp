@@ -89,6 +89,26 @@ void ArchivoGestionVenta::mostrarVentasByIdPaquete(int idPaquete) {
     }
 }
 
+void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (strcmp(reg.getFechaVenta(), fecha) == 0) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "No hay ventas registradas en esa fecha." << endl;
+    }
+}
+
 void ArchivoGestionVenta::listarVentas() {
 
     GestionVenta reg;

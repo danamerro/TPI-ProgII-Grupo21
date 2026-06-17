@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "menuGestionVentas.h"
 #include "archivoGestionVenta.h"
 
@@ -117,6 +118,7 @@ void MenuGestionVentas::subMenuListados() {
 void MenuGestionVentas::subMenuConsultas() {
     int subOpcion;
     int idAux;
+    char fecha[11];
     ArchivoGestionVenta archivo;
 
     do {
@@ -166,7 +168,16 @@ void MenuGestionVentas::subMenuConsultas() {
                 cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 4:
-                cout << endl << "...falta agregar" << endl;
+                cin.ignore();
+                cout << "Ingrese la fecha de venta (dd/mm/yyyy) (0 para volver): ";
+                cin.getline(fecha, 11);
+                if (strcmp(fecha, "0") == 0) {
+                    break;
+                }
+                cout << endl;
+                archivo.mostrarVentasByFechaVenta(fecha);
+                cout << "Proceso finalizado." << endl;
+                cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
             case 5:
                 cout << endl << "...falta agregar" << endl;
