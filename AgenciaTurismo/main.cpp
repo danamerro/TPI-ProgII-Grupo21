@@ -1,5 +1,5 @@
 #include <iostream>
-#include "menuGestionPaquetes.h"
+#include "menuPrincipal.h"
 #include <clocale>
 
 using namespace std;
@@ -7,9 +7,10 @@ using namespace std;
 int main() {
 
     setlocale(LC_ALL, "Spanish");
-    MenuGestionPaquetes menuPaquetes;
 
-    menuPaquetes.ejecutar();
+    MenuPrincipal menu;
+
+    menu.ejecutar();
 
     return 0;
 }

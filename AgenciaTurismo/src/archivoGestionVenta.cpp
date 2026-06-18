@@ -36,9 +36,7 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
 
     if (posicion == -1) {
 
-        cout
-            << "VENTA NO ENCONTRADA"
-            << endl;
+        cout<< "VENTA NO ENCONTRADA"<< endl;
 
         return;
     }
@@ -47,6 +45,88 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
         leerRegistro(posicion);
 
     reg.mostrarVenta();
+}
+
+void ArchivoGestionVenta::mostrarVentasByIdCliente(int idCliente) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (reg.getIdCliente() == idCliente) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "El cliente no tiene ventas registradas." << endl;
+        cout << endl;
+    }
+}
+
+void ArchivoGestionVenta::mostrarVentasByIdPaquete(int idPaquete) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (reg.getIdPaquete() == idPaquete) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "No hay ventas registradas para ese paquete." << endl;
+        cout << endl;
+    }
+}
+
+void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (strcmp(reg.getFechaVenta(), fecha) == 0) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "No hay ventas registradas en esa fecha." << endl;
+    }
+}
+
+void ArchivoGestionVenta::mostrarVentasByFechaViaje(const char* fecha) {
+
+    int cantidad = contarRegistros();
+    bool encontrada = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        GestionVenta reg = leerRegistro(i);
+
+        if (strcmp(reg.getFechaViaje(), fecha) == 0) {
+            reg.mostrarVenta();
+            cout << endl;
+            encontrada = true;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "No hay ventas con esa fecha de viaje." << endl;
+    }
 }
 
 void ArchivoGestionVenta::listarVentas() {
@@ -142,25 +222,22 @@ void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
 
-    int id;
-    cout << "ID Venta: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if (existeVenta(id)) {
-        cout
-            << "YA EXISTE UNA VENTA CON ESE ID"
-            << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdVenta(1);
+    } else {
+        GestionVenta ultima = leerRegistro(cantidad - 1);
+        reg.setIdVenta(ultima.getIdVenta() + 1);
     }
 
-    reg.setIdVenta(id);
     reg.crearDatosVenta();
 
     if (
         guardarRegistro(reg)
     ) {
         cout
-            << "VENTA REGISTRADA"
+            << "VENTA REGISTRADA (ID " << reg.getIdVenta() << ")"
             << endl;
     }
     else {
