@@ -16,4 +16,7 @@ class ArchivoHotel : public Archivo<Hotel> {
         void modificarHotel(int idHotel);
         void agregarHotel();
         bool existeHotel(int idHotel);
+        void mostrarHotelesByNombre(const char* nombre);
+        void mostrarHotelesByEstrellas(const char* estrellas);
+        void mostrarHotelesByRangoPrecio(float min, float max);
 };

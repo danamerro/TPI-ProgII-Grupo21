@@ -4,7 +4,6 @@
 #include <cstdio>
 
 template <typename T>
-
 class Archivo {
     protected:
         char _nombreArchivo[30];

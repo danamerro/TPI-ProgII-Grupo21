@@ -75,9 +75,6 @@ bool Hotel::getEstado() const{
 }
 
 void Hotel::cargarHotel(){
-    cout << "Ingrese ID del hotel: ";
-    cin >> _idHotel;
-
     cout << "Ingrese costo del hotel: ";
     cin >> _costo;
 

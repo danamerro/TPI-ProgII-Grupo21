@@ -1,12 +1,16 @@
 #pragma once
+#include "menu.h"
+#include "archivoPaquete.h"
 
-class MenuGestionPaquetes {
+class MenuGestionPaquetes : public Menu {
     private:
-        void mostrarOpciones() const;
-        void subMenuConsultasAvanzadas();
+        ArchivoPaquete _archivo;
+        void subMenuConsultasAvanzadas(); // Se queda como un método privado auxiliar propio
 
-    public:
+     protected:
+        void mostrarOpciones() const override;
+        void procesarOpcion(int opcion) override;
+
+     public:
         MenuGestionPaquetes();
-
-        void ejecutar();
 };
