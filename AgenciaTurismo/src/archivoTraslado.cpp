@@ -7,7 +7,6 @@ using namespace std;
 
 ArchivoTraslado::ArchivoTraslado() : Archivo<Traslado>("traslados.dat"){}
 
-
 int ArchivoTraslado::buscarRegistro(int idTraslado) {
 
     Traslado reg;
@@ -25,7 +24,6 @@ int ArchivoTraslado::buscarRegistro(int idTraslado) {
 
     return -1;
 }
-
 
 void ArchivoTraslado::eliminarTraslado(int idTraslado){
     int posicion = buscarRegistro(idTraslado);
@@ -88,7 +86,7 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
     cout << "INGRESE LOS NUEVOS DATOS" << endl;
     cout << endl;
 
-    reg.cargarTraslado();
+    reg.cargarDatosTraslado();
 
     if(modificarRegistro(reg, posicion)){
         cout << "TRASLADO MODIFICADO" << endl;
@@ -97,17 +95,17 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
 
 void ArchivoTraslado::agregarTraslado(){
     Traslado reg;
+    Traslado archivo;
 
-    int id;
-    cout << "Ingrese ID del traslado: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if(existeTraslado(id)){
-        cout << "YA EXISTE UN TRASLADO CON ESE ID" << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdTraslado(1);
+    } else {
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdTraslado(archivo.getIdTraslado() + 1);
     }
 
-    reg.setIdTraslado(id);
     reg.cargarDatosTraslado();
 
     if(guardarRegistro(reg)){
