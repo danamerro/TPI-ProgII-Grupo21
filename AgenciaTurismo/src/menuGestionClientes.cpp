@@ -93,8 +93,8 @@ void MenuGestionClientes::subMenuListados() {
         cout << "-----------------------------------------" << endl;
         cout << "   --> LISTADOS DE CLIENTES              " << endl;
         cout << "-----------------------------------------" << endl;
-        cout << "1. Listar clientes activos" << endl;
-        cout << "2. Listar clientes dados de baja" << endl;
+        cout << "1. Clientes activos" << endl;
+        cout << "2. Clientes dados de baja" << endl;
         cout << "3. Directorio de contactos" << endl;
         cout << "0. Volver al menu de clientes" << endl;
         cout << "-----------------------------------------" << endl;
