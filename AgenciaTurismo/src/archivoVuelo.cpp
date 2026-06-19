@@ -90,7 +90,7 @@ void ArchivoVuelo::modificarVuelo(int idVuelo) {
     cout << "INGRESE LOS NUEVOS DATOS" << endl;
     cout << endl;
 
-    reg.cargarVuelo();
+    reg.cargarDatosVuelo();
 
     if(modificarRegistro(reg, posicion)){
         cout << "VUELO MODIFICADO" << endl;
@@ -99,17 +99,17 @@ void ArchivoVuelo::modificarVuelo(int idVuelo) {
 
 void ArchivoVuelo::agregarVuelo(){
     Vuelo reg;
+    Vuelo archivo;
 
-    int id;
-    cout << "Ingrese ID del vuelo: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if(existeVuelo(id)){
-        cout << "YA EXISTE UN VUELO CON ESE ID" << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdVuelo(1);
+    } else {
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdVuelo(archivo.getIdVuelo() + 1);
     }
 
-    reg.setIdVuelo(id);
     reg.cargarDatosVuelo();
 
     if(guardarRegistro(reg)){
@@ -124,5 +124,41 @@ bool ArchivoVuelo::existeVuelo(int idVuelo){
     return buscarRegistro(idVuelo) != -1;
 }
 
+void ArchivoVuelo::mostrarVuelosByDestino(const char* destino) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
 
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+
+        if (reg.getEstado() && strcasecmp(reg.getDestino(), destino) == 0) {
+            reg.mostrarVuelo();
+            cout << "-----------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron vuelos activos con destino a: " << destino << endl;
+    }
+}
+
+void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+
+        if (reg.getEstado() && strcasecmp(reg.getOrigen(), origen) == 0) {
+            reg.mostrarVuelo();
+            cout << "-----------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron vuelos activos con origen en: " << origen << endl;
+    }
+}
 

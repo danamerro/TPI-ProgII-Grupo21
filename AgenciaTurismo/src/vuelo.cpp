@@ -58,6 +58,14 @@ const char* Vuelo::getOrigen() const{
     return _origen;
 }
 
+void Vuelo::setDestino(const char* valor){
+    strcpy(_destino, valor);
+}
+
+const char* Vuelo::getDestino() const{
+    return _destino;
+}
+
 void Vuelo::setEstado(bool valor){
     _estado = valor;
 }
@@ -66,14 +74,8 @@ bool Vuelo::getEstado() const{
     return _estado;
 }
 
-void Vuelo::cargarVuelo(){
-    cout << "Ingrese ID del vuelo: ";
-    cin >> _idVuelo;
-
-    cargarDatosVuelo();
-}
-
 void Vuelo::cargarDatosVuelo(){
+
     cout << "Ingrese duracion del vuelo: ";
     cin >> _duracion;
 

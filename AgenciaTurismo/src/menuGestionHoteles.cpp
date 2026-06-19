@@ -25,12 +25,12 @@ void MenuGestionHoteles::procesarOpcion(int opcion) {
 
     switch (opcion) {
         case 1:
-            cout << endl << "------- ALTA DE HOTEL -------" << endl;
+            cout << endl << "------------- ALTA DE HOTEL -------------" << endl;
             archivo.agregarHotel();
             break;
 
         case 2:
-            cout << "------ HOTELES REGISTRADOS ------ "<< endl << endl;
+            cout << "---------- HOTELES REGISTRADOS ---------- "<< endl << endl;
             archivo.listarHoteles();
             cout << "Ingrese el ID del hotel a modificar: ";
             cin >> idAux;
@@ -38,7 +38,7 @@ void MenuGestionHoteles::procesarOpcion(int opcion) {
             break;
 
         case 3:
-            cout << endl << "------ HOTELES REGISTRADOS ------" << endl << endl;
+            cout << "---------- HOTELES REGISTRADOS ------------" << endl << endl;
             archivo.listarHoteles();
             cout << "Ingrese el ID del hotel a dar de baja: ";
             cin >> idAux;

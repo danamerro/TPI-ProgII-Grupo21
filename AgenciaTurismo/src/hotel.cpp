@@ -1,5 +1,4 @@
 #include "hotel.h"
-
 #include <iostream>
 #include <cstring>
 
@@ -108,15 +107,13 @@ void Hotel::mostrarHotel() const{
 }
 
 void Hotel::cargarDatosHotel(){
-    cout << "Ingrese costo del hotel: ";
-    cin >> _costo;
 
     cin.ignore();
 
-    cout << "Ingrese nombre del hotel: ";
+    cout << "Ingrese el nombre del hotel: ";
     cin.getline(_nombre, 30);
 
-    cout << "Ingrese estrellas del hotel: ";
+    cout << "Ingrese las estrellas del hotel: ";
     cin.getline(_estrellas, 30);
 
     cout << "Ingrese direccion del hotel: ";
@@ -124,6 +121,11 @@ void Hotel::cargarDatosHotel(){
 
     cout << "Ingrese descripcion del hotel: ";
     cin.getline(_descripcion, 150);
+
+    cout << "Ingrese costo del hotel: ";
+    cin >> _costo;
+
+    cin.ignore();
 
     _estado = true;
 

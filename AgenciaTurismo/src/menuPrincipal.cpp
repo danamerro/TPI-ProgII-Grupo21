@@ -4,6 +4,7 @@
 #include "menuGestionPaquetes.h"
 #include "menuGestionVentas.h"
 #include "menuGestionHoteles.h"
+#include "menuGestionVuelos.h"
 
 using namespace std;
 
@@ -51,6 +52,11 @@ void MenuPrincipal::ejecutar() {
             case 4: {
                 MenuGestionHoteles menuHoteles;
                 menuHoteles.ejecutar();
+                break;
+            }
+            case 5: {
+                MenuGestionVuelos menuVuelos;
+                menuVuelos.ejecutar();
                 break;
             }
             case 0:
