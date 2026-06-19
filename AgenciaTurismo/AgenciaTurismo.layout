@@ -2,19 +2,39 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="include\archivoTraslado.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\archivoGestionVenta.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="479" topLine="0" />
+			<Cursor1 position="125" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\menuGestionVuelos.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\traslado.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="946" topLine="22" />
+			<Cursor1 position="785" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="include\archivoVuelo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\cliente.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="554" topLine="0" />
+			<Cursor1 position="287" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\archivoHotel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="437" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\menuGestionTraslados.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2855" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+			<Collapse line="20" />
+			<Collapse line="57" />
+		</Folding>
+	</File>
+	<File name="src\menuGestionPaquetes.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1027" topLine="15" />
 		</Cursor>
 	</File>
 	<File name="src\gestionVenta.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,49 +42,143 @@
 			<Cursor1 position="251" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\archivoHotel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\hotel.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2824" topLine="33" />
+			<Cursor1 position="2217" topLine="93" />
+		</Cursor>
+	</File>
+	<File name="include\archivo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="295" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="26" />
+			<Collapse line="38" />
+			<Collapse line="48" />
+		</Folding>
+	</File>
+	<File name="src\archivoTraslado.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="174" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="9" />
 			<Collapse line="27" />
-			<Collapse line="40" />
-			<Collapse line="47" />
-			<Collapse line="76" />
-			<Collapse line="88" />
+			<Collapse line="43" />
+			<Collapse line="60" />
+			<Collapse line="75" />
+			<Collapse line="95" />
+			<Collapse line="118" />
 		</Folding>
 	</File>
-	<File name="src\traslado.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="231" topLine="43" />
-		</Cursor>
-		<Folding>
-			<Collapse line="67" />
-			<Collapse line="85" />
-		</Folding>
-	</File>
-	<File name="include\menuGestionTraslados.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\menuGestionTraslados.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="284" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\cliente.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="279" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="84" />
+			<Collapse line="114" />
+		</Folding>
+	</File>
+	<File name="src\paquete.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2526" topLine="118" />
+		</Cursor>
+	</File>
+	<File name="include\menuGestionPaquetes.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="267" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\excursion.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1239" topLine="69" />
+		</Cursor>
+	</File>
+	<File name="include\gestionVenta.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="433" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="src\archivoExcursion.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="201" topLine="0" />
+			<Cursor1 position="2212" topLine="1" />
 		</Cursor>
 		<Folding>
 			<Collapse line="9" />
 			<Collapse line="27" />
 			<Collapse line="43" />
 			<Collapse line="63" />
+		</Folding>
+	</File>
+	<File name="include\hotel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="src\archivoVuelo.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1755" topLine="4" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="28" />
+			<Collapse line="44" />
+			<Collapse line="64" />
 			<Collapse line="79" />
 			<Collapse line="99" />
+			<Collapse line="126" />
+			<Collapse line="145" />
 		</Folding>
+	</File>
+	<File name="include\excursion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="801" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\vuelo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="804" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="src\vuelo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1226" topLine="64" />
+		</Cursor>
+	</File>
+	<File name="include\menuGestionExcursiones.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="124" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\menuGestionVuelos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="349" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\archivoExcursion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="323" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="src\menuGestionClientes.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1969" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="include\archivoCliente.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="212" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\menuGestionHoteles.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3243" topLine="90" />
 		</Cursor>
 	</File>
 	<File name="src\archivoCliente.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -83,23 +197,32 @@
 			<Collapse line="143" />
 		</Folding>
 	</File>
-	<File name="src\archivoPaquete.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\menuPrincipal.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="227" topLine="0" />
+			<Cursor1 position="1989" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\archivoTraslado.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="479" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\archivoHotel.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1489" topLine="13" />
 		</Cursor>
 		<Folding>
-			<Collapse line="13" />
-			<Collapse line="31" />
+			<Collapse line="9" />
+			<Collapse line="27" />
+			<Collapse line="40" />
 			<Collapse line="47" />
-			<Collapse line="141" />
-			<Collapse line="174" />
-			<Collapse line="178" />
-			<Collapse line="197" />
+			<Collapse line="76" />
+			<Collapse line="88" />
 		</Folding>
 	</File>
-	<File name="src\hotel.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\menuGestionVuelos.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2175" topLine="88" />
+			<Cursor1 position="1220" topLine="19" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -107,79 +230,23 @@
 			<Cursor1 position="177" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src\archivoVuelo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\traslado.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1755" topLine="4" />
+			<Cursor1 position="231" topLine="43" />
 		</Cursor>
 		<Folding>
-			<Collapse line="9" />
-			<Collapse line="28" />
-			<Collapse line="44" />
-			<Collapse line="64" />
-			<Collapse line="79" />
-			<Collapse line="99" />
-			<Collapse line="126" />
-			<Collapse line="145" />
+			<Collapse line="67" />
+			<Collapse line="85" />
 		</Folding>
 	</File>
-	<File name="include\traslado.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\archivoVuelo.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="785" topLine="10" />
+			<Cursor1 position="554" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include\archivo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\menuGestionExcursiones.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="295" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="26" />
-			<Collapse line="38" />
-			<Collapse line="48" />
-		</Folding>
-	</File>
-	<File name="include\cliente.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="287" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\archivoPaquete.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="528" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\hotel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="17" />
-		</Cursor>
-	</File>
-	<File name="include\archivoCliente.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="212" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\menuPrincipal.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1324" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="src\menuGestionTraslados.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2855" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="7" />
-			<Collapse line="20" />
-			<Collapse line="57" />
-		</Folding>
-	</File>
-	<File name="include\archivoHotel.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="437" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\vuelo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1226" topLine="64" />
+			<Cursor1 position="505" topLine="61" />
 		</Cursor>
 	</File>
 	<File name="src\archivoGestionVenta.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -192,77 +259,21 @@
 			<Collapse line="201" />
 		</Folding>
 	</File>
-	<File name="src\cliente.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\archivoPaquete.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="279" topLine="0" />
+			<Cursor1 position="9492" topLine="195" />
 		</Cursor>
 		<Folding>
-			<Collapse line="84" />
-			<Collapse line="114" />
+			<Collapse line="13" />
+			<Collapse line="31" />
+			<Collapse line="47" />
+			<Collapse line="169" />
+			<Collapse line="259" />
 		</Folding>
 	</File>
-	<File name="include\menuGestionVuelos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\archivoPaquete.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="349" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\menuGestionPaquetes.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1446" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\archivoGestionVenta.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="125" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\gestionVenta.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="433" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\archivoTraslado.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="174" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="9" />
-			<Collapse line="27" />
-			<Collapse line="43" />
-			<Collapse line="60" />
-			<Collapse line="75" />
-			<Collapse line="95" />
-			<Collapse line="118" />
-		</Folding>
-	</File>
-	<File name="include\vuelo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="804" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="src\paquete.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2083" topLine="114" />
-		</Cursor>
-	</File>
-	<File name="include\archivoExcursion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="323" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\menuGestionHoteles.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="996" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\menuGestionPaquetes.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="267" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\excursion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="31" topLine="0" />
+			<Cursor1 position="528" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

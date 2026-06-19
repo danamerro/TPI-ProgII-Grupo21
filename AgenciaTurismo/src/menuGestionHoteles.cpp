@@ -21,28 +21,27 @@ void MenuGestionHoteles::mostrarOpciones() const {
 
 void MenuGestionHoteles::procesarOpcion(int opcion) {
     int idAux;
-    ArchivoHotel archivo;
 
     switch (opcion) {
         case 1:
             cout << endl << "------------- ALTA DE HOTEL -------------" << endl;
-            archivo.agregarHotel();
+            _archivo.agregarHotel();
             break;
 
         case 2:
             cout << "---------- HOTELES REGISTRADOS ---------- "<< endl << endl;
-            archivo.listarHoteles();
+            _archivo.listarHoteles();
             cout << "Ingrese el ID del hotel a modificar: ";
             cin >> idAux;
-            archivo.modificarHotel(idAux);
+            _archivo.modificarHotel(idAux);
             break;
 
         case 3:
             cout << "---------- HOTELES REGISTRADOS ------------" << endl << endl;
-            archivo.listarHoteles();
+            _archivo.listarHoteles();
             cout << "Ingrese el ID del hotel a dar de baja: ";
             cin >> idAux;
-            archivo.eliminarHotel(idAux);
+            _archivo.eliminarHotel(idAux);
             break;
 
         case 4:

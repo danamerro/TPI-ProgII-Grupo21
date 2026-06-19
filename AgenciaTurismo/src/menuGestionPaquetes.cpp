@@ -24,17 +24,17 @@ void MenuGestionPaquetes::procesarOpcion(int opcion) {
 
     switch (opcion) {
         case 1:
-            cout << endl << "------- ALTA DE PAQUETE -------" << endl;
+            cout << endl << "----------- ALTA DE PAQUETE -------------" << endl << endl;
             _archivo.agregarPaquete();
             break;
 
         case 2:
-            cout << endl << "------ MODIFICAR PAQUETE ------" << endl;
+            cout << endl << "----------- MODIFICAR PAQUETE -----------" << endl << endl;
             _archivo.modificarPaquete(0);
             break;
 
         case 3:
-            cout << endl << "------ ELIMINAR PAQUETE ------" << endl;
+            cout << endl << "----------- ELIMINAR PAQUETE ------------" << endl << endl;
             cout << "Ingrese el ID del paquete a dar de baja: ";
             cin >> idAux;
             _archivo.eliminarPaquete(idAux);

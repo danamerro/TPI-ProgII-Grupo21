@@ -83,31 +83,33 @@ void ArchivoPaquete::listarPaquetes() {
 
 void ArchivoPaquete::modificarPaquete(int idPaquete) {
     int cantidad = contarRegistros();
-    int idModificar;
+    int id;
     int posicion;
     bool idValido = false;
 
     if (cantidad == 0) {
         cout << endl << "--------------------------------------------------" << endl;
         cout << "No hay ningun paquete registrado en el sistema para modificar." << endl;
-        cout << "--------------------------------------------------" << endl;
+        cout << "--------------------------------------------------" << endl; //
         return;
     }
 
     cout << endl << "==================================================" << endl;
     cout << "LISTA DE PAQUETES DISPONIBLES PARA MODIFICAR:" << endl;
     cout << "==================================================" << endl;
-    listarPaquetes();
+    listarPaquetes(); //
     cout << "==================================================" << endl;
 
     do {
-        cout << "Ingrese el ID del paquete que desea modificar: ";
-        cin >> idModificar;
+        cout << "Ingrese el ID del paquete que desea modificar (0 para cancelar): ";
+        cin >> id;
 
-        posicion = buscarRegistro(idModificar);
+        if (id == 0) return;
+
+        posicion = buscarRegistro(id);
 
         if (posicion == -1) {
-            cout << "El ID " << idModificar << " no corresponde a un paquete activo." << endl;
+            cout << "El ID " << id << " no corresponde a un paquete activo." << endl;
             cout << "--------------------------------------------------------------------------" << endl;
         } else {
             Paquete regAux = leerRegistro(posicion);
@@ -122,17 +124,17 @@ void ArchivoPaquete::modificarPaquete(int idPaquete) {
 
     Paquete reg = leerRegistro(posicion);
 
-    cout << endl << "--- MODIFICANDO PAQUETE ID: " << idModificar << " ---" << endl;
+    cout << endl << "--- MODIFICANDO PAQUETE ID: " << id << " ---" << endl;
     cout << "Ingrese los nuevos datos del paquete:" << endl << endl;
 
-    reg.cargarPaquete();
-    reg.setIdPaquete(idModificar);
+    reg.cargarDatosPaquete();
+
     reg.setIdHotel( enlazarServicioGenerico("hotel", 1) );
     reg.setIdTraslado( enlazarServicioGenerico("traslado", 2) );
     reg.setIdExcursion( enlazarServicioGenerico("excursion", 3) );
     reg.setIdVuelo( enlazarServicioGenerico("vuelo", 4) );
 
-    if (modificarRegistro(reg, posicion)) {
+    if (modificarRegistro(reg, posicion)) { //
         cout << endl << "PAQUETE MODIFICADO CORRECTAMENTE EN EL SISTEMA" << endl;
     } else {
         cout << endl << "ERROR AL GUARDAR LOS CAMBIOS EN EL ARCHIVO" << endl;
@@ -141,22 +143,17 @@ void ArchivoPaquete::modificarPaquete(int idPaquete) {
 
 void ArchivoPaquete::agregarPaquete(){
     Paquete reg;
-    int id;
-    bool idValido = false;
+    Paquete archivo;
 
-    do {
-        cout << "Ingrese ID del nuevo paquete: ";
-        cin >> id;
+    int cantidad = contarRegistros();
 
-        if (existePaquete(id)) {
-            cout << "Ya existe un paquete registrado con el ID " << id << ". Intente con otro." << endl;
-            cout << "--------------------------------------------------------------------------" << endl;
-        } else {
-            idValido = true;
-        }
-    } while (!idValido);
+    if (cantidad == 0) {
+        reg.setIdPaquete(1);
+    } else {
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdPaquete(archivo.getIdPaquete() + 1);
+    }
 
-    reg.setIdPaquete(id);
     reg.cargarDatosPaquete();
 
     reg.setIdHotel( enlazarServicioGenerico("hotel", 1) );
@@ -195,131 +192,87 @@ int ArchivoPaquete::obtenerCantidadRegistrosServicio(int tipoServicio) {
     }
 }
 
-void ArchivoPaquete::procesarAsistenciaServicio(const char* nombreServicio, int tipoServicio) {
-    char respuesta;
+int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipoServicio) {
+    int id = 0;
+    bool idValido = false;
+
     ArchivoHotel archivoHotel;
     ArchivoTraslado archivoTraslado;
     ArchivoExcursion archivoExcursion;
     ArchivoVuelo archivoVuelo;
 
-    cout << "El ID ingresado no corresponde a ningun " << nombreServicio << " activo." << endl;
-    cout << "¿Desea ver la lista de " << nombreServicio << "s registrados para buscarlo? (S/N): ";
-    cin >> respuesta;
+    int cantidad = obtenerCantidadRegistrosServicio(tipoServicio);
 
-    if (respuesta == 'S' || respuesta == 's') {
-        cout << endl << "--------------------------------------------------" << endl;
-        cout << "Lista de " << nombreServicio << "s registrados:" << endl;
+    if (cantidad == 0) {
+        cout << endl << "No existe ningun " << nombreServicio << " registrado en el sistema." << endl;
+        cout << "Creando un nuevo " << nombreServicio << " automaticamente..." << endl;
         cout << "--------------------------------------------------" << endl;
 
         switch (tipoServicio) {
             case 1:
-                archivoHotel.listarHoteles();
+                archivoHotel.agregarHotel();
+                id = archivoHotel.contarRegistros();
                 break;
             case 2:
-                archivoTraslado.listarTraslados();
+                archivoTraslado.agregarTraslado();
+                id = archivoTraslado.contarRegistros();
                 break;
             case 3:
-                archivoExcursion.listarExcursiones();
+                archivoExcursion.agregarExcursion();
+                id = archivoExcursion.contarRegistros();
                 break;
             case 4:
-                archivoVuelo.listarVuelos();
+                archivoVuelo.agregarVuelo();
+                id = archivoVuelo.contarRegistros();
                 break;
         }
-        cout << "--------------------------------------------------" << endl;
-    } else {
-        cout << "¿Desea dar de alta un nuevo " << nombreServicio << " ahora mismo? (S/N): ";
-        cin >> respuesta;
-        if (respuesta == 'S' || respuesta == 's') {
-            cout << endl;
-            switch (tipoServicio) {
-                case 1:
-                    archivoHotel.agregarHotel();
-                    break;
-                case 2:
-                    archivoTraslado.agregarTraslado();
-                    break;
-                case 3:
-                    archivoExcursion.agregarExcursion();
-                    break;
-                case 4:
-                    archivoVuelo.agregarVuelo();
-                    break;
-            }
-            cout << endl << "--- CONTINUANDO CON LA CARGA DEL PAQUETE ---" << endl;
-        }
+        cout << "Se guardo el servicio de " << nombreServicio << " con ID: " << id << endl;
+        return id;
     }
-}
 
-int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipoServicio) {
-    int idAux;
-    bool idValido = false;
-    char respuesta;
+    cout << endl << "==================================================" << endl;
+    cout << " LISTA DE " << nombreServicio << "S DISPONIBLES:" << endl;
+    cout << "==================================================" << endl;
 
-    ArchivoHotel archivoHotel;
-    ArchivoTraslado archivoTraslado;
-    ArchivoExcursion archivoExcursion;
-    ArchivoVuelo archivoVuelo;
+    switch (tipoServicio) {
+        case 1: archivoHotel.listarHoteles(); break;
+        case 2: archivoTraslado.listarTraslados(); break;
+        case 3: archivoExcursion.listarExcursiones(); break;
+        case 4: archivoVuelo.listarVuelos(); break;
+    }
+
+    cout << "=========================================================" << endl;
+    cout << "  Si desea otro " << nombreServicio << " puede cargar uno nuevo ingresando -1." << endl;
+    cout << "=========================================================" << endl;
 
     do {
-        int cantidad = obtenerCantidadRegistrosServicio(tipoServicio);
+        cout << "Seleccione el ID del " << nombreServicio << " para agregar al paquete (-1 para nuevo): ";
+        cin >> id;
 
-        if (cantidad == 0) {
-            cout << endl << "--------------------------------------------------" << endl;
-            cout << "No hay ningun " << nombreServicio << " registrado en el sistema." << endl;
-            cout << "--------------------------------------------------" << endl;
-            cout << "¿Desea dar de alta un NUEVO " << nombreServicio << " ahora mismo? (S/N): ";
-            cin >> respuesta;
-
-            if (respuesta == 'S' || respuesta == 's') {
-                cout << endl;
-                switch (tipoServicio) {
-                    case 1:
-                        archivoHotel.agregarHotel();
-                        break;
-                    case 2:
-                        archivoTraslado.agregarTraslado();
-                        break;
-                    case 3:
-                        archivoExcursion.agregarExcursion();
-                        break;
-                    case 4:
-                        archivoVuelo.agregarVuelo();
-                        break;
-                }
-                cout << endl << "--- CONTINUANDO CON LA CARGA DEL PAQUETE ---" << endl;
-            } else {
-                cout << "Se asignara el ID 0 (sin servicio asociado)." << endl;
-                return 0;
+        if (id == -1) {
+            cout << endl << "--- ALTA DE NUEVO " << nombreServicio << " ---" << endl;
+            switch (tipoServicio) {
+                case 1: archivoHotel.agregarHotel(); id = archivoHotel.contarRegistros(); break;
+                case 2: archivoTraslado.agregarTraslado(); id = archivoTraslado.contarRegistros(); break;
+                case 3: archivoExcursion.agregarExcursion(); id = archivoExcursion.contarRegistros(); break;
+                case 4: archivoVuelo.agregarVuelo(); id = archivoVuelo.contarRegistros(); break;
             }
+            cout << "Nuevo " << nombreServicio << " creado y enlazado con ID: " << id << endl;
+            return id;
         }
 
-        cout << endl << "Ingrese ID del " << nombreServicio << " para el paquete: ";
-        cin >> idAux;
-
         switch (tipoServicio) {
-            case 1:
-                if (archivoHotel.existeHotel(idAux))
-                    idValido = true;
-                break;
-            case 2:
-                if (archivoTraslado.existeTraslado(idAux))
-                    idValido = true;
-                break;
-            case 3:
-                if (archivoExcursion.existeExcursion(idAux))
-                    idValido = true;
-                break;
-            case 4:
-                if (archivoVuelo.existeVuelo(idAux))
-                    idValido = true;
-                break;
+            case 1: idValido = archivoHotel.existeHotel(id); break;
+            case 2: idValido = archivoTraslado.existeTraslado(id); break;
+            case 3: idValido = archivoExcursion.existeExcursion(id); break;
+            case 4: idValido = archivoVuelo.existeVuelo(id); break;
         }
 
         if (!idValido) {
-            procesarAsistenciaServicio(nombreServicio, tipoServicio);
+            cout << "El ID " << id << " no pertenece a un " << nombreServicio << " activo. Seleccione uno de la lista." << endl;
         }
 
     } while (!idValido);
 
-    return idAux;
+    return id;
 }

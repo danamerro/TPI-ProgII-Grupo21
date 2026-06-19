@@ -122,7 +122,7 @@ void ArchivoHotel::agregarHotel(){
     reg.cargarDatosHotel();
 
     if(guardarRegistro(reg)){
-        cout << "HOTEL GUARDADO CORRECTAMENTE";
+        cout << endl << "HOTEL GUARDADO CORRECTAMENTE"<< endl;
     }
     else{
         cout << "ERROR AL GUARDAR HOTEL" << endl;

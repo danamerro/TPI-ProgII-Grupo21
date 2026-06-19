@@ -115,20 +115,7 @@ int Paquete::getIdVuelo() const{
     return _idVuelo;
 }
 
-void Paquete::cargarPaquete(){
-    cout << "Ingrese ID del paquete: ";
-    cin >> _idPaquete;
-
-    cargarDatosPaquete();
-}
-
 void Paquete::cargarDatosPaquete(){
-    cout << "Ingrese precio del paquete: ";
-    cin >> _precio;
-
-    cout << "Ingrese cupo del paquete: ";
-    cin >> _cupo;
-
     cin.ignore();
 
     cout << "Ingrese nombre del paquete: ";
@@ -139,6 +126,12 @@ void Paquete::cargarDatosPaquete(){
 
     cout << "Ingrese destino del paquete: ";
     cin.getline(_destino, 100);
+
+    cout << "Ingrese precio del paquete: ";
+    cin >> _precio;
+
+    cout << "Ingrese cupo del paquete: ";
+    cin >> _cupo;
 
     _estado = true;
 }

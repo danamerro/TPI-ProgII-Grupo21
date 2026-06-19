@@ -50,6 +50,7 @@
 		<Unit filename="include/hotel.h" />
 		<Unit filename="include/menu.h" />
 		<Unit filename="include/menuGestionClientes.h" />
+		<Unit filename="include/menuGestionExcursiones.h" />
 		<Unit filename="include/menuGestionHoteles.h" />
 		<Unit filename="include/menuGestionPaquetes.h" />
 		<Unit filename="include/menuGestionTraslados.h" />
@@ -74,6 +75,7 @@
 		<Unit filename="src/hotel.cpp" />
 		<Unit filename="src/menu.cpp" />
 		<Unit filename="src/menuGestionClientes.cpp" />
+		<Unit filename="src/menuGestionExcursiones.cpp" />
 		<Unit filename="src/menuGestionHoteles.cpp" />
 		<Unit filename="src/menuGestionPaquetes.cpp" />
 		<Unit filename="src/menuGestionTraslados.cpp" />
