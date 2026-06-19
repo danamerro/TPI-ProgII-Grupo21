@@ -90,7 +90,7 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
     cout << "INGRESE LOS NUEVOS DATOS" << endl;
     cout << endl;
 
-    reg.cargarExcursion();
+    reg.cargarDatosExcursion();
 
     if(modificarRegistro(reg, posicion)){
         cout << "EXCURSION MODIFICADA"<< endl;
@@ -99,17 +99,17 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
 
 void ArchivoExcursion::agregarExcursion(){
     Excursion reg;
+    Excursion archivo;
 
-    int id;
-    cout << "Ingrese ID de la excursion: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if(existeExcursion(id)){
-        cout << "YA EXISTE UNA EXCURSION CON ESE ID" << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdExcursion(1);
+    } else {
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdExcursion(archivo.getIdExcursion() + 1);
     }
 
-    reg.setIdExcursion(id);
     reg.cargarDatosExcursion();
 
     if(guardarRegistro(reg)){
