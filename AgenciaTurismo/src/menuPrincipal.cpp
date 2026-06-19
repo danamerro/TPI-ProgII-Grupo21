@@ -12,7 +12,7 @@ void MenuPrincipal::mostrarOpciones() const {
     cout << "=========================================" << endl;
     cout << "        AGENCIA DE TURISMO - MENU         " << endl;
     cout << "=========================================" << endl;
-    cout << "1. Gestion de Clientes" << endl;
+    cout << "1. Clientes" << endl;
     cout << "2. Gestion de Paquetes" << endl;
     cout << "3. Gestion de Ventas" << endl;
     cout << "0. Salir" << endl;
