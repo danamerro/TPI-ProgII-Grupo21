@@ -146,11 +146,10 @@ void MenuGestionVentas::subMenuConsultas() {
         cout << "-----------------------------------------" << endl;
         cout << "   --> CONSULTAS DE VENTAS               " << endl;
         cout << "-----------------------------------------" << endl;
-        cout << "1. Buscar venta por ID" << endl;
-        cout << "2. Buscar por ID de cliente" << endl;
-        cout << "3. Buscar por ID de paquete" << endl;
-        cout << "4. Buscar por fecha de venta" << endl;
-        cout << "5. Buscar por fecha de viaje" << endl;
+        cout << "1.  Por ID" << endl;
+        cout << "2.  Por ID de cliente" << endl;
+        cout << "3.  Por ID de paquete" << endl;
+        cout << "4.  Por Fecha de venta" << endl;
         cout << "0. Volver al menu de ventas" << endl;
         cout << "-----------------------------------------" << endl;
         cout << "Seleccione una sub-opcion: ";
@@ -197,18 +196,6 @@ void MenuGestionVentas::subMenuConsultas() {
                 }
                 cout << endl;
                 archivo.mostrarVentasByFechaVenta(fecha);
-                cout << "Proceso finalizado." << endl;
-                cout << "Volviendo al subMenu Consultas..." << endl;
-                break;
-            case 5:
-                cin.ignore();
-                cout << "Ingrese la fecha de viaje (dd/mm/yyyy) (0 para volver): ";
-                cin.getline(fecha, 11);
-                if (strcmp(fecha, "0") == 0) {
-                    break;
-                }
-                cout << endl;
-                archivo.mostrarVentasByFechaViaje(fecha);
                 cout << "Proceso finalizado." << endl;
                 cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
