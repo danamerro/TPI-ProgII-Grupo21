@@ -146,10 +146,10 @@ void MenuGestionVentas::subMenuConsultas() {
         cout << "-----------------------------------------" << endl;
         cout << "   --> CONSULTAS DE VENTAS               " << endl;
         cout << "-----------------------------------------" << endl;
-        cout << "1.  Por ID" << endl;
-        cout << "2.  Por ID de cliente" << endl;
-        cout << "3.  Por ID de paquete" << endl;
-        cout << "4.  Por Fecha de venta" << endl;
+        cout << "1. Por ID de venta" << endl;
+        cout << "2. Por ID de cliente" << endl;
+        cout << "3. Por ID de paquete" << endl;
+        cout << "4. Por Fecha de venta" << endl;
         cout << "0. Volver al menu de ventas" << endl;
         cout << "-----------------------------------------" << endl;
         cout << "Seleccione una sub-opcion: ";
