@@ -12,9 +12,9 @@ void MenuGestionExcursiones::mostrarOpciones() const {
     cout << pad << "=============================================================" << endl;
     cout << pad << "               -> GESTION DE EXCURSIONES                     " << endl;
     cout << pad << "=============================================================" << endl;
-    cout << pad << "               1. Agregar una Excursion                      " << endl;
-    cout << pad << "               2. Modificar una Excursion                    " << endl;
-    cout << pad << "               3. Eliminar una Excursion                     " << endl;
+    cout << pad << "               1. Agregar Excursion                      " << endl;
+    cout << pad << "               2. Modificar Excursion                    " << endl;
+    cout << pad << "               3. Eliminar Excursion                     " << endl;
     cout << pad << "               4. Consultas                                  " << endl;
     cout << pad << "               5. Listados                                   " << endl;
     cout << pad << "               0. Volver al menu principal                   " << endl;
@@ -127,7 +127,6 @@ void MenuGestionExcursiones::subMenuConsultas() {
         cout << endl;
     } while (subOpcion != 0);
 }
-
 
 void MenuGestionExcursiones::subMenuListados() {
     int subOpcion;

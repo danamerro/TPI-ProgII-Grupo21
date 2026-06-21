@@ -1,4 +1,5 @@
 #include "traslado.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -66,30 +67,33 @@ bool Traslado::getEstado() const{
 }
 
 void Traslado::cargarDatosTraslado(){
-    cout << "Ingrese duracion del traslado: ";
+    string pad = obtenerPad(61);
+    cin.ignore();
+
+    cout << endl << pad << "Ingrese origen: ";
+    cin.getline(_origen, 20);
+
+    cout << pad << "Ingrese destino: ";
+    cin.getline(_destino, 20);
+
+    cout << pad << "Ingrese duración: ";
     cin >> _duracion;
 
-    cout << "Ingrese precio del traslado: ";
+    cout << pad << "Ingrese precio : $";
     cin >> _precio;
 
     cin.ignore();
 
-    cout << "Ingrese origen del traslado: ";
-    cin.getline(_origen, 20);
-
-    cout << "Ingrese destino del traslado: ";
-    cin.getline(_destino, 20);
-
     _estado = true;
+
 }
 
 void Traslado::mostrarTraslado() const{
-    if (_estado == true) {
-        cout << "ID traslado: " << _idTraslado << endl;
-        cout << "Duracion: " << _duracion << endl;
-        cout << "Precio: " << _precio << endl;
-        cout << "Origen: " << _origen << endl;
-        cout << "Destino: " << _destino << endl;
-        cout << "Estado: " << _estado << endl;
-    }
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "ID traslado: " << _idTraslado << endl;
+    cout << pad << "Origen: " << _origen << endl;
+    cout << pad << "Destino: " << _destino << endl;
+    cout << pad << "Duración: " << _duracion << endl;
+    cout << pad << "Precio: $" << _precio << endl;
 }

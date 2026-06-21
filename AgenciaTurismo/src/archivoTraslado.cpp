@@ -1,4 +1,5 @@
 #include "archivoTraslado.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -27,8 +28,12 @@ int ArchivoTraslado::buscarRegistro(int idTraslado) {
 
 void ArchivoTraslado::eliminarTraslado(int idTraslado){
     int posicion = buscarRegistro(idTraslado);
+    string pad = obtenerPad(61);
+
     if(posicion == -1){
-        cout << "TRASLADO NO ENCONTRADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
+               cout << pad << "=============================================================" << endl;
         return;
     }
 
@@ -36,16 +41,21 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << "TRASLADO ELIMINADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                      TRASLADO ELIMINADO                     " << endl;
+               cout << pad << "=============================================================" << endl;
     }
 
 }
 
 void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
     int posicion = buscarRegistro(idTraslado);
+    string pad = obtenerPad(61);
 
     if(posicion == -1){
-        cout << "TRASLADO NO ENCONTRADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
+               cout << pad << "=============================================================" << endl;
         return;
     }
     Traslado reg = leerRegistro(posicion);
@@ -54,7 +64,9 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
         reg.mostrarTraslado();
     }
     else{
-        cout << "TRASLADO ELIMINADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                      TRASLADO ELIMINADO                     " << endl;
+               cout << pad << "=============================================================" << endl;
     }
 }
 
@@ -75,27 +87,34 @@ void ArchivoTraslado::listarTraslados() {
 
 void ArchivoTraslado::modificarTraslado(int idTraslado) {
     int posicion = buscarRegistro(idTraslado);
+    string pad = obtenerPad(61);
+
     if(posicion == -1){
-        cout << "TRASLADO NO ENCONTRADO " << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
+               cout << pad << "=============================================================" << endl;
         return;
     }
 
     Traslado reg = leerRegistro(posicion);
 
-    cout << endl;
-    cout << "INGRESE LOS NUEVOS DATOS" << endl;
-    cout << endl;
+   cout << endl << pad << "=============================================================" << endl;
+           cout << pad << "                   INGRESE LOS NUEVOS DATOS                  " << endl;
+           cout << pad << "=============================================================" << endl;
 
     reg.cargarDatosTraslado();
 
     if(modificarRegistro(reg, posicion)){
-        cout << "TRASLADO MODIFICADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                    TRASLADO NO MODIFICADO                   " << endl;
+               cout << pad << "=============================================================" << endl;
     }
 }
 
 void ArchivoTraslado::agregarTraslado(){
     Traslado reg;
     Traslado archivo;
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
 
@@ -109,13 +128,108 @@ void ArchivoTraslado::agregarTraslado(){
     reg.cargarDatosTraslado();
 
     if(guardarRegistro(reg)){
-        cout << "TRASLADO GUARDADO CORRECTAMENTE";
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "               TRASLADO GUARDADO CORRECTAMENTE               " << endl;
+               cout << pad << "=============================================================" << endl;
     }
     else{
-        cout << "ERROR AL GUARDAR TRASLADO" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                        ERROR AL GUARDAR                     " << endl;
+               cout << pad << "=============================================================" << endl;
     }
 }
 
 bool ArchivoTraslado::existeTraslado(int idTraslado){
     return buscarRegistro(idTraslado) != -1;
+}
+
+void ArchivoTraslado::mostrarTrasladosByOrigen(const char* origen) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Traslado reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getOrigen(), origen) == 0) {
+            reg.mostrarTraslado();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron traslados desde el origen: " << origen << endl;
+    }
+}
+
+void ArchivoTraslado::mostrarTrasladosByDestino(const char* destino) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Traslado reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getDestino(), destino) == 0) {
+            reg.mostrarTraslado();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron traslados hacia el destino: " << destino << endl;
+    }
+}
+
+void ArchivoTraslado::mostrarTrasladosByPrecioRange(float min, float max) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Traslado reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getPrecio() >= min && reg.getPrecio() <= max) {
+            reg.mostrarTraslado();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron traslados en el rango: $" << min << " - $" << max << endl;
+    }
+}
+
+void ArchivoTraslado::mostrarTrasladosByDuracion(int duracion) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Traslado reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getDuracion() == duracion) {
+            reg.mostrarTraslado();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron traslados con una duracion de " << duracion << " minutos." << endl;
+    }
+}
+
+void ArchivoTraslado::listarTrasladosDadosDeBaja() {
+    Traslado reg;
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        reg = leerRegistro(i);
+        if (!reg.getEstado()) {
+            reg.mostrarTraslado();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No hay traslados dados de baja en el sistema." << endl;
+    }
 }
