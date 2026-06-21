@@ -1,25 +1,15 @@
 #include <iostream>
 #include <string>
-#include <windows.h>
 #include "menuInicio.h"
 #include "menuPrincipal.h"
+#include "helpers.h"
 
 using namespace std;
-
-static int anchoConsola() {
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-        return csbi.srWindow.Right - csbi.srWindow.Left + 1;
-    }
-    return 80;
-}
 
 MenuInicio::MenuInicio() {}
 
 void MenuInicio::mostrarPortada() const {
-    int margen = (anchoConsola() - 61) / 2;
-    if (margen < 0) margen = 0;
-    string pad(margen, ' ');
+    string pad = obtenerPad(61);
 
     cout << pad << "*===========================================================*" << endl;
     cout << pad << "|                                                           |" << endl;
@@ -41,12 +31,14 @@ void MenuInicio::mostrarPortada() const {
 
 void MenuInicio::ejecutar() {
     int opcion;
+    string pad = obtenerPad(61);
 
     do {
         mostrarPortada();
         cin >> opcion;
         cout << endl;
 
+        system("cls");
         switch (opcion) {
             case 1: {
                 MenuPrincipal menu;
@@ -60,10 +52,12 @@ void MenuInicio::ejecutar() {
                 creditos();
                 break;
             case 0:
-                cout << "Gracias por usar el sistema. Hasta luego!" << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "          Gracias por usar el sistema. Hasta luego!          " << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
                 break;
             default:
-                cout << "Opcion incorrecta. Intente nuevamente." << endl;
+                cout << pad << "Opcion incorrecta. Intente nuevamente." << endl;
                 break;
         }
         cout << endl;
@@ -71,9 +65,7 @@ void MenuInicio::ejecutar() {
 }
 
 void MenuInicio::acercaDe() const {
-    int margen = (anchoConsola() - 61) / 2;
-    if (margen < 0) margen = 0;
-    string pad(margen, ' ');
+    string pad = obtenerPad(61);
 
     cout << pad << "-------------------------------------------------------------" << endl;
     cout << pad << "                  ACERCA DE LA AGENCIA" << endl;
@@ -87,9 +79,7 @@ void MenuInicio::acercaDe() const {
 }
 
 void MenuInicio::creditos() const {
-    int margen = (anchoConsola() - 61) / 2;
-    if (margen < 0) margen = 0;
-    string pad(margen, ' ');
+    string pad = obtenerPad(61);
 
     cout << pad << "-------------------------------------------------------------" << endl;
     cout << pad << "                       CREDITOS                       " << endl;

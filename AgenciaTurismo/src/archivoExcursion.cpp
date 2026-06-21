@@ -1,4 +1,5 @@
 #include "archivoExcursion.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -27,8 +28,12 @@ int ArchivoExcursion::buscarRegistro(int idExcursion) {
 
 void ArchivoExcursion::eliminarExcursion(int idExcursion){
     int posicion = buscarRegistro(idExcursion);
+    string pad = obtenerPad(61);
+
     if(posicion == -1){
-        cout << "EXCURSION NO ENCONTRADA" << endl;
+       cout << endl << pad << "=============================================================" << endl;
+               cout << pad << "                    EXCURSION NO ENCONTRADA                  " << endl;
+               cout << pad << "=============================================================" << endl;
         return;
     }
 
@@ -37,15 +42,20 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << "EXCURSION ELIMINADA" << endl;
+        cout << endl<< pad << "=============================================================" << endl;
+               cout << pad << "                      EXCURSION ELIMINADA                    " << endl;
+               cout << pad << "=============================================================" << endl;
     }
 }
 
 void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
     int posicion = buscarRegistro(idExcursion);
+    string pad = obtenerPad(61);
 
     if(posicion == -1){
-        cout << "EXCURSION NO ENCONTRADA" << endl;
+    cout << endl<< pad << "=============================================================" << endl;
+           cout << pad << "                  EXCURSION NO ENCONTRADA                    " << endl;
+           cout << pad << "=============================================================" << endl;
         return;
     }
     Excursion reg = leerRegistro(posicion);
@@ -54,11 +64,10 @@ void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
         reg.mostrarExcursion();
     }
     else{
-        cout << "EXCURSION ELIMINADA" << endl;
+    cout << endl<< pad << "=============================================================" << endl;
+           cout << pad << "                    EXCURSION ELIMINADA                      " << endl;
+           cout << pad << "=============================================================" << endl;
     }
-
-
-
 }
 
 void ArchivoExcursion::listarExcursiones() {
@@ -79,27 +88,35 @@ void ArchivoExcursion::listarExcursiones() {
 
 void ArchivoExcursion::modificarExcursion(int idExcursion) {
     int posicion = buscarRegistro(idExcursion);
+    string pad = obtenerPad(61);
+
     if(posicion == -1){
-        cout << "EXCURSION NO ENCONTRADA " << endl;
+        cout << endl << pad << "=============================================================" << endl;
+                cout << pad << "                    EXCURSION NO ENCONTRADA                  " << endl;
+                cout << pad << "=============================================================" << endl;
         return;
     }
 
     Excursion reg = leerRegistro(posicion);
 
-    cout << endl;
-    cout << "INGRESE LOS NUEVOS DATOS" << endl;
-    cout << endl;
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                    INGRESE LOS NUEVOS DATOS                 " << endl;
+            cout << pad << "=============================================================" << endl;
 
     reg.cargarDatosExcursion();
 
     if(modificarRegistro(reg, posicion)){
-        cout << "EXCURSION MODIFICADA"<< endl;
+
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                     EXCURSION MODIFICADA                    " << endl;
+            cout << pad << "=============================================================" << endl;
     }
 }
 
 void ArchivoExcursion::agregarExcursion(){
     Excursion reg;
     Excursion archivo;
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
 
@@ -113,13 +130,90 @@ void ArchivoExcursion::agregarExcursion(){
     reg.cargarDatosExcursion();
 
     if(guardarRegistro(reg)){
-        cout << "EXCURSION GUARDADA CORRECTAMENTE";
+        cout << pad << "=============================================================" << endl;
+        cout << pad << "              EXCURSION GUARDADA CORRECTAMENTE               " << endl;
+        cout << pad << "=============================================================" << endl;
+
     }
     else{
-        cout << "ERROR AL GUARDAR EXCURSION" << endl;
+        cout << pad << "=============================================================" << endl;
+        cout << pad << "                ERROR AL GUARDAR EXCURSION                   " << endl;
+        cout << pad << "=============================================================" << endl;
     }
 }
 
 bool ArchivoExcursion::existeExcursion(int idExcursion){
     return buscarRegistro(idExcursion) != -1;
+}
+
+void ArchivoExcursion::mostrarExcursionesByNombre(const char* nombre) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Excursion reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+            reg.mostrarExcursion();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron excursiones con el nombre: " << nombre << endl;
+    }
+}
+
+void ArchivoExcursion::mostrarExcursionesByPrecioRange(float min, float max) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Excursion reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getCosto() > min && reg.getCosto() < max) {
+            reg.mostrarExcursion();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron excursiones en el rango de precio: $" << min << " - $" << max << endl;
+    }
+}
+
+void ArchivoExcursion::mostrarExcursionesByDuracion(int duracion) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Excursion reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getDuracion() == duracion) {
+            reg.mostrarExcursion();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << pad << "No se encontraron excursiones con una duracion de " << duracion << " minutos." << endl;
+    }
+}
+
+void ArchivoExcursion::listarExcursionesDadosDeBaja() {
+    Excursion reg;
+    int cantidad = contarRegistros();
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        reg = leerRegistro(i);
+        if (!reg.getEstado()) {
+            reg.mostrarExcursion();
+            cout << endl;
+        }
+    }
+
+    if (cantidad == 0) {
+        cout << pad << "No se encontraron excursiones dadas de baja." << endl;
+    }
 }

@@ -16,4 +16,8 @@ class ArchivoExcursion : public Archivo<Excursion> {
 
         void agregarExcursion();
         bool existeExcursion(int idExcursion);
+        void mostrarExcursionesByNombre(const char* nombre);
+        void mostrarExcursionesByPrecioRange(float min, float max);
+        void mostrarExcursionesByDuracion(int duracion);
+        void listarExcursionesDadosDeBaja();
 };

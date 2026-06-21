@@ -35,6 +35,7 @@ void MenuPrincipal::ejecutar() {
         mostrarOpciones();
         cin >> opcion;
 
+        system("cls");
         switch (opcion) {
             case 1: {
                 MenuGestionClientes menuClientes;
