@@ -355,10 +355,17 @@ void ArchivoCliente::agregarCliente() {
     reg.cargarDatosCliente();
 
     if (guardarRegistro(reg)) {
-        cout << "CLIENTE GUARDADO CORRECTAMENTE (ID " << reg.getIdCliente() << ")" << endl;
+        cout << endl;
+        cout << "=========================================" << endl;
+        cout << "   CLIENTE GUARDADO CORRECTAMENTE" << endl;
+        cout << "   ID de cliente: " << reg.getIdCliente() << endl;
+        cout << "=========================================" << endl;
+        cout << "Presione Enter para continuar...";
+        cin.get();
     }
     else {
-        cout << "ERROR AL GUARDAR CLIENTE" << endl;
+        cout << endl << "ERROR AL GUARDAR CLIENTE" << endl;
+        cin.get();
     }
 }
 

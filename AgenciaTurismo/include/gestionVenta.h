@@ -42,7 +42,6 @@ class GestionVenta {
         bool getEstado() const;
         void setEstado(bool estado);
 
-        void crearVenta();
         bool crearDatosVenta();
         void confirmarVenta();
         void cancelarVenta();

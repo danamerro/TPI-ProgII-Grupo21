@@ -39,7 +39,6 @@ class Cliente {
         void setEstado(bool valor);
         bool getEstado() const;
 
-        void cargarCliente();
         void cargarDatosCliente();
         void mostrarCliente() const;
         void mostrarContacto() const;
