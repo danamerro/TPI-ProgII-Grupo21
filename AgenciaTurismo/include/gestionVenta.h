@@ -6,7 +6,7 @@ class GestionVenta {
         int _idCliente;
         int _idPaquete;
         char _fechaVenta[11];
-        char _fechaViaje[11];
+        //char _fechaViaje[11];
         int _cantidadCupos;
         float _precioUnitario;
         float _total;
@@ -27,9 +27,6 @@ class GestionVenta {
 
         const char* getFechaVenta() const;
         void setFechaVenta(const char* fechaVenta);
-
-        const char* getFechaViaje() const;
-        void setFechaViaje(const char* fechaViaje);
 
         int getCantidadCupos() const;
         void setCantidadCupos(int cantidadCupos);

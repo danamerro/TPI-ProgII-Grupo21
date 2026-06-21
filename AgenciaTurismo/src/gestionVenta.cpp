@@ -12,7 +12,7 @@ GestionVenta::GestionVenta() {
     _idPaquete = 0;
 
     strcpy(_fechaVenta, "");
-    strcpy(_fechaViaje, "");
+    //strcpy(_fechaViaje, "");
 
     _cantidadCupos = 0;
     _precioUnitario = 0;
@@ -52,7 +52,7 @@ const char* GestionVenta::getFechaVenta() const {
 void GestionVenta::setFechaVenta(const char* fechaVenta) {
     strcpy(_fechaVenta, fechaVenta);
 }
-
+/*
 const char* GestionVenta::getFechaViaje() const {
     return _fechaViaje;
 }
@@ -60,7 +60,7 @@ const char* GestionVenta::getFechaViaje() const {
 void GestionVenta::setFechaViaje(const char* fechaViaje) {
     strcpy(_fechaViaje, fechaViaje);
 }
-
+*/
 int GestionVenta::getCantidadCupos() const {
     return _cantidadCupos;
 }
@@ -163,7 +163,7 @@ void GestionVenta::emitirTicketConfirmacion() {
     cout << "ID Paquete: " << _idPaquete << endl;
 
     cout << "Fecha Venta: " << _fechaVenta << endl;
-    cout << "Fecha Vuelo: " << _fechaViaje << endl;
+    //cout << "Fecha Vuelo: " << _fechaViaje << endl;
 
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;
 
@@ -180,7 +180,7 @@ void GestionVenta::mostrarVenta() const {
     cout << "ID Paquete: " << _idPaquete << endl;
 
     cout << "Fecha Venta: " << _fechaVenta << endl;
-    cout << "Fecha Viaje: " << _fechaViaje << endl;
+    //cout << "Fecha Viaje: " << _fechaViaje << endl;
 
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;
 
