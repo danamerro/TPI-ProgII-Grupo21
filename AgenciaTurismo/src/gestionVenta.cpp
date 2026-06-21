@@ -120,10 +120,7 @@ bool GestionVenta::crearDatosVenta() {
 
     cout << "Ingrese Fecha Venta (dd/mm/yyyy): ";
     cin.getline(_fechaVenta, 11);
-    /*
-    cout << "Ingrese Fecha Viaje (dd/mm/yyyy): ";
-    cin.getline(_fechaViaje, 11);
-    */
+
     cout << "Ingrese Cantidad de Cupos: ";
     cin >> _cantidadCupos;
 

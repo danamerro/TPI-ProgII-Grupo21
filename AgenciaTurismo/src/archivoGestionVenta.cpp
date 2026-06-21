@@ -233,17 +233,20 @@ void ArchivoGestionVenta::agregarVenta() {
         return;
     }
 
-    if (
-        guardarRegistro(reg)
-    ) {
-        cout
-            << "VENTA REGISTRADA (ID " << reg.getIdVenta() << ")"
-            << endl;
+    if (guardarRegistro(reg)) {
+        cout << endl;
+        cout << "=========================================" << endl;
+        cout << "   VENTA REGISTRADA CORRECTAMENTE" << endl;
+        cout << "   ID de venta: " << reg.getIdVenta() << endl;
+        cout << "=========================================" << endl;
+        cout << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
     }
     else {
-        cout
-            << "ERROR AL GUARDAR"
-            << endl;
+        cout << endl << "ERROR AL GUARDAR LA VENTA" << endl;
+        cin.ignore();
+        cin.get();
     }
 }
 
