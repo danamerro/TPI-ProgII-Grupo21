@@ -8,7 +8,7 @@ MenuGestionClientes::MenuGestionClientes() {}
 
 void MenuGestionClientes::mostrarOpciones() const {
     cout << "=========================================" << endl;
-    cout << "          GESTION DE CLIENTES                " << endl;
+    cout << "          MENU DE CLIENTES                " << endl;
     cout << "=========================================" << endl;
     cout << "1. Gestion Cliente" << endl;
     cout << "2. Listados" << endl;
