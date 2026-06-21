@@ -71,6 +71,7 @@ void MenuPrincipal::ejecutar() {
                 menuExcursiones.ejecutar();
                 break;
             }
+            //agrego esta linea podes borrarla, lo escribo para que detecte cambios
             case 0:
                 cout << "Saliendo del sistema..." << endl;
                 break;
