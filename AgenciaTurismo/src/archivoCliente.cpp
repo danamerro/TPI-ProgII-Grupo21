@@ -341,14 +341,15 @@ void ArchivoCliente::mostrarClienteByTelefono(int telefono){
 void ArchivoCliente::agregarCliente() {
 
     Cliente reg;
+    Cliente archivo;
 
     int cantidad = contarRegistros();
 
     if (cantidad == 0) {
         reg.setIdCliente(1);
     } else {
-        Cliente ultimo = leerRegistro(cantidad - 1);
-        reg.setIdCliente(ultimo.getIdCliente() + 1);
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdCliente(archivo.getIdCliente()+1);
     }
 
     reg.cargarDatosCliente();

@@ -56,6 +56,7 @@
 		<Unit filename="include/menuGestionTraslados.h" />
 		<Unit filename="include/menuGestionVentas.h" />
 		<Unit filename="include/menuGestionVuelos.h" />
+		<Unit filename="include/menuInicio.h" />
 		<Unit filename="include/menuPrincipal.h" />
 		<Unit filename="include/paquete.h" />
 		<Unit filename="include/traslado.h" />
@@ -81,6 +82,7 @@
 		<Unit filename="src/menuGestionTraslados.cpp" />
 		<Unit filename="src/menuGestionVentas.cpp" />
 		<Unit filename="src/menuGestionVuelos.cpp" />
+		<Unit filename="src/menuInicio.cpp" />
 		<Unit filename="src/menuPrincipal.cpp" />
 		<Unit filename="src/paquete.cpp" />
 		<Unit filename="src/traslado.cpp" />

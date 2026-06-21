@@ -82,13 +82,6 @@ bool Cliente::getEstado() const{
     return _estado;
 }
 
-void Cliente::cargarCliente(){
-    cout << "Ingrese ID del cliente: ";
-    cin >> _idCliente;
-
-    cargarDatosCliente();
-}
-
 void Cliente::cargarDatosCliente(){
     cout << "Ingrese dni del cliente: ";
     cin >> _dni;
