@@ -19,4 +19,5 @@ class ArchivoHotel : public Archivo<Hotel> {
         void mostrarHotelesByNombre(const char* nombre);
         void mostrarHotelesByEstrellas(const char* estrellas);
         void mostrarHotelesByRangoPrecio(float min, float max);
+        void listarHotelesDadosDeBaja();
 };

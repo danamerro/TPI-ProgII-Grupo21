@@ -175,7 +175,7 @@ void ArchivoExcursion::mostrarExcursionesByDuracion(int duracion) {
         }
     }
     if (!encontrado) {
-        cout << pad << "No se encontraron excursiones con una duracion de " << duracion << " minutos." << endl;
+        cout << endl << pad << "No se encontraron excursiones con una duracion de " << duracion << " minutos." << endl;
     }
 }
 
@@ -193,6 +193,6 @@ void ArchivoExcursion::listarExcursionesDadosDeBaja() {
     }
 
     if (cantidad == 0) {
-        cout << pad << "No se encontraron excursiones dadas de baja." << endl;
+        cout << endl << pad << "No se encontraron excursiones dadas de baja." << endl;
     }
 }

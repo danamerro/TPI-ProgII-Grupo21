@@ -135,7 +135,7 @@ void ArchivoVuelo::mostrarVuelosByDestino(const char* destino) {
     }
 
     if (!encontrado) {
-        cout << pad << "No se encontraron vuelos activos con destino a: " << destino << endl;
+        cout << endl << pad << "No se encontraron vuelos activos con destino a: " << destino << endl;
     }
 }
 
@@ -155,7 +155,7 @@ void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
     }
 
     if (!encontrado) {
-        cout << pad << "No se encontraron vuelos activos con origen en: " << origen << endl;
+        cout << endl << pad << "No se encontraron vuelos activos con origen en: " << origen << endl;
     }
 }
 

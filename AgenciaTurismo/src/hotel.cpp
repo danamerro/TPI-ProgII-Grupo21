@@ -1,6 +1,7 @@
 #include "hotel.h"
 #include <iostream>
 #include <cstring>
+#include "helpers.h"
 
 using namespace std;
 
@@ -74,55 +75,59 @@ bool Hotel::getEstado() const{
 }
 
 void Hotel::cargarHotel(){
-    cout << "Ingrese costo del hotel: ";
-    cin >> _costo;
+    string pad = obtenerPad(61);
 
     cin.ignore();
 
-    cout << "Ingrese nombre del hotel: ";
+    cout << endl << pad << "Ingrese nombre del hotel: ";
     cin.getline(_nombre, 30);
 
-    cout << "Ingrese estrellas del hotel: ";
+    cout << pad << "Ingrese estrellas del hotel: ";
     cin.getline(_estrellas, 30);
 
-    cout << "Ingrese direccion del hotel: ";
+    cout << pad << "Ingrese direccion del hotel: ";
     cin.getline(_direccion, 30);
 
-    cout << "Ingrese descripcion del hotel: ";
+    cout << pad << "Ingrese descripcion del hotel: ";
     cin.getline(_descripcion, 250);
+
+    cout << pad << "Ingrese costo del hotel: ";
+    cin >> _costo;
+
+    cin.ignore();
 
     _estado = true;
 }
 
 void Hotel::mostrarHotel() const{
-    if (_estado == true) {
-        cout << "ID hotel: " << _idHotel << endl;
-        cout << "Nombre: " << _nombre << endl;
-        cout << "Estrellas: " << _estrellas << endl;
-        cout << "Direccion: " << _direccion << endl;
-        cout << "Costo: " << _costo << endl;
-        cout << "Descripcion: " << _descripcion << endl;
-        cout << "Estado: " << _estado << endl;
-    }
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "ID excursión: " << _idHotel << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Estrellas: " << _estrellas << endl;
+    cout << pad << "Direccion: " << _direccion << endl;
+    cout << pad << "Descripcion: " << _descripcion << endl;
+    cout << pad << "Precio: $" << _costo << endl;
 }
 
 void Hotel::cargarDatosHotel(){
+    string pad = obtenerPad(61);
 
     cin.ignore();
 
-    cout << "Ingrese el nombre del hotel: ";
+    cout << endl << pad << "Ingrese nombre: ";
     cin.getline(_nombre, 30);
 
-    cout << "Ingrese las estrellas del hotel: ";
+    cout << pad << "Ingrese las estrellas: ";
     cin.getline(_estrellas, 30);
 
-    cout << "Ingrese direccion del hotel: ";
+    cout << pad << "Ingrese direccion: ";
     cin.getline(_direccion, 30);
 
-    cout << "Ingrese descripcion del hotel: ";
+    cout << pad << "Ingrese descripcion: ";
     cin.getline(_descripcion, 150);
 
-    cout << "Ingrese costo del hotel: ";
+    cout << pad << "Ingrese el precio: $";
     cin >> _costo;
 
     cin.ignore();

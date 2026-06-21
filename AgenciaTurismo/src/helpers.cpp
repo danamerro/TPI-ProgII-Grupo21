@@ -68,7 +68,7 @@ void leyendaSSGuardado(const std::string& servicio, int num) {
     string pad = obtenerPad(61);
 
     cout << endl << pad << "=============================================================" << endl;
-            cout << pad << "         "<< servicio <<" GUARDAD"<<genero(num)<<" CORRECTAMENTE             " << endl;
+            cout << pad << "               "<< servicio <<" GUARDAD"<<genero(num)<<" CORRECTAMENTE   " << endl;
             cout << pad << "=============================================================" << endl;
 }
 

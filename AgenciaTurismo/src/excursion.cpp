@@ -80,7 +80,7 @@ void Excursion::cargarDatosExcursion(){
     cout << pad << "Ingrese duración (minutos) :";
     cin >> _duracion;
 
-    cout << pad << "Ingrese precio : $";
+    cout << pad << "Ingrese precio: $";
     cin >> _costo;
 
     cin.ignore();
