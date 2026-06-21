@@ -104,17 +104,7 @@ void GestionVenta::setEstado(bool estado) {
 float GestionVenta::calcularTotal() {
     return _cantidadCupos * _precioUnitario;
 }
-//BORRAR
-/*
-void GestionVenta::crearVenta() {
 
-    cout << "Ingrese ID Venta: ";
-    cin >> _idVenta;
-
-    crearDatosVenta();
-}
-
-*/
 void GestionVenta::crearDatosVenta() {
 
     cout << "Ingrese ID Cliente: ";
