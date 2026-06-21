@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "archivoGestionVenta.h"
+#include "archivoCliente.h"
 
 ArchivoGestionVenta::ArchivoGestionVenta() : Archivo<GestionVenta>("ventas.dat"){}
 
@@ -109,6 +110,7 @@ void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
     }
 }
 
+/* ELIMINAR */
 void ArchivoGestionVenta::mostrarVentasByFechaViaje(const char* fecha) {
 
     int cantidad = contarRegistros();
@@ -229,6 +231,20 @@ void ArchivoGestionVenta::agregarVenta() {
     } else {
         GestionVenta ultima = leerRegistro(cantidad - 1);
         reg.setIdVenta(ultima.getIdVenta() + 1);
+    }
+
+    int verLista;
+    cout << endl << "Conoce el ID del cliente?" << endl;
+    cout << "1. Si, ya lo tengo" << endl;
+    cout << "2. No, ver lista de clientes activos" << endl;
+    cout << "Opcion: ";
+    cin >> verLista;
+
+    if (verLista == 2) {
+        ArchivoCliente archivoCliente;
+        cout << endl << "------- CLIENTES ACTIVOS -------" << endl;
+        archivoCliente.listarClientes();
+        cout << "--------------------------------" << endl;
     }
 
     reg.crearDatosVenta();
