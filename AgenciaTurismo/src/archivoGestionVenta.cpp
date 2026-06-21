@@ -162,10 +162,7 @@ void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
 
         reg = leerRegistro(i);
 
-        if (
-            reg.getEstado() &&
-            reg.getEstadoVenta() == 1
-        ) {
+        if (reg.getEstado() &&reg.getEstadoVenta() == 1) {
 
             reg.mostrarVenta();
 
@@ -248,7 +245,13 @@ void ArchivoGestionVenta::agregarVenta() {
         cout << "--------------------------------" << endl;
     }
 
-    reg.crearDatosVenta();
+    if(!reg.crearDatosVenta()){
+        cout << "OPERACION CANCELADA." << endl;
+        cout << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
+        return;
+    }
 
     if (
         guardarRegistro(reg)
