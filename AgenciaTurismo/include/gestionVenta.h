@@ -6,7 +6,6 @@ class GestionVenta {
         int _idCliente;
         int _idPaquete;
         char _fechaVenta[11];
-        //char _fechaViaje[11];
         int _cantidadCupos;
         float _precioUnitario;
         float _total;
