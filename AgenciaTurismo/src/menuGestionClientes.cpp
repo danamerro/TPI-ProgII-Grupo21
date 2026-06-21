@@ -8,22 +8,18 @@ MenuGestionClientes::MenuGestionClientes() {}
 
 void MenuGestionClientes::mostrarOpciones() const {
     cout << "=========================================" << endl;
-    cout << "   -> GESTION DE CLIENTES                " << endl;
+    cout << "          GESTION DE CLIENTES                " << endl;
     cout << "=========================================" << endl;
-    cout << "1. Agregar cliente" << endl;
-    cout << "2. Modificar cliente" << endl;
-    cout << "3. Eliminar cliente" << endl;
-    cout << "4. Listados" << endl;
-    cout << "5. Consultas" << endl;
+    cout << "1. Gestion Cliente" << endl;
+    cout << "2. Listados" << endl;
+    cout << "3. Consultas" << endl;
     cout << "0. Volver al menu principal" << endl;
     cout << "=========================================" << endl;
     cout << "Seleccione una opcion: ";
 }
 
 void MenuGestionClientes::ejecutar() {
-    ArchivoCliente archivo;
     int opcion;
-    int idAux;
 
     do {
         mostrarOpciones();
@@ -31,38 +27,62 @@ void MenuGestionClientes::ejecutar() {
 
         switch (opcion) {
             case 1:
-                cout << endl << "------- ALTA DE CLIENTE -------" << endl;
-                archivo.agregarCliente();
+                subMenuGestion();
                 break;
-
             case 2:
-                cout << endl << "------ MODIFICAR CLIENTE ------" << endl;
-                archivo.modificarCliente();
-                break;
-
-            case 3:
-                cout << endl << "------ ELIMINAR CLIENTE ------" << endl;
-                archivo.eliminarCliente();
-                break;
-
-            case 4:
                 subMenuListados();
                 break;
-
-            case 5:
+            case 3:
                 subMenuConsultas();
                 break;
-
             case 0:
                 cout << "Regresando al menu principal..." << endl;
                 break;
-
             default:
                 cout << "Opcion incorrecta. Intente nuevamente." << endl;
                 break;
         }
         cout << endl;
     } while (opcion != 0);
+}
+
+void MenuGestionClientes::subMenuGestion() {
+    int subOpcion;
+    ArchivoCliente archivo;
+
+    do {
+        cout << "-----------------------------------------" << endl;
+        cout << "         GESTION DE CLIENTE                " << endl;
+        cout << "-----------------------------------------" << endl;
+        cout << "1. Agregar cliente" << endl;
+        cout << "2. Modificar cliente" << endl;
+        cout << "3. Eliminar cliente" << endl;
+        cout << "0. Volver al menu de clientes" << endl;
+        cout << "-----------------------------------------" << endl;
+        cout << "Seleccione una sub-opcion: ";
+        cin >> subOpcion;
+
+        switch (subOpcion) {
+            case 1:
+                cout << endl << "------- ALTA DE CLIENTE -------" << endl;
+                archivo.agregarCliente();
+                break;
+            case 2:
+                cout << endl << "------ MODIFICAR CLIENTE ------" << endl;
+                archivo.modificarCliente();
+                break;
+            case 3:
+                cout << endl << "------ ELIMINAR CLIENTE ------" << endl;
+                archivo.eliminarCliente();
+                break;
+            case 0:
+                break;
+            default:
+                cout << "Opcion invalida." << endl;
+                break;
+        }
+        cout << endl;
+    } while (subOpcion != 0);
 }
 
 void MenuGestionClientes::subMenuListados() {
@@ -73,8 +93,8 @@ void MenuGestionClientes::subMenuListados() {
         cout << "-----------------------------------------" << endl;
         cout << "   --> LISTADOS DE CLIENTES              " << endl;
         cout << "-----------------------------------------" << endl;
-        cout << "1. Listar clientes activos" << endl;
-        cout << "2. Listar clientes dados de baja" << endl;
+        cout << "1. Clientes activos" << endl;
+        cout << "2. Clientes dados de baja" << endl;
         cout << "3. Directorio de contactos" << endl;
         cout << "0. Volver al menu de clientes" << endl;
         cout << "-----------------------------------------" << endl;
@@ -143,21 +163,18 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByDni(idAux);
                 break;
             case 3:
-                char nombre[20];
                 cin.ignore();
                 cout << "Ingrese nombre del cliente a consultar: ";
                 cin.getline(nombre, 20);
                 archivo.mostrarClienteByNombre(nombre);
                 break;
             case 4:
-                char apellido[20];
                 cin.ignore();
                 cout << "Ingrese apellido del cliente a consultar: ";
                 cin.getline(apellido, 20);
                 archivo.mostrarClienteByApellido(apellido);
                 break;
             case 5:
-                char email[20];
                 cin.ignore();
                 cout << "Ingrese el email del cliente a consultar: ";
                 cin.getline(email, 20);
@@ -178,7 +195,6 @@ void MenuGestionClientes::subMenuConsultas() {
                 archivo.mostrarClienteByTelefono(idAux);
                 break;
             case 8:
-                char direccion[50];
                 cin.ignore();
                 cout << "Ingrese la direccion del cliente a consultar: ";
                 cin.getline(direccion, 50);

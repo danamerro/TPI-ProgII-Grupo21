@@ -166,7 +166,7 @@ void GestionVenta::emitirTicketConfirmacion() {
     cout << "ID Paquete: " << _idPaquete << endl;
 
     cout << "Fecha Venta: " << _fechaVenta << endl;
-    cout << "Fecha Viaje: " << _fechaViaje << endl;
+    cout << "Fecha Vuelo: " << _fechaViaje << endl;
 
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;
 

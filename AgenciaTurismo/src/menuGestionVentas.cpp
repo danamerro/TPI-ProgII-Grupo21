@@ -11,20 +11,16 @@ void MenuGestionVentas::mostrarOpciones() const {
     cout << "=========================================" << endl;
     cout << "   -> GESTION DE VENTAS                  " << endl;
     cout << "=========================================" << endl;
-    cout << "1. Agregar venta" << endl;
-    cout << "2. Confirmar venta" << endl;
-    cout << "3. Cancelar venta" << endl;
-    cout << "4. Listados" << endl;
-    cout << "5. Consultas" << endl;
+    cout << "1. Gestion Venta" << endl;
+    cout << "2. Listados" << endl;
+    cout << "3. Consultas" << endl;
     cout << "0. Volver al menu principal" << endl;
     cout << "=========================================" << endl;
     cout << "Seleccione una opcion: ";
 }
 
 void MenuGestionVentas::ejecutar() {
-    ArchivoGestionVenta archivo;
     int opcion;
-    int idAux;
 
     do {
         mostrarOpciones();
@@ -32,42 +28,67 @@ void MenuGestionVentas::ejecutar() {
 
         switch (opcion) {
             case 1:
-                cout << endl << "------- ALTA DE VENTA -------" << endl;
-                archivo.agregarVenta();
+                subMenuGestion();
                 break;
-
             case 2:
-                cout << endl << "------ CONFIRMAR VENTA ------" << endl;
-                cout << "Ingrese el ID de la venta a confirmar: ";
-                cin >> idAux;
-                archivo.confirmarVenta(idAux);
-                break;
-
-            case 3:
-                cout << endl << "------ CANCELAR VENTA ------" << endl;
-                cout << "Ingrese el ID de la venta a cancelar: ";
-                cin >> idAux;
-                archivo.cancelarVenta(idAux);
-                break;
-
-            case 4:
                 subMenuListados();
                 break;
-
-            case 5:
+            case 3:
                 subMenuConsultas();
                 break;
-
             case 0:
                 cout << "Regresando al menu principal..." << endl;
                 break;
-
             default:
                 cout << "Opcion incorrecta. Intente nuevamente." << endl;
                 break;
         }
         cout << endl;
     } while (opcion != 0);
+}
+
+void MenuGestionVentas::subMenuGestion() {
+    int subOpcion;
+    int idAux;
+    ArchivoGestionVenta archivo;
+
+    do {
+        cout << "-----------------------------------------" << endl;
+        cout << "   --> GESTION DE VENTA                  " << endl;
+        cout << "-----------------------------------------" << endl;
+        cout << "1. Agregar venta" << endl;
+        cout << "2. Confirmar venta" << endl;
+        cout << "3. Cancelar venta" << endl;
+        cout << "0. Volver al menu de ventas" << endl;
+        cout << "-----------------------------------------" << endl;
+        cout << "Seleccione una sub-opcion: ";
+        cin >> subOpcion;
+
+        switch (subOpcion) {
+            case 1:
+                cout << endl << "------- ALTA DE VENTA -------" << endl;
+                archivo.agregarVenta();
+                break;
+            case 2:
+                cout << endl << "------ CONFIRMAR VENTA ------" << endl;
+                cout << "Ingrese el ID de la venta a confirmar: ";
+                cin >> idAux;
+                archivo.confirmarVenta(idAux);
+                break;
+            case 3:
+                cout << endl << "------ CANCELAR VENTA ------" << endl;
+                cout << "Ingrese el ID de la venta a cancelar: ";
+                cin >> idAux;
+                archivo.cancelarVenta(idAux);
+                break;
+            case 0:
+                break;
+            default:
+                cout << "Opcion invalida." << endl;
+                break;
+        }
+        cout << endl;
+    } while (subOpcion != 0);
 }
 
 void MenuGestionVentas::subMenuListados() {
@@ -125,11 +146,10 @@ void MenuGestionVentas::subMenuConsultas() {
         cout << "-----------------------------------------" << endl;
         cout << "   --> CONSULTAS DE VENTAS               " << endl;
         cout << "-----------------------------------------" << endl;
-        cout << "1. Buscar venta por ID" << endl;
-        cout << "2. Buscar por ID de cliente" << endl;
-        cout << "3. Buscar por ID de paquete" << endl;
-        cout << "4. Buscar por fecha de venta" << endl;
-        cout << "5. Buscar por fecha de viaje" << endl;
+        cout << "1. Por ID de venta" << endl;
+        cout << "2. Por ID de cliente" << endl;
+        cout << "3. Por ID de paquete" << endl;
+        cout << "4. Por Fecha de venta" << endl;
         cout << "0. Volver al menu de ventas" << endl;
         cout << "-----------------------------------------" << endl;
         cout << "Seleccione una sub-opcion: ";
@@ -176,18 +196,6 @@ void MenuGestionVentas::subMenuConsultas() {
                 }
                 cout << endl;
                 archivo.mostrarVentasByFechaVenta(fecha);
-                cout << "Proceso finalizado." << endl;
-                cout << "Volviendo al subMenu Consultas..." << endl;
-                break;
-            case 5:
-                cin.ignore();
-                cout << "Ingrese la fecha de viaje (dd/mm/yyyy) (0 para volver): ";
-                cin.getline(fecha, 11);
-                if (strcmp(fecha, "0") == 0) {
-                    break;
-                }
-                cout << endl;
-                archivo.mostrarVentasByFechaViaje(fecha);
                 cout << "Proceso finalizado." << endl;
                 cout << "Volviendo al subMenu Consultas..." << endl;
                 break;
