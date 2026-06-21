@@ -31,9 +31,6 @@ class Excursion
         bool getEstado() const;
         void setEstado(bool valor);
 
-        void cargarExcursion();
         void cargarDatosExcursion();
         void mostrarExcursion() const;
-
-
 };

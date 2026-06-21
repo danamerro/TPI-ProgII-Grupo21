@@ -51,7 +51,6 @@ class Paquete
         int getIdVuelo() const;
         void setIdVuelo(int valor);
 
-        void cargarPaquete();
         void cargarDatosPaquete();
         void mostrarPaquete() const;
 

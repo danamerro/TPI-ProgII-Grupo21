@@ -1,6 +1,5 @@
 #include <iostream>
 #include "menuGestionPaquetes.h"
-#include "archivoPaquete.h"
 
 using namespace std;
 
@@ -13,62 +12,49 @@ void MenuGestionPaquetes::mostrarOpciones() const {
     cout << "1. Agregar paquete turístico" << endl;
     cout << "2. Modificar paquete turístico" << endl;
     cout << "3. Eliminar paquete turístico" << endl;
-    cout << "4. Listar todos los paquetes activos" << endl;
-    cout << "5. Consultas y filtros avanzados" << endl;
+    cout << "4. Listar paquetes" << endl;
+    cout << "5. Consultas" << endl;
     cout << "0. Volver al menú principal" << endl;
     cout << "=========================================" << endl;
     cout << "Seleccione una opción: ";
 }
 
-void MenuGestionPaquetes::ejecutar() {
-    ArchivoPaquete archivo;
-    int opcion;
+void MenuGestionPaquetes::procesarOpcion(int opcion) {
     int idAux;
 
-    do {
-        mostrarOpciones();
-        cin >> opcion;
+    switch (opcion) {
+        case 1:
+            cout << endl << "----------- ALTA DE PAQUETE -------------" << endl << endl;
+            _archivo.agregarPaquete();
+            break;
 
-        switch (opcion) {
-            case 1:
-                cout << endl << "------- ALTA DE PAQUETE -------" << endl;
-                archivo.agregarPaquete();
-                break;
+        case 2:
+            cout << endl << "----------- MODIFICAR PAQUETE -----------" << endl << endl;
+            _archivo.modificarPaquete(0);
+            break;
 
-            case 2:
-                cout << endl << "------ MODIFICAR PAQUETE ------" << endl;
-                cout << "Ingrese el ID del paquete a modificar: ";
-                cin >> idAux;
-                archivo.modificarPaquete(idAux);
-                break;
+        case 3:
+            cout << endl << "----------- ELIMINAR PAQUETE ------------" << endl << endl;
+            cout << "Ingrese el ID del paquete a dar de baja: ";
+            cin >> idAux;
+            _archivo.eliminarPaquete(idAux);
+            break;
 
-            case 3:
-                cout << endl << "------ ELIMINAR PAQUETE ------" << endl;
-                cout << "Ingrese el ID del paquete a dar de baja: ";
-                cin >> idAux;
-                archivo.eliminarPaquete(idAux);
-                break;
+        case 4:
+            cout << endl << "------ LISTADO DE PAQUETES ------" << endl;
+            _archivo.listarPaquetes();
+            break;
 
-            case 4:
-                cout << endl << "------ LISTADO DE PAQUETES ------" << endl;
-                archivo.listarPaquetes();
-                break;
+        case 5:
+            subMenuConsultasAvanzadas(); // Derivamos a nuestro submenú interno secundario
+            break;
 
-            case 5:
-                subMenuConsultasAvanzadas();
-                break;
-
-            case 0:
-                cout << "Regresando al menú general..." << endl;
-                break;
-
-            default:
-                cout << "Opción incorrecta. Intente nuevamente." << endl;
-                break;
-        }
-        cout << endl;
-    } while (opcion != 0);
+        default:
+            cout << "Opcion incorrecta. Intente nuevamente." << endl;
+            break;
+    }
 }
+
 
 void MenuGestionPaquetes::subMenuConsultasAvanzadas() {
     int subOpcion;

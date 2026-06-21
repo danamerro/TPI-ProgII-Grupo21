@@ -65,13 +65,6 @@ bool Traslado::getEstado() const{
     return _estado;
 }
 
-void Traslado::cargarTraslado(){
-    cout << "Ingrese ID del traslado: ";
-    cin >> _idTraslado;
-
-    cargarDatosTraslado();
-}
-
 void Traslado::cargarDatosTraslado(){
     cout << "Ingrese duracion del traslado: ";
     cin >> _duracion;

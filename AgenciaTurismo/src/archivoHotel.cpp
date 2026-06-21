@@ -28,7 +28,9 @@ int ArchivoHotel::buscarRegistro(int idHotel) {
 void ArchivoHotel::eliminarHotel(int idHotel){
     int posicion = buscarRegistro(idHotel);
     if(posicion == -1){
-        cout << "HOTEL NO ENCONTRADO" << endl;
+        cout << "=========================================" << endl;
+        cout << "           HOTEL NO ENCONTRADO           " << endl;
+        cout << "=========================================" << endl;
         return;
     }
 
@@ -37,7 +39,9 @@ void ArchivoHotel::eliminarHotel(int idHotel){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << "HOTEL ELIMINADO" << endl;
+    cout << "         ===================" << endl;
+    cout << "         = HOTEL ELIMINADO =" << endl;
+    cout << "         ===================" << endl;
     }
 }
 
@@ -66,15 +70,20 @@ void ArchivoHotel::listarHoteles() {
 
     int cantidad = contarRegistros();
 
-    for(int i = 0; i < cantidad;i++){
+    if(cantidad > 0 ) {
+        for(int i = 0; i < cantidad;i++){
         reg = leerRegistro(i);
 
         if(reg.getEstado()){
             reg.mostrarHotel();
             cout << endl;
         }
+      }
+    } else {
+        cout << "         ======================" << endl;
+        cout << "         = SIN DATOS DE HOTEL =" << endl;
+        cout << "         ======================" << endl;
     }
-
 }
 
 void ArchivoHotel::modificarHotel(int idHotel) {
@@ -86,9 +95,9 @@ void ArchivoHotel::modificarHotel(int idHotel) {
 
     Hotel reg = leerRegistro(posicion);
 
-    cout << endl;
-    cout << "INGRESE LOS NUEVOS DATOS" << endl;
-    cout << endl;
+    cout << "         ============================" << endl;
+    cout << "         = INGRESE LOS NUEVOS DATOS =" << endl;
+    cout << "         ============================" << endl;
 
     reg.cargarHotel();
 
@@ -99,21 +108,21 @@ void ArchivoHotel::modificarHotel(int idHotel) {
 
 void ArchivoHotel::agregarHotel(){
     Hotel reg;
+    Hotel archivo;
 
-    int id;
-    cout << "Ingrese ID del hotel: ";
-    cin >> id;
+    int cantidad = contarRegistros();
 
-    if(existeHotel(id)){
-        cout << "YA EXISTE UN HOTEL CON ESE ID" << endl;
-        return;
+    if (cantidad == 0) {
+        reg.setIdHotel(1);
+    } else {
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdHotel(archivo.getIdHotel() + 1);
     }
 
-    reg.setIdHotel(id);
     reg.cargarDatosHotel();
 
     if(guardarRegistro(reg)){
-        cout << "HOTEL GUARDADO CORRECTAMENTE";
+        cout << endl << "HOTEL GUARDADO CORRECTAMENTE"<< endl;
     }
     else{
         cout << "ERROR AL GUARDAR HOTEL" << endl;
@@ -122,4 +131,61 @@ void ArchivoHotel::agregarHotel(){
 
 bool ArchivoHotel::existeHotel(int idHotel){
     return buscarRegistro(idHotel) != -1;
+}
+
+void ArchivoHotel::mostrarHotelesByNombre(const char* nombre) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Hotel reg = leerRegistro(i);
+
+        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+            reg.mostrarHotel();
+            cout << "-----------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron hoteles con el nombre: " << nombre << endl;
+    }
+}
+
+void ArchivoHotel::mostrarHotelesByEstrellas(const char* estrellas) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Hotel reg = leerRegistro(i);
+
+        if (reg.getEstado() && strcmp(reg.getEstrellas(), estrellas) == 0) {
+            reg.mostrarHotel();
+            cout << "-----------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron hoteles de " << estrellas << " estrellas." << endl;
+    }
+}
+
+void ArchivoHotel::mostrarHotelesByRangoPrecio(float min, float max) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Hotel reg = leerRegistro(i);
+
+        if (reg.getEstado() && reg.getCosto() >= min && reg.getCosto() <= max) {
+            reg.mostrarHotel();
+            cout << "-----------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado) {
+        cout << "No se encontraron hoteles en el rango de precio: $" << min << " - $" << max << endl;
+    }
 }
