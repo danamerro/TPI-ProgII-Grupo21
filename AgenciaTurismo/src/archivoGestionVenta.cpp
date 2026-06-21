@@ -110,6 +110,7 @@ void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
     }
 }
 
+/* ELIMINAR */
 void ArchivoGestionVenta::mostrarVentasByFechaViaje(const char* fecha) {
 
     int cantidad = contarRegistros();
@@ -233,8 +234,7 @@ void ArchivoGestionVenta::agregarVenta() {
     }
 
     int verLista;
-    cout << endl;
-    cout << "Conoce el ID del cliente?" << endl;
+    cout << endl << "Conoce el ID del cliente?" << endl;
     cout << "1. Si, ya lo tengo" << endl;
     cout << "2. No, ver lista de clientes activos" << endl;
     cout << "Opcion: ";
