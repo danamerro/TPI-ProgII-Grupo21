@@ -223,14 +223,15 @@ void ArchivoGestionVenta::listarTransaccionesPendientes() {
 void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
+    GestionVenta archivo;
 
     int cantidad = contarRegistros();
 
     if (cantidad == 0) {
         reg.setIdVenta(1);
     } else {
-        GestionVenta ultima = leerRegistro(cantidad - 1);
-        reg.setIdVenta(ultima.getIdVenta() + 1);
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdVenta(archivo.getIdVenta()+1);
     }
 
     int verLista;
