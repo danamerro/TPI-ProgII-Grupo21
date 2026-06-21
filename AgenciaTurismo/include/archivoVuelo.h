@@ -18,6 +18,10 @@ class ArchivoVuelo : public Archivo<Vuelo> {
         bool existeVuelo(int idVuelo);
         void mostrarVuelosByDestino(const char* destino);
         void mostrarVuelosByOrigen(const char* origen);
+        void mostrarVuelosByNombre(const char* nombre);
+        void mostrarVuelosByPrecioRange(float min, float max);
+        void mostrarVuelosByDuracion(int duracion);
+        void listarVuelosDadosDeBaja();
 };
 
 

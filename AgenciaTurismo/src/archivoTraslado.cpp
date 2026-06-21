@@ -31,9 +31,7 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("TRASLADO", 2);
         return;
     }
 
@@ -41,9 +39,7 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                      TRASLADO ELIMINADO                     " << endl;
-               cout << pad << "=============================================================" << endl;
+         leyendaSSEliminado("TRASLADO", 2);
     }
 
 }
@@ -53,9 +49,7 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("TRASLADO", 2);
         return;
     }
     Traslado reg = leerRegistro(posicion);
@@ -64,9 +58,7 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
         reg.mostrarTraslado();
     }
     else{
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                      TRASLADO ELIMINADO                     " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSEliminado("TRASLADO", 2);
     }
 }
 
@@ -90,24 +82,17 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                    TRASLADO NO ENCONTRADO                   " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("TRASLADO", 2);
         return;
     }
 
     Traslado reg = leerRegistro(posicion);
-
-   cout << endl << pad << "=============================================================" << endl;
-           cout << pad << "                   INGRESE LOS NUEVOS DATOS                  " << endl;
-           cout << pad << "=============================================================" << endl;
+    leyendaingresoNuevosDatos();
 
     reg.cargarDatosTraslado();
 
     if(modificarRegistro(reg, posicion)){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                    TRASLADO NO MODIFICADO                   " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSModificado("TRASLADO", 2);
     }
 }
 
@@ -128,14 +113,10 @@ void ArchivoTraslado::agregarTraslado(){
     reg.cargarDatosTraslado();
 
     if(guardarRegistro(reg)){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "               TRASLADO GUARDADO CORRECTAMENTE               " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSGuardado("TRASLADO", 2);
     }
     else{
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                        ERROR AL GUARDAR                     " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSErrorAlGuardar("TRASLADO");
     }
 }
 

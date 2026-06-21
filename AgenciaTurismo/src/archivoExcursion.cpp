@@ -31,9 +31,7 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-       cout << endl << pad << "=============================================================" << endl;
-               cout << pad << "                    EXCURSION NO ENCONTRADA                  " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("EXCURSION", 1);
         return;
     }
 
@@ -42,9 +40,7 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << endl<< pad << "=============================================================" << endl;
-               cout << pad << "                      EXCURSION ELIMINADA                    " << endl;
-               cout << pad << "=============================================================" << endl;
+        leyendaSSEliminado("EXCURSION", 1);
     }
 }
 
@@ -53,9 +49,7 @@ void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-    cout << endl<< pad << "=============================================================" << endl;
-           cout << pad << "                  EXCURSION NO ENCONTRADA                    " << endl;
-           cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("EXCURSION", 1);
         return;
     }
     Excursion reg = leerRegistro(posicion);
@@ -64,9 +58,7 @@ void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
         reg.mostrarExcursion();
     }
     else{
-    cout << endl<< pad << "=============================================================" << endl;
-           cout << pad << "                    EXCURSION ELIMINADA                      " << endl;
-           cout << pad << "=============================================================" << endl;
+        leyendaSSEliminado("EXCURSION", 1);
     }
 }
 
@@ -91,25 +83,17 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
     string pad = obtenerPad(61);
 
     if(posicion == -1){
-        cout << endl << pad << "=============================================================" << endl;
-                cout << pad << "                    EXCURSION NO ENCONTRADA                  " << endl;
-                cout << pad << "=============================================================" << endl;
+        leyendaSSNoEncontrado("EXCURSION", 1);
         return;
     }
 
     Excursion reg = leerRegistro(posicion);
 
-    cout << endl << pad << "=============================================================" << endl;
-            cout << pad << "                    INGRESE LOS NUEVOS DATOS                 " << endl;
-            cout << pad << "=============================================================" << endl;
-
+    leyendaingresoNuevosDatos();
     reg.cargarDatosExcursion();
 
     if(modificarRegistro(reg, posicion)){
-
-    cout << endl << pad << "=============================================================" << endl;
-            cout << pad << "                     EXCURSION MODIFICADA                    " << endl;
-            cout << pad << "=============================================================" << endl;
+        leyendaSSModificado("EXCURSION", 1);
     }
 }
 
@@ -130,15 +114,10 @@ void ArchivoExcursion::agregarExcursion(){
     reg.cargarDatosExcursion();
 
     if(guardarRegistro(reg)){
-        cout << pad << "=============================================================" << endl;
-        cout << pad << "              EXCURSION GUARDADA CORRECTAMENTE               " << endl;
-        cout << pad << "=============================================================" << endl;
-
+      leyendaSSGuardado("EXCURSION", 1);
     }
     else{
-        cout << pad << "=============================================================" << endl;
-        cout << pad << "                ERROR AL GUARDAR EXCURSION                   " << endl;
-        cout << pad << "=============================================================" << endl;
+       leyendaSSErrorAlGuardar("EXCURSION");
     }
 }
 

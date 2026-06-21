@@ -1,4 +1,5 @@
 #include "vuelo.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -75,35 +76,38 @@ bool Vuelo::getEstado() const{
 }
 
 void Vuelo::cargarDatosVuelo(){
+    string pad = obtenerPad(61);
 
-    cout << "Ingrese duracion del vuelo: ";
+    cin.ignore();
+
+    cout << endl << pad << "Ingrese nombre: ";
+    cin.getline(_nombre, 30);
+
+    cout << pad << "Ingrese origen: ";
+    cin.getline(_origen, 30);
+
+    cout << pad << "Ingrese destino: ";
+    cin.getline(_destino, 30);
+
+    cout << pad <<"Ingrese duración (minutos): ";
     cin >> _duracion;
 
-    cout << "Ingrese costo del vuelo: ";
+    cout << pad << "Ingrese precio : $";
     cin >> _costo;
 
     cin.ignore();
 
-    cout << "Ingrese nombre del vuelo: ";
-    cin.getline(_nombre, 30);
-
-    cout << "Ingrese origen del vuelo: ";
-    cin.getline(_origen, 30);
-
-    cout << "Ingrese destino del vuelo: ";
-    cin.getline(_destino, 30);
-
     _estado = true;
 }
 
-void Vuelo::mostrarVuelo() const{
-    if (_estado == true) {
-        cout << "ID vuelo: " << _idVuelo << endl;
-        cout << "Duracion: " << _duracion << endl;
-        cout << "Costo: " << _costo << endl;
-        cout << "Nombre: " << _nombre << endl;
-        cout << "Origen: " << _origen << endl;
-        cout << "Destino: " << _destino << endl;
-        cout << "Estado: " << _estado << endl;
-    }
+void Vuelo::mostrarVuelo() const {
+
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "ID vuelo: " << _idVuelo << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Origen: " << _origen << endl;
+    cout << pad << "Destino: " << _destino << endl;
+    cout << pad << "Duración: " << _duracion << endl;
+    cout << pad << "Precio: $" << _costo << endl;
 }
