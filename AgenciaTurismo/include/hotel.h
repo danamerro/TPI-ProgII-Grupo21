@@ -35,7 +35,6 @@ class Hotel
         bool getEstado() const;
         void setEstado(bool valor);
 
-        void cargarHotel();
         void mostrarHotel() const;
         void cargarDatosHotel();
 

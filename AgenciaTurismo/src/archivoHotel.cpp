@@ -87,7 +87,7 @@ void ArchivoHotel::modificarHotel(int idHotel) {
     Hotel reg = leerRegistro(posicion);
     leyendaingresoNuevosDatos();
 
-    reg.cargarHotel();
+    reg.cargarDatosHotel();
 
     if(modificarRegistro(reg, posicion)){
         leyendaSSModificado("HOTEL", 2);
