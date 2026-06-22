@@ -6,6 +6,7 @@ class MenuGestionVuelos : public Menu {
     private:
         ArchivoVuelo _archivo;
         void subMenuConsultas();
+        void subMenuListados();
 
     protected:
         void mostrarOpciones() const override;

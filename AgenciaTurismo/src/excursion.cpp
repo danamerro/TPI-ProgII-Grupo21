@@ -1,4 +1,5 @@
 #include "excursion.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -66,30 +67,30 @@ bool Excursion::getEstado() const{
 }
 
 void Excursion::cargarDatosExcursion(){
-    cout << "Ingrese duracion de la excursion: ";
-    cin >> _duracion;
-
-    cout << "Ingrese costo de la excursion: ";
-    cin >> _costo;
+    string pad = obtenerPad(61);
 
     cin.ignore();
 
-    cout << "Ingrese nombre de la excursion: ";
+    cout << endl << pad << "Ingrese nombre: ";
     cin.getline(_nombre, 30);
 
-    cout << "Ingrese descripcion de la excursion: ";
+    cout << pad << "Ingrese la descripción: ";
     cin.getline(_descripcion, 60);
+
+    _duracion = numeroValido( pad + "Ingrese la duración (minutos) :");
+    _costo = floatValido( pad + "Ingrese el precio: $");
+
+    cin.ignore();
 
     _estado = true;
 }
 
 void Excursion::mostrarExcursion() const{
-    if (_estado == true) {
-        cout << "ID excursion: " << _idExcursion << endl;
-        cout << "Duracion: " << _duracion << endl;
-        cout << "Costo: " << _costo << endl;
-        cout << "Nombre: " << _nombre << endl;
-        cout << "Descripcion: " << _descripcion << endl;
-        cout << "Estado: " << _estado << endl;
-    }
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "ID excursión: " << _idExcursion << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Descripción: " << _descripcion << endl;
+    cout << pad << "Duración: " << _duracion << endl;
+    cout << pad << "Precio: $" << _costo << endl;
 }

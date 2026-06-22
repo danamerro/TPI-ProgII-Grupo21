@@ -1,10 +1,14 @@
 #include "paquete.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
+#include "archivoExcursion.h"
+#include "archivoHotel.h"
+#include "archivoTraslado.h"
+#include "archivoVuelo.h"
 
 using namespace std;
-
 
 Paquete::Paquete() {
     _idPaquete = 0;
@@ -116,38 +120,44 @@ int Paquete::getIdVuelo() const{
 }
 
 void Paquete::cargarDatosPaquete(){
+    string pad = obtenerPad(61);
     cin.ignore();
 
-    cout << "Ingrese nombre del paquete: ";
+    cout << endl << pad << "Ingrese el nombre: ";
     cin.getline(_nombre, 50);
 
-    cout << "Ingrese descripcion del paquete: ";
+    cout << pad << "Ingrese la descripcion: ";
     cin.getline(_descripcion, 200);
 
-    cout << "Ingrese destino del paquete: ";
+    cout << pad << "Ingrese el destino: ";
     cin.getline(_destino, 100);
 
-    cout << "Ingrese precio del paquete: ";
-    cin >> _precio;
-
-    cout << "Ingrese cupo del paquete: ";
-    cin >> _cupo;
+    _cupo = numeroValido( pad + "Ingrese el cupo: ");
+    _precio = floatValido( pad + "Ingrese el precio: $");
 
     _estado = true;
 }
 
 void Paquete::mostrarPaquete() const{
-    if (_estado == true) {
-        cout << "ID paquete: " << _idPaquete << endl;
-        cout << "Nombre: " << _nombre << endl;
-        cout << "Descripcion: " << _descripcion << endl;
-        cout << "Precio: " << _precio << endl;
-        cout << "Cupo: " << _cupo << endl;
-        cout << "Destino: " << _destino << endl;
-        cout << "ID hotel: " << _idHotel << endl;
-        cout << "ID traslado: " << _idTraslado << endl;
-        cout << "ID excursion: " << _idExcursion << endl;
-        cout << "ID vuelo: " << _idVuelo << endl;
-        cout << "Estado: " << _estado << endl;
-    }
+    string pad = obtenerPad(61);
+
+    ArchivoHotel archivoHotel;
+    ArchivoTraslado archivoTraslado;
+    ArchivoExcursion archivoExcursion;
+    ArchivoVuelo archivoVuelo;
+
+    cout << endl << pad << "ID paquete: " << _idPaquete << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Descripcion: " << _descripcion << endl;
+    cout << pad << "Precio: $" << _precio << endl;
+    cout << pad << "Cupo: " << _cupo << endl;
+    cout << pad << "Destino: " << _destino << endl;
+    cout << pad << "--> SERVICIO DE ALOJAMIENTO" << endl;
+    archivoHotel.mostrarHotelByID(_idHotel);
+    cout << pad << "--> SERVICIO DE TRASLADO" << endl;
+    archivoTraslado.mostrarTrasladoByID(_idTraslado);
+    cout << pad << "--> SERVICIO DE EXCURSION"<< endl;
+    archivoExcursion.mostrarExcursionByID(_idExcursion);
+    cout << pad << "--> SERVICIO DE VUELO" << endl;
+    archivoVuelo.mostrarVueloByID(_idVuelo);
 }

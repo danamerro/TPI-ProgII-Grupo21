@@ -6,6 +6,7 @@ class MenuGestionHoteles : public Menu {
     private:
         ArchivoHotel _archivo;
         void subMenuConsultas();
+        void subMenuListados();
 
     protected:
         void mostrarOpciones() const override;

@@ -3,6 +3,7 @@
 #include "archivoTraslado.h"
 #include "archivoExcursion.h"
 #include "archivoVuelo.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -32,7 +33,7 @@ int ArchivoPaquete::buscarRegistro(int idPaquete) {
 void ArchivoPaquete::eliminarPaquete(int idPaquete){
     int posicion = buscarRegistro(idPaquete);
     if(posicion == -1){
-        cout << "PAQUETE NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("PAQUETE", 2);
         return;
     }
 
@@ -41,7 +42,7 @@ void ArchivoPaquete::eliminarPaquete(int idPaquete){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << "PAQUETE ELIMINADO" << endl;
+        leyendaSSEliminado("PAQUETE", 2);
     }
 }
 
@@ -49,7 +50,7 @@ void ArchivoPaquete::mostrarPaqueteByID(int idPaquete){
     int posicion = buscarRegistro(idPaquete);
 
     if(posicion == -1){
-        cout << "PAQUETE NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("PAQUETE", 2);
         return;
     }
     Paquete reg = leerRegistro(posicion);
@@ -58,11 +59,8 @@ void ArchivoPaquete::mostrarPaqueteByID(int idPaquete){
         reg.mostrarPaquete();
     }
     else{
-        cout << "PAQUETE ELIMINADO" << endl;
+        leyendaSSEliminado("PAQUETE", 2);
     }
-
-
-
 }
 
 void ArchivoPaquete::listarPaquetes() {
@@ -75,69 +73,47 @@ void ArchivoPaquete::listarPaquetes() {
 
         if(reg.getEstado()){
             reg.mostrarPaquete();
-            cout << endl;
         }
     }
-
 }
 
-void ArchivoPaquete::modificarPaquete(int idPaquete) {
+void ArchivoPaquete::modificarPaquete(int id) {
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
-    int id;
     int posicion;
     bool idValido = false;
 
     if (cantidad == 0) {
-        cout << endl << "--------------------------------------------------" << endl;
-        cout << "No hay ningun paquete registrado en el sistema para modificar." << endl;
-        cout << "--------------------------------------------------" << endl; //
+        leyendaSSNoEncontrado("PAQUETE", 2);
         return;
     }
 
-    cout << endl << "==================================================" << endl;
-    cout << "LISTA DE PAQUETES DISPONIBLES PARA MODIFICAR:" << endl;
-    cout << "==================================================" << endl;
-    listarPaquetes(); //
-    cout << "==================================================" << endl;
+    posicion = buscarRegistro(id);
 
-    do {
-        cout << "Ingrese el ID del paquete que desea modificar (0 para cancelar): ";
-        cin >> id;
-
-        if (id == 0) return;
-
-        posicion = buscarRegistro(id);
-
-        if (posicion == -1) {
-            cout << "El ID " << id << " no corresponde a un paquete activo." << endl;
-            cout << "--------------------------------------------------------------------------" << endl;
-        } else {
-            Paquete regAux = leerRegistro(posicion);
-            if (!regAux.getEstado()) {
-                cout << "Ese paquete fue eliminado del sistema." << endl;
-                cout << "--------------------------------------------------------------------------" << endl;
-            } else {
-                idValido = true;
-            }
+    if (posicion == -1) {
+        leyendaSSNoEncontrado("PAQUETE", 2);
+    } else {
+        Paquete regAux = leerRegistro(posicion);
+        if (!regAux.getEstado()) {
+            leyendaSSEliminado("PAQUETE", 2);
         }
-    } while (!idValido);
+    }
 
     Paquete reg = leerRegistro(posicion);
-
-    cout << endl << "--- MODIFICANDO PAQUETE ID: " << id << " ---" << endl;
-    cout << "Ingrese los nuevos datos del paquete:" << endl << endl;
+    cout << endl << pad << "------------- MODIFICANDO PAQUETE ID: " << id << "---------------------" << endl;
+    cout << pad << "Ingrese los nuevos datos del paquete..." << endl;
 
     reg.cargarDatosPaquete();
 
-    reg.setIdHotel( enlazarServicioGenerico("hotel", 1) );
-    reg.setIdTraslado( enlazarServicioGenerico("traslado", 2) );
-    reg.setIdExcursion( enlazarServicioGenerico("excursion", 3) );
-    reg.setIdVuelo( enlazarServicioGenerico("vuelo", 4) );
+    reg.setIdHotel( enlazarServicioGenerico("HOTEL", 1) );
+    reg.setIdTraslado( enlazarServicioGenerico("TRASLADO", 2) );
+    reg.setIdExcursion( enlazarServicioGenerico("EXCURSION", 3) );
+    reg.setIdVuelo( enlazarServicioGenerico("VUELO", 4) );
 
-    if (modificarRegistro(reg, posicion)) { //
-        cout << endl << "PAQUETE MODIFICADO CORRECTAMENTE EN EL SISTEMA" << endl;
+    if (modificarRegistro(reg, posicion)) {
+        leyendaSSGuardado("PAQUETE", 2);
     } else {
-        cout << endl << "ERROR AL GUARDAR LOS CAMBIOS EN EL ARCHIVO" << endl;
+        leyendaSSErrorAlGuardar("PAQUETE");
     }
 }
 
@@ -156,16 +132,16 @@ void ArchivoPaquete::agregarPaquete(){
 
     reg.cargarDatosPaquete();
 
-    reg.setIdHotel( enlazarServicioGenerico("hotel", 1) );
-    reg.setIdTraslado( enlazarServicioGenerico("traslado", 2) );
-    reg.setIdExcursion( enlazarServicioGenerico("excursion", 3) );
-    reg.setIdVuelo( enlazarServicioGenerico("vuelo", 4) );
+    reg.setIdHotel( enlazarServicioGenerico("HOTEL", 1) );
+    reg.setIdTraslado( enlazarServicioGenerico("TRASLADO", 2) );
+    reg.setIdExcursion( enlazarServicioGenerico("EXCURSION", 3) );
+    reg.setIdVuelo( enlazarServicioGenerico("VUELO", 4) );
 
     if(guardarRegistro(reg)){
-        cout << endl << "PAQUETE GUARDADO CORRECTAMENTE EN EL SISTEMA" << endl;
+        leyendaSSGuardado("PAQUETE", 2);
     }
     else{
-        cout << endl << "ERROR AL GUARDAR PAQUETE" << endl;
+        leyendaSSErrorAlGuardar("PAQUETE");
     }
 }
 
@@ -193,6 +169,7 @@ int ArchivoPaquete::obtenerCantidadRegistrosServicio(int tipoServicio) {
 }
 
 int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipoServicio) {
+    string pad = obtenerPad(61);
     int id = 0;
     bool idValido = false;
 
@@ -204,9 +181,9 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
     int cantidad = obtenerCantidadRegistrosServicio(tipoServicio);
 
     if (cantidad == 0) {
-        cout << endl << "No existe ningun " << nombreServicio << " registrado en el sistema." << endl;
-        cout << "Creando un nuevo " << nombreServicio << " automaticamente..." << endl;
-        cout << "--------------------------------------------------" << endl;
+        cout << endl << pad << "No existe ningun " << nombreServicio << " registrado en el sistema." << endl;
+        cout << pad << "Creando un nuevo " << nombreServicio << " automaticamente..." << endl;
+        cout << endl << pad << "-------------------------------------------------------------" << endl;
 
         switch (tipoServicio) {
             case 1:
@@ -226,14 +203,11 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
                 id = archivoVuelo.contarRegistros();
                 break;
         }
-        cout << "Se guardo el servicio de " << nombreServicio << " con ID: " << id << endl;
+        cout << endl << pad << "SE GUARDO CORRECTAMENTE EL " << nombreServicio << " CON ID: " << id << endl;
         return id;
     }
 
-    cout << endl << "==================================================" << endl;
-    cout << " LISTA DE " << nombreServicio << "S DISPONIBLES:" << endl;
-    cout << "==================================================" << endl;
-
+    cout << endl << pad << "----------------- LISTA DE "<< nombreServicio <<"-------------------------" << endl;
     switch (tipoServicio) {
         case 1: archivoHotel.listarHoteles(); break;
         case 2: archivoTraslado.listarTraslados(); break;
@@ -241,23 +215,22 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
         case 4: archivoVuelo.listarVuelos(); break;
     }
 
-    cout << "=========================================================" << endl;
-    cout << "  Si desea otro " << nombreServicio << " puede cargar uno nuevo ingresando -1." << endl;
-    cout << "=========================================================" << endl;
+    cout << endl << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "Si desea otro " << nombreServicio << " , cargar ingresando -1." << endl;
 
     do {
-        cout << "Seleccione el ID del " << nombreServicio << " para agregar al paquete (-1 para nuevo): ";
+        cout << endl << pad << "Seleccione el ID del " << nombreServicio << " para agregar al paquete (-1 para nuevo): ";
         cin >> id;
 
         if (id == -1) {
-            cout << endl << "--- ALTA DE NUEVO " << nombreServicio << " ---" << endl;
+            cout << endl << pad << "-------------------- ALTA DE NUEVO "<< nombreServicio << "------------------" << endl;
             switch (tipoServicio) {
                 case 1: archivoHotel.agregarHotel(); id = archivoHotel.contarRegistros(); break;
                 case 2: archivoTraslado.agregarTraslado(); id = archivoTraslado.contarRegistros(); break;
                 case 3: archivoExcursion.agregarExcursion(); id = archivoExcursion.contarRegistros(); break;
                 case 4: archivoVuelo.agregarVuelo(); id = archivoVuelo.contarRegistros(); break;
             }
-            cout << "Nuevo " << nombreServicio << " creado y enlazado con ID: " << id << endl;
+            cout << endl << pad << "NUEVO " << nombreServicio << " CREADO Y ENLAZADO CON ID: " << id << endl;
             return id;
         }
 
@@ -269,10 +242,102 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
         }
 
         if (!idValido) {
-            cout << "El ID " << id << " no pertenece a un " << nombreServicio << " activo. Seleccione uno de la lista." << endl;
+            cout << endl << pad << "EL ID " << id << " NO PERTENECE A " << nombreServicio << " ACTIVO." << endl;
+            cout << pad << "Seleccione uno de la lista:" << endl;
         }
 
     } while (!idValido);
 
     return id;
+}
+
+void ArchivoPaquete::mostrarPaquetesByNombre(const char* nombre) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Paquete reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+            reg.mostrarPaquete();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron paquetes con el nombre: " << nombre << endl;
+    }
+}
+
+void ArchivoPaquete::mostrarPaquetesByPrecioRange(float min, float max) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Paquete reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getPrecio() >= min && reg.getPrecio() <= max) {
+            reg.mostrarPaquete();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron paquetes en el rango de precio: $" << min << " - $" << max << endl;
+    }
+}
+
+void ArchivoPaquete::mostrarPaquetesByCupo(int cupo) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Paquete reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getCupo() == cupo) {
+            reg.mostrarPaquete();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron paquetes con un cupo exacto de " << cupo << " lugares." << endl;
+    }
+}
+
+void ArchivoPaquete::mostrarPaquetesByDestino(const char* destino) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Paquete reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getDestino(), destino) == 0) {
+            reg.mostrarPaquete();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron paquetes con destino a: " << destino << endl;
+    }
+}
+
+void ArchivoPaquete::listarPaquetesDadosDeBaja() {
+    Paquete reg;
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        reg = leerRegistro(i);
+        if (!reg.getEstado()) {
+            reg.mostrarPaquete();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No hay paquetes dados de baja en el sistema." << endl;
+    }
 }

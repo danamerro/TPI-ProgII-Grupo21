@@ -6,6 +6,7 @@ class MenuGestionExcursiones : public Menu {
     private:
         ArchivoExcursion _archivo;
         void subMenuConsultas();
+        void subMenuListados();
 
     protected:
         void mostrarOpciones() const override;

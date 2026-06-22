@@ -17,4 +17,9 @@ class ArchivoTraslado : public Archivo<Traslado> {
 
         void agregarTraslado();
         bool existeTraslado(int idTraslado);
+        void mostrarTrasladosByOrigen(const char* origen);
+        void mostrarTrasladosByDestino(const char* destino);
+        void mostrarTrasladosByPrecioRange(float min, float max);
+        void mostrarTrasladosByDuracion(int duracion);
+        void listarTrasladosDadosDeBaja();
 };

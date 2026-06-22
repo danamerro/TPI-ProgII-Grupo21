@@ -1,4 +1,5 @@
 #include "archivoHotel.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -28,9 +29,7 @@ int ArchivoHotel::buscarRegistro(int idHotel) {
 void ArchivoHotel::eliminarHotel(int idHotel){
     int posicion = buscarRegistro(idHotel);
     if(posicion == -1){
-        cout << "=========================================" << endl;
-        cout << "           HOTEL NO ENCONTRADO           " << endl;
-        cout << "=========================================" << endl;
+        leyendaSSNoEncontrado("HOTEL", 2);
         return;
     }
 
@@ -39,9 +38,7 @@ void ArchivoHotel::eliminarHotel(int idHotel){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-    cout << "         ===================" << endl;
-    cout << "         = HOTEL ELIMINADO =" << endl;
-    cout << "         ===================" << endl;
+        leyendaSSEliminado("HOTEL", 2);
     }
 }
 
@@ -49,7 +46,7 @@ void ArchivoHotel::mostrarHotelByID(int idHotel){
     int posicion = buscarRegistro(idHotel);
 
     if(posicion == -1){
-        cout << "HOTEL NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("HOTEL", 2);
         return;
     }
     Hotel reg = leerRegistro(posicion);
@@ -58,11 +55,8 @@ void ArchivoHotel::mostrarHotelByID(int idHotel){
         reg.mostrarHotel();
     }
     else{
-        cout << "HOTEL ELIMINADO" << endl;
+        leyendaSSEliminado("HOTEL", 2);
     }
-
-
-
 }
 
 void ArchivoHotel::listarHoteles() {
@@ -76,33 +70,27 @@ void ArchivoHotel::listarHoteles() {
 
         if(reg.getEstado()){
             reg.mostrarHotel();
-            cout << endl;
         }
       }
     } else {
-        cout << "         ======================" << endl;
-        cout << "         = SIN DATOS DE HOTEL =" << endl;
-        cout << "         ======================" << endl;
+        leyendaSSNoEncontrado("HOTEL", 2);
     }
 }
 
 void ArchivoHotel::modificarHotel(int idHotel) {
     int posicion = buscarRegistro(idHotel);
     if(posicion == -1){
-        cout << "HOTEL NO ENCONTRADO " << endl;
+        leyendaSSNoEncontrado("HOTEL", 2);
         return;
     }
 
     Hotel reg = leerRegistro(posicion);
+    leyendaingresoNuevosDatos();
 
-    cout << "         ============================" << endl;
-    cout << "         = INGRESE LOS NUEVOS DATOS =" << endl;
-    cout << "         ============================" << endl;
-
-    reg.cargarHotel();
+    reg.cargarDatosHotel();
 
     if(modificarRegistro(reg, posicion)){
-        cout << "HOTEL MODIFICADO"<< endl;
+        leyendaSSModificado("HOTEL", 2);
     }
 }
 
@@ -122,10 +110,10 @@ void ArchivoHotel::agregarHotel(){
     reg.cargarDatosHotel();
 
     if(guardarRegistro(reg)){
-        cout << endl << "HOTEL GUARDADO CORRECTAMENTE"<< endl;
+        leyendaSSGuardado("HOTEL", 2);
     }
     else{
-        cout << "ERROR AL GUARDAR HOTEL" << endl;
+        leyendaSSErrorAlGuardar("HOTEL");
     }
 }
 
@@ -136,56 +124,78 @@ bool ArchivoHotel::existeHotel(int idHotel){
 void ArchivoHotel::mostrarHotelesByNombre(const char* nombre) {
     int cantidad = contarRegistros();
     bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
         Hotel reg = leerRegistro(i);
 
         if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
             reg.mostrarHotel();
-            cout << "-----------------------------------------" << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
             encontrado = true;
         }
     }
 
     if (!encontrado) {
-        cout << "No se encontraron hoteles con el nombre: " << nombre << endl;
+        cout << endl << pad << "No se encontraron hoteles con el nombre: " << nombre << endl;
     }
 }
 
 void ArchivoHotel::mostrarHotelesByEstrellas(const char* estrellas) {
     int cantidad = contarRegistros();
     bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
         Hotel reg = leerRegistro(i);
 
         if (reg.getEstado() && strcmp(reg.getEstrellas(), estrellas) == 0) {
             reg.mostrarHotel();
-            cout << "-----------------------------------------" << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
             encontrado = true;
         }
     }
 
     if (!encontrado) {
-        cout << "No se encontraron hoteles de " << estrellas << " estrellas." << endl;
+        cout << endl << pad << "No se encontraron hoteles de " << estrellas << " estrellas." << endl;
     }
 }
 
 void ArchivoHotel::mostrarHotelesByRangoPrecio(float min, float max) {
     int cantidad = contarRegistros();
     bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
         Hotel reg = leerRegistro(i);
 
         if (reg.getEstado() && reg.getCosto() >= min && reg.getCosto() <= max) {
             reg.mostrarHotel();
-            cout << "-----------------------------------------" << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
             encontrado = true;
         }
     }
 
     if (!encontrado) {
-        cout << "No se encontraron hoteles en el rango de precio: $" << min << " - $" << max << endl;
+        cout << endl << pad << "No se encontraron hoteles en el rango de precio: $" << min << " - $" << max << endl;
+    }
+}
+
+void ArchivoHotel::listarHotelesDadosDeBaja() {
+    Hotel reg;
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        reg = leerRegistro(i);
+        if (!reg.getEstado()) {
+            reg.mostrarHotel();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No hay hoteles dados de baja en el sistema." << endl;
     }
 }
