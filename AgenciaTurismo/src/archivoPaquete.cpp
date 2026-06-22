@@ -276,3 +276,11 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
 
     return id;
 }
+
+Paquete ArchivoPaquete::obtenerPaquetePorId(int idPaquete) {
+    int posicion = buscarRegistro(idPaquete);
+    if (posicion == -1) {
+        return Paquete();
+    }
+    return leerRegistro(posicion);
+}

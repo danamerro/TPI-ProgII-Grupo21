@@ -162,3 +162,10 @@ void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
     }
 }
 
+Vuelo ArchivoVuelo::obtenerVueloPorId(int idVuelo) {
+    int posicion = buscarRegistro(idVuelo);
+    if (posicion == -1) {
+        return Vuelo();
+    }
+    return leerRegistro(posicion);
+}

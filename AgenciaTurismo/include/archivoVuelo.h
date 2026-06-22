@@ -16,6 +16,7 @@ class ArchivoVuelo : public Archivo<Vuelo> {
 
         void agregarVuelo();
         bool existeVuelo(int idVuelo);
+        Vuelo obtenerVueloPorId(int idVuelo);
         void mostrarVuelosByDestino(const char* destino);
         void mostrarVuelosByOrigen(const char* origen);
 };

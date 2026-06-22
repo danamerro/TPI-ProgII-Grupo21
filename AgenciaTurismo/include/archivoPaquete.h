@@ -21,4 +21,5 @@ class ArchivoPaquete :public Archivo<Paquete>{
 
         void agregarPaquete();
         bool existePaquete(int idPaquete);
+        Paquete obtenerPaquetePorId(int idPaquete);
 };
