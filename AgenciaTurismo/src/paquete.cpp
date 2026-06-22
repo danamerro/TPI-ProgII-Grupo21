@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <cstring>
+#include "archivoExcursion.h"
+#include "archivoHotel.h"
+#include "archivoTraslado.h"
+#include "archivoVuelo.h"
 
 using namespace std;
 
@@ -137,14 +141,23 @@ void Paquete::cargarDatosPaquete(){
 void Paquete::mostrarPaquete() const{
     string pad = obtenerPad(61);
 
+    ArchivoHotel archivoHotel;
+    ArchivoTraslado archivoTraslado;
+    ArchivoExcursion archivoExcursion;
+    ArchivoVuelo archivoVuelo;
+
     cout << endl << pad << "ID paquete: " << _idPaquete << endl;
     cout << pad << "Nombre: " << _nombre << endl;
     cout << pad << "Descripcion: " << _descripcion << endl;
     cout << pad << "Precio: $" << _precio << endl;
     cout << pad << "Cupo: " << _cupo << endl;
     cout << pad << "Destino: " << _destino << endl;
-    cout << pad << "ID hotel: " << _idHotel << endl;
-    cout << pad << "ID traslado: " << _idTraslado << endl;
-    cout << pad << "ID excursion: " << _idExcursion << endl;
-    cout << pad << "ID vuelo: " << _idVuelo << endl;
+    cout << pad << "--> SERVICIO DE ALOJAMIENTO" << endl;
+    archivoHotel.mostrarHotelByID(_idHotel);
+    cout << pad << "--> SERVICIO DE TRASLADO" << endl;
+    archivoTraslado.mostrarTrasladoByID(_idTraslado);
+    cout << pad << "--> SERVICIO DE EXCURSION"<< endl;
+    archivoExcursion.mostrarExcursionByID(_idExcursion);
+    cout << pad << "--> SERVICIO DE VUELO" << endl;
+    archivoVuelo.mostrarVueloByID(_idVuelo);
 }
