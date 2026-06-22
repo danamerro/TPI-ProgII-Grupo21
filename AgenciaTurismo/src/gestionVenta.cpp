@@ -148,11 +148,11 @@ void GestionVenta::cancelarVenta() {
     _estadoVenta = 2;
 }
 
-void GestionVenta::emitirTicketConfirmacion() {
+void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo) {
 
     cout << endl;
     cout << "===================================" << endl;
-    cout << "     TICKET DE CONFIRMACION" << endl;
+    cout << "     TICKET DE " << tipo << endl;
     cout << "===================================" << endl;
 
     cout << "ID Venta: " << _idVenta << endl;
@@ -160,7 +160,7 @@ void GestionVenta::emitirTicketConfirmacion() {
     cout << "ID Paquete: " << _idPaquete << endl;
 
     cout << "Fecha Venta: " << _fechaVenta << endl;
-    //cout << "Fecha Vuelo: " << _fechaViaje << endl;
+    cout << "Fecha Vuelo: " << fechaVuelo << endl;
 
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;
 
@@ -177,6 +177,7 @@ void GestionVenta::mostrarVenta() const {
     cout << "ID Paquete: " << _idPaquete << endl;
 
     cout << "Fecha Venta: " << _fechaVenta << endl;
+
     //cout << "Fecha Viaje: " << _fechaViaje << endl;
 
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;

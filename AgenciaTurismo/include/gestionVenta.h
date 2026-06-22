@@ -46,6 +46,6 @@ class GestionVenta {
         void confirmarVenta();
         void cancelarVenta();
         float calcularTotal();
-        void emitirTicketConfirmacion();
+        void emitirTicket(const char* tipo, const char* fechaVuelo);
         void mostrarVenta() const;
 };
