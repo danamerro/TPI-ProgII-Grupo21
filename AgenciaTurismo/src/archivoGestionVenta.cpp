@@ -6,6 +6,7 @@ using namespace std;
 
 #include "archivoGestionVenta.h"
 #include "archivoCliente.h"
+#include "archivoPaquete.h"
 
 ArchivoGestionVenta::ArchivoGestionVenta() : Archivo<GestionVenta>("ventas.dat"){}
 
@@ -234,6 +235,8 @@ void ArchivoGestionVenta::agregarVenta() {
     }
 
     int verLista;
+    int listaPaquete;
+
     cout << endl << "Conoce el ID del cliente?" << endl;
     cout << "1. Si, ya lo tengo" << endl;
     cout << "2. No, ver lista de clientes activos" << endl;
@@ -244,6 +247,19 @@ void ArchivoGestionVenta::agregarVenta() {
         ArchivoCliente archivoCliente;
         cout << endl << "------- CLIENTES ACTIVOS -------" << endl;
         archivoCliente.listarClientes();
+        cout << "--------------------------------" << endl;
+    }
+
+    cout << endl << "Conoce el ID del paquete?" << endl;
+    cout << "1. Si, ya lo tengo" << endl;
+    cout << "2. No, ver lista de paquetes activos" << endl;
+    cout << "Opcion: ";
+    cin >> listaPaquete;
+
+    if (listaPaquete == 2) {
+        ArchivoPaquete archivoPaquete;
+        cout << endl << "------- PAQUETES ACTIVOS -------" << endl;
+        archivoPaquete.listarPaquetes();
         cout << "--------------------------------" << endl;
     }
 
