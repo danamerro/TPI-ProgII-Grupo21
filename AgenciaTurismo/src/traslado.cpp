@@ -76,13 +76,8 @@ void Traslado::cargarDatosTraslado(){
     cout << pad << "Ingrese destino: ";
     cin.getline(_destino, 20);
 
-    cout << pad << "Ingrese duración: ";
-    cin >> _duracion;
-
-    cout << pad << "Ingrese precio : $";
-    cin >> _precio;
-
-    cin.ignore();
+    _duracion = numeroValido( pad + "Ingrese duración (minutos): ");
+    _precio = floatValido( pad + "Ingrese precio : $" );
 
     _estado = true;
 

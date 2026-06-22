@@ -9,3 +9,5 @@ void leyendaSSModificado(const std::string& servicio, int num);
 void leyendaingresoNuevosDatos();
 void leyendaSSGuardado(const std::string& servicio, int num);
 void leyendaSSErrorAlGuardar(const std::string& servicio);
+int numeroValido(const std::string& consulta);
+float floatValido(const std::string& consulta);

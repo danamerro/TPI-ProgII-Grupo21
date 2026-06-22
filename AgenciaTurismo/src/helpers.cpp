@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include "helpers.h"
+#include <limits>
 
 using namespace std;
 
@@ -79,4 +80,47 @@ void leyendaSSErrorAlGuardar(const std::string& servicio) {
     cout << endl << pad << "=============================================================" << endl;
             cout << pad << "              ERROR AL GUARDAR "<< servicio <<"              " << endl;
             cout << pad << "=============================================================" << endl;
+}
+
+int numeroValido(const string& consulta) {
+    int numero;
+    string pad = obtenerPad(61);
+
+    while (true) {
+        cout << consulta;
+        cin >> numero;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "               ERROR, INGRESA UN NUMERO ENTERO               " << endl;
+            cout << pad << "=============================================================" << endl;
+        }
+        else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return numero;
+        }
+    }
+}
+
+float floatValido(const string& consulta) {
+    float numero;
+    string pad = obtenerPad(61);
+
+    while (true) {
+        cout << consulta;
+        cin >> numero;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                   ERROR, INGRESA UN NUMERO                  " << endl;
+            cout << pad << "=============================================================" << endl;      }
+        else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return numero;
+        }
+    }
 }

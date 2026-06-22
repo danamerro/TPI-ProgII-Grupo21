@@ -74,31 +74,6 @@ bool Hotel::getEstado() const{
     return _estado;
 }
 
-void Hotel::cargarHotel(){
-    string pad = obtenerPad(61);
-
-    cin.ignore();
-
-    cout << endl << pad << "Ingrese nombre del hotel: ";
-    cin.getline(_nombre, 30);
-
-    cout << pad << "Ingrese estrellas del hotel: ";
-    cin.getline(_estrellas, 30);
-
-    cout << pad << "Ingrese direccion del hotel: ";
-    cin.getline(_direccion, 30);
-
-    cout << pad << "Ingrese descripcion del hotel: ";
-    cin.getline(_descripcion, 250);
-
-    cout << pad << "Ingrese costo del hotel: ";
-    cin >> _costo;
-
-    cin.ignore();
-
-    _estado = true;
-}
-
 void Hotel::mostrarHotel() const{
     string pad = obtenerPad(61);
 
@@ -127,8 +102,7 @@ void Hotel::cargarDatosHotel(){
     cout << pad << "Ingrese descripcion: ";
     cin.getline(_descripcion, 150);
 
-    cout << pad << "Ingrese el precio: $";
-    cin >> _costo;
+    _costo = floatValido( pad + "Ingrese el precio: $");
 
     cin.ignore();
 

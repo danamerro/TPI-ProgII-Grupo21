@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 Paquete::Paquete() {
     _idPaquete = 0;
     _precio = 0;
@@ -120,22 +119,17 @@ void Paquete::cargarDatosPaquete(){
     string pad = obtenerPad(61);
     cin.ignore();
 
-    cout << endl << pad << "Ingrese nombre del paquete: ";
+    cout << endl << pad << "Ingrese el nombre: ";
     cin.getline(_nombre, 50);
 
-    cout << pad << "Ingrese descripcion del paquete: ";
+    cout << pad << "Ingrese la descripcion: ";
     cin.getline(_descripcion, 200);
 
-    cout << pad << "Ingrese destino del paquete: ";
+    cout << pad << "Ingrese el destino: ";
     cin.getline(_destino, 100);
 
-    cout << pad <<"Ingrese precio del paquete: ";
-    cin >> _precio;
-
-    cout << pad << "Ingrese cupo del paquete: ";
-    cin >> _cupo;
-
-    cin.ignore();
+    _cupo = numeroValido( pad + "Ingrese el cupo: ");
+    _precio = floatValido( pad + "Ingrese el precio: $");
 
     _estado = true;
 }

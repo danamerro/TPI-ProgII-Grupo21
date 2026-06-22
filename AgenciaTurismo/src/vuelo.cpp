@@ -89,13 +89,8 @@ void Vuelo::cargarDatosVuelo(){
     cout << pad << "Ingrese destino: ";
     cin.getline(_destino, 30);
 
-    cout << pad <<"Ingrese duración (minutos): ";
-    cin >> _duracion;
-
-    cout << pad << "Ingrese precio : $";
-    cin >> _costo;
-
-    cin.ignore();
+    _duracion = numeroValido( pad + "Ingrese duración (minutos): ");
+    _costo = floatValido( pad + "Ingrese precio : $");
 
     _estado = true;
 }
