@@ -102,7 +102,7 @@ void Hotel::cargarHotel(){
 void Hotel::mostrarHotel() const{
     string pad = obtenerPad(61);
 
-    cout << endl << pad << "ID excursión: " << _idHotel << endl;
+    cout << endl << pad << "ID Hotel: " << _idHotel << endl;
     cout << pad << "Nombre: " << _nombre << endl;
     cout << pad << "Estrellas: " << _estrellas << endl;
     cout << pad << "Direccion: " << _direccion << endl;

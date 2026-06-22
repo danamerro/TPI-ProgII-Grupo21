@@ -35,7 +35,7 @@ void MenuGestionTraslados::procesarOpcion(int opcion) {
         case 2:
             cout << endl << pad << "------------------- TRASLADOS REGISTRADAS ------------------- " << endl << endl;
             _archivo.listarTraslados();
-            cout << endl << pad << "Ingrese el ID del traslado a modificar:";
+            cout << endl << pad << "Ingrese el ID del paquete a modificar:";
             cin >> idAux;
             _archivo.modificarTraslado(idAux);
             break;

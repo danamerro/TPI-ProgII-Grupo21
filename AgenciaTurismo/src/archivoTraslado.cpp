@@ -72,7 +72,6 @@ void ArchivoTraslado::listarTraslados() {
 
         if(reg.getEstado()){
             reg.mostrarTraslado();
-            cout << endl;
         }
     }
 }

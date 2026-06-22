@@ -18,7 +18,11 @@ class ArchivoPaquete :public Archivo<Paquete>{
         void mostrarPaqueteByID(int idPaquete);
         void listarPaquetes();
         void modificarPaquete(int idPaquete);
-
         void agregarPaquete();
         bool existePaquete(int idPaquete);
+        void mostrarPaquetesByNombre(const char* nombre);
+        void mostrarPaquetesByPrecioRange(float min, float max);
+        void mostrarPaquetesByCupo(int cupo);
+        void mostrarPaquetesByDestino(const char* destino);
+        void listarPaquetesDadosDeBaja();
 };
