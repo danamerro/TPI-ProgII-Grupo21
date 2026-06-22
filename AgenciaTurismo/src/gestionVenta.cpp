@@ -124,11 +124,6 @@ bool GestionVenta::crearDatosVenta() {
     cout << "Ingrese Cantidad de Cupos: ";
     cin >> _cantidadCupos;
 
-    cout << "Ingrese Precio Unitario: ";
-    cin >> _precioUnitario;
-
-    _total = calcularTotal();
-
     _estadoVenta = 0;
     // Pendiente a charlar, poder manejar los estados como:
     //0 = Pendiente
@@ -165,7 +160,7 @@ void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo) {
     cout << "Cantidad Cupos: " << _cantidadCupos << endl;
 
     cout << "Precio Unitario: $" << _precioUnitario << endl;
-    cout << "Total: $" << _total << endl;
+    cout << "Total: " << _cantidadCupos << " x $" << _precioUnitario << " = $" << _total << endl;
 
     cout << "===================================" << endl;
 }

@@ -6,6 +6,8 @@ using namespace std;
 
 #include "archivoGestionVenta.h"
 #include "archivoCliente.h"
+#include "archivoPaquete.h"
+#include "archivoVuelo.h"
 
 ArchivoGestionVenta::ArchivoGestionVenta() : Archivo<GestionVenta>("ventas.dat"){}
 
@@ -233,12 +235,23 @@ void ArchivoGestionVenta::agregarVenta() {
         return;
     }
 
+    ArchivoPaquete archivoPaquete;
+    ArchivoVuelo archivoVuelo;
+    Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
+    Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
+
+    reg.setPrecioUnitario(paq.getPrecio());
+    reg.setTotal(reg.calcularTotal());
+
     if (guardarRegistro(reg)) {
         cout << endl;
         cout << "=========================================" << endl;
         cout << "   VENTA REGISTRADA CORRECTAMENTE" << endl;
         cout << "   ID de venta: " << reg.getIdVenta() << endl;
         cout << "=========================================" << endl;
+
+        reg.emitirTicket("RESERVA", vue.getFechaVuelo());
+
         cout << "Presione Enter para continuar...";
         cin.ignore();
         cin.get();
@@ -276,6 +289,12 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
 
     if (modificarRegistro(reg, posicion)) {
         cout << "VENTA CONFIRMADA" << endl;
+
+        ArchivoPaquete archivoPaquete;
+        ArchivoVuelo archivoVuelo;
+        Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
+        Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
+        reg.emitirTicket("CONFIRMACION", vue.getFechaVuelo());
     }
 }
 
