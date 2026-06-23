@@ -40,9 +40,7 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
         buscarRegistro(idVenta);
 
     if (posicion == -1) {
-
-        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
-
+        leyendaSSNoEncontrado("VENTA", 1);
         return;
     }
 
@@ -300,8 +298,10 @@ void ArchivoGestionVenta::agregarVenta() {
         cin.get();
     }
     else {
-        cout << endl << pad << "ERROR AL GUARDAR LA VENTA" << endl;
-        cin.ignore();
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                ERROR AL GUARDAR LA VENTA                    "<< endl;
+            cout << pad << "=============================================================" << endl;
+         cin.ignore();
         cin.get();
     }
 }
@@ -318,9 +318,7 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
         buscarRegistro(idVenta);
 
     if (posicion == -1) {
-
-        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
-
+        leyendaSSNoEncontrado("VENTA", 1);
         return;
     }
 
@@ -330,7 +328,9 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
     reg.confirmarVenta();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << endl << pad << "VENTA CONFIRMADA" << endl;
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                    VENTA CONFIRMADA                         "<< endl;
+            cout << pad << "=============================================================" << endl;
 
         ArchivoPaquete archivoPaquete;
         ArchivoVuelo archivoVuelo;
@@ -348,7 +348,7 @@ void ArchivoGestionVenta::cancelarVenta(int idVenta) {
     int posicion = buscarRegistro(idVenta);
 
     if (posicion == -1) {
-        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
+        leyendaSSNoEncontrado("VENTA", 1);
         return;
     }
 
@@ -357,6 +357,8 @@ void ArchivoGestionVenta::cancelarVenta(int idVenta) {
     reg.cancelarVenta();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << endl << pad << "VENTA CANCELADA" << endl;
+    cout << endl << pad << "=============================================================" << endl;
+            cout << pad << "                    VENTA CANCELADA                          "<< endl;
+            cout << pad << "=============================================================" << endl;
     }
 }

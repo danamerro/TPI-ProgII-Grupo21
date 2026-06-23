@@ -89,8 +89,6 @@ void Cliente::cargarDatosCliente(){
 
     _dni = numeroValido(pad + "Ingrese dni del cliente: ");
 
-
-
     cout << pad << "Ingrese nombre del cliente: ";
     cin.getline(_nombre, 20);
 
@@ -98,7 +96,7 @@ void Cliente::cargarDatosCliente(){
     cin.getline(_apellido, 20);
 
 
-    _telefono = numeroValido(pad + "Ingrese telefono del cliente: ");
+    _telefono = floatValido(pad + "Ingrese telefono del cliente: ");
 
     cout << pad << "Ingrese direccion del cliente: ";
     cin.getline(_direccion, 50);

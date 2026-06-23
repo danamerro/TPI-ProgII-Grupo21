@@ -134,9 +134,9 @@ void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo, Client
     string pad = obtenerPad(61);
 
     cout << endl;
-    cout << pad << "===================================" << endl;
-    cout << pad << "        TICKET DE " << tipo << endl;
-    cout << pad << "===================================" << endl;
+    cout << pad << "=============================================================" << endl;
+    cout << pad << "                      TICKET DE " << tipo << endl;
+    cout << pad << "=============================================================" << endl;
     cout << endl;
 
     cout << pad << "-- DATOS DEL CLIENTE --" << endl;
@@ -156,7 +156,7 @@ void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo, Client
     cout << pad << "Precio Unitario: $" << _precioUnitario << endl;
     cout << pad << "Total: " << _cantidadCupos << " x $" << _precioUnitario << " = $" << _total << endl;
 
-    cout << pad << "===================================" << endl;
+    cout << pad << "=============================================================" << endl;
     cout << endl;
 }
 
@@ -182,5 +182,4 @@ void GestionVenta::mostrarVenta() const {
     cout << pad << "Precio Unitario: $" << _precioUnitario << endl;
     cout << pad << "Total: $" << _total << endl;
     cout << pad << "Estado de la venta: " << estadoTexto << endl;
-    cout << pad << "Activa: " << (_estado ? "Si" : "No") << endl;
 }

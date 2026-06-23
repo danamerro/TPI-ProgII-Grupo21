@@ -222,8 +222,7 @@ void ArchivoCliente::mostrarClienteById(int idCliente) {
     int posicion = buscarRegistro(idCliente);
 
     if (posicion == -1) {
-
-        cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("CLIENTE", 2);
         return;
     }
 
@@ -246,7 +245,7 @@ void ArchivoCliente::mostrarClienteByDni(int dni) {
         }
     }
 
-    cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+    leyendaSSNoEncontrado("CLIENTE", 2);
 }
 
 void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
@@ -265,7 +264,7 @@ void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
     }
 
     if (!encontrado) {
-            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+            leyendaSSNoEncontrado("CLIENTE", 2);
         }
 
 }
@@ -286,7 +285,7 @@ void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
     }
 
     if (!encontrado) {
-            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+            leyendaSSNoEncontrado("CLIENTE", 2);
         }
 
 }
@@ -307,7 +306,7 @@ void ArchivoCliente::mostrarClienteByEmail(const char* email){
     }
 
     if (!encontrado) {
-            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+            leyendaSSNoEncontrado("CLIENTE", 2);
         }
 
 }
@@ -328,7 +327,7 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
     }
 
     if (!encontrado) {
-            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+            leyendaSSNoEncontrado("CLIENTE", 2);
         }
 
 }
@@ -349,7 +348,7 @@ void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
     }
 
     if (!encontrado) {
-            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+            leyendaSSNoEncontrado("CLIENTE", 2);
         }
 
 }
@@ -366,7 +365,7 @@ void ArchivoCliente::mostrarClienteByTelefono(int telefono){
             return;
         }
     }
-    cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+    leyendaSSNoEncontrado("CLIENTE", 2);
 }
 
 bool ArchivoCliente::hayClientesActivos() {
