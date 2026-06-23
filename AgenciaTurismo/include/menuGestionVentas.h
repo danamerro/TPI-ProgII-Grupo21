@@ -1,14 +1,16 @@
 #pragma once
+#include "menu.h"
+#include "archivoGestionVenta.h"
 
-class MenuGestionVentas {
+class MenuGestionVentas : public Menu {
     private:
-        void mostrarOpciones() const;
+        ArchivoGestionVenta _archivo;
         void subMenuGestion();
         void subMenuListados();
         void subMenuConsultas();
-
+    protected:
+        void mostrarOpciones() const override;
+        void procesarOpcion(int opcion) override;
     public:
         MenuGestionVentas();
-
-        void ejecutar();
 };

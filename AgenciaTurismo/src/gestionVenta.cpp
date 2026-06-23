@@ -5,6 +5,7 @@ using namespace std;
 
 #include "gestionVenta.h"
 #include "cliente.h"
+#include "helpers.h"
 
 GestionVenta::GestionVenta() {
 
@@ -107,12 +108,13 @@ float GestionVenta::calcularTotal() {
 }
 
 void GestionVenta::cargarDatosVenta() {
+    string pad = obtenerPad(61);
 
     cin.ignore();
-    cout << "Ingrese Fecha Venta (dd/mm/yyyy): ";
+    cout << pad << "Ingrese Fecha Venta (dd/mm/yyyy): ";
     cin.getline(_fechaVenta, 11);
 
-    cout << "Ingrese Cantidad de Cupos(personas que van a viajar): ";
+    cout << pad << "Ingrese Cantidad de Cupos(personas que van a viajar): ";
     cin >> _cantidadCupos;
 
     _estadoVenta = 0;
@@ -133,49 +135,56 @@ void GestionVenta::cancelarVenta() {
 }
 
 void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo, Cliente cliente, const char* destino) {
+    string pad = obtenerPad(61);
 
     cout << endl;
-    cout << "===================================" << endl;
-    cout << "        TICKET DE " << tipo << endl;
-    cout << "===================================" << endl;
+    cout << pad << "===================================" << endl;
+    cout << pad << "        TICKET DE " << tipo << endl;
+    cout << pad << "===================================" << endl;
     cout << endl;
 
-    cout << "-- DATOS DEL CLIENTE --" << endl;
-    cout << "Cliente:  " << cliente.getNombre() << " " << cliente.getApellido() << endl;
-    cout << "Telefono: " << cliente.getTelefono() << endl;
-    cout << "Email:    " << cliente.getEmail() << endl;
+    cout << pad << "-- DATOS DEL CLIENTE --" << endl;
+    cout << pad << "Cliente:  " << cliente.getNombre() << " " << cliente.getApellido() << endl;
+    cout << pad << "Telefono: " << cliente.getTelefono() << endl;
+    cout << pad << "Email:    " << cliente.getEmail() << endl;
     cout << endl;
 
-    cout << "-- DATOS DEL VIAJE --" << endl;
-    cout << "Destino:     " << destino << endl;
-    cout << "Fecha Venta: " << _fechaVenta << endl;
-    cout << "Fecha Vuelo: " << fechaVuelo << endl;
+    cout << pad << "-- DATOS DEL VIAJE --" << endl;
+    cout << pad << "Destino:     " << destino << endl;
+    cout << pad << "Fecha Venta: " << _fechaVenta << endl;
+    cout << pad << "Fecha Vuelo: " << fechaVuelo << endl;
     cout << endl;
 
-    cout << "-- DETALLE --" << endl;
-    cout << "Cantidad Cupos:  " << _cantidadCupos << endl;
-    cout << "Precio Unitario: $" << _precioUnitario << endl;
-    cout << "Total: " << _cantidadCupos << " x $" << _precioUnitario << " = $" << _total << endl;
+    cout << pad << "-- DETALLE --" << endl;
+    cout << pad << "Cantidad Cupos:  " << _cantidadCupos << endl;
+    cout << pad << "Precio Unitario: $" << _precioUnitario << endl;
+    cout << pad << "Total: " << _cantidadCupos << " x $" << _precioUnitario << " = $" << _total << endl;
 
-    cout << "===================================" << endl;
+    cout << pad << "===================================" << endl;
     cout << endl;
 }
 
 void GestionVenta::mostrarVenta() const {
+    string pad = obtenerPad(61);
 
-    cout << "ID Venta: " << _idVenta << endl;
-    cout << "ID Cliente: " << _idCliente << endl;
-    cout << "ID Paquete: " << _idPaquete << endl;
+    string estadoTexto;
+    if (_estadoVenta == 0) {
+        estadoTexto = "Pendiente";
+    } else if (_estadoVenta == 1) {
+        estadoTexto = "Confirmada";
+    } else if (_estadoVenta == 2) {
+        estadoTexto = "Cancelada";
+    } else {
+        estadoTexto = "Desconocido";
+    }
 
-    cout << "Fecha Venta: " << _fechaVenta << endl;
-
-    //cout << "Fecha Viaje: " << _fechaViaje << endl;
-
-    cout << "Cantidad Cupos: " << _cantidadCupos << endl;
-
-    cout << "Precio Unitario: $" << _precioUnitario << endl;
-    cout << "Total: $" << _total << endl;
-
-    cout << "Estado Venta: " << _estadoVenta << endl;
-    cout << "Estado: " << _estado << endl;
+    cout << endl << pad << "ID Venta: " << _idVenta << endl;
+    cout << pad << "ID Cliente: " << _idCliente << endl;
+    cout << pad << "ID Paquete: " << _idPaquete << endl;
+    cout << pad << "Fecha Venta: " << _fechaVenta << endl;
+    cout << pad << "Cantidad Cupos: " << _cantidadCupos << endl;
+    cout << pad << "Precio Unitario: $" << _precioUnitario << endl;
+    cout << pad << "Total: $" << _total << endl;
+    cout << pad << "Estado de la venta: " << estadoTexto << endl;
+    cout << pad << "Activa: " << (_estado ? "Si" : "No") << endl;
 }
