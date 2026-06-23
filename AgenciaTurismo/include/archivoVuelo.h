@@ -22,6 +22,7 @@ class ArchivoVuelo : public Archivo<Vuelo> {
         void mostrarVuelosByNombre(const char* nombre);
         void mostrarVuelosByPrecioRange(float min, float max);
         void mostrarVuelosByDuracion(int duracion);
+        void mostrarVuelosByFechaVuelo(const char* fechaVuelo);
         void listarVuelosDadosDeBaja();
 };
 

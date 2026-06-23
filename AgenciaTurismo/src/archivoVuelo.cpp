@@ -220,6 +220,24 @@ void ArchivoVuelo::mostrarVuelosByDuracion(int duracion) {
     }
 }
 
+void ArchivoVuelo::mostrarVuelosByFechaVuelo(const char* fechaVuelo) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+        if (reg.getEstado() && strcmp(reg.getFechaVuelo(), fechaVuelo) == 0) {
+            reg.mostrarVuelo();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron vuelos con fecha: " << fechaVuelo << endl;
+    }
+}
+
 void ArchivoVuelo::listarVuelosDadosDeBaja() {
     Vuelo reg;
     int cantidad = contarRegistros();

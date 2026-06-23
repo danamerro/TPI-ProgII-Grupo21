@@ -72,6 +72,7 @@ void MenuGestionVuelos::subMenuConsultas() {
     float pMax;
     int duracion;
     char nombre[30];
+    char fechaVuelo[11];
     string pad = obtenerPad(61);
 
     do {
@@ -84,6 +85,7 @@ void MenuGestionVuelos::subMenuConsultas() {
                 cout << pad << "               4. Buscar por precio" << endl;
                 cout << pad << "               5. Buscar por origen" << endl;
                 cout << pad << "               6. Buscar por destino" << endl;
+                cout << pad << "               7. Buscar por fecha de vuelo" << endl;
                 cout << pad << "               0. Volver al menu de excursiones" << endl;
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
@@ -133,6 +135,13 @@ void MenuGestionVuelos::subMenuConsultas() {
                 cin.getline(destino, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVuelosByDestino(destino);
+                break;
+
+            case 7:
+                cout << endl << pad << "          Ingrese la fecha de vuelo (dd/mm/yyyy): ";
+                cin.getline(fechaVuelo, 11);
+                cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
+                _archivo.mostrarVuelosByFechaVuelo(fechaVuelo);
                 break;
 
             case 0:
