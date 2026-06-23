@@ -6,6 +6,7 @@ using namespace std;
 
 #include "archivoCliente.h"
 #include "cliente.h"
+#include "helpers.h"
 
 ArchivoCliente::ArchivoCliente() : Archivo<Cliente>("clientes.dat"){}
 
@@ -29,26 +30,27 @@ int ArchivoCliente::buscarRegistro(int idCliente) {
 
 void ArchivoCliente::modificarCliente() {
 
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     int idModificar;
     int posicion;
     bool idValido = false;
 
     if (cantidad == 0) {
-        cout << endl << "--------------------------------------------------" << endl;
-        cout << "No hay ningun cliente registrado para modificar." << endl;
-        cout << "--------------------------------------------------" << endl;
+        cout << endl << pad << "-------------------------------------------------------------" << endl;
+        cout << pad << "        No hay ningun cliente registrado para modificar.     " << endl;
+        cout << pad << "-------------------------------------------------------------" << endl;
         return;
     }
 
-    cout << endl << "==================================================" << endl;
-    cout << "CLIENTES ACTIVOS DISPONIBLES PARA MODIFICAR:" << endl;
-    cout << "==================================================" << endl;
+    cout << endl << pad << "=============================================================" << endl;
+    cout << pad << "        CLIENTES ACTIVOS DISPONIBLES PARA MODIFICAR:         " << endl;
+    cout << pad << "=============================================================" << endl;
     listarClientes();
-    cout << "==================================================" << endl;
+    cout << pad << "=============================================================" << endl;
 
     do {
-        cout << "Ingrese el ID del cliente a modificar (0 para volver): ";
+        cout << endl << pad << "Ingrese el ID del cliente a modificar (0 para volver): ";
         cin >> idModificar;
 
         if (idModificar == 0) {
@@ -58,13 +60,13 @@ void ArchivoCliente::modificarCliente() {
         posicion = buscarRegistro(idModificar);
 
         if (posicion == -1) {
-            cout << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
-            cout << "--------------------------------------------------------------------------" << endl;
+            cout << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
+            cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
             if (!regAux.getEstado()) {
-                cout << "Ese cliente fue dado de baja del sistema." << endl;
-                cout << "--------------------------------------------------------------------------" << endl;
+                cout << pad << "Ese cliente fue dado de baja del sistema." << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
             } else {
                 idValido = true;
             }
@@ -73,38 +75,38 @@ void ArchivoCliente::modificarCliente() {
 
     Cliente reg = leerRegistro(posicion);
 
-    cout << endl << "--- MODIFICANDO CLIENTE ID: " << idModificar << " ---" << endl;
-    cout << "Ingrese los nuevos datos:" << endl << endl;
+    leyendaingresoNuevosDatos();
 
     reg.cargarDatosCliente();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << endl << "CLIENTE MODIFICADO" << endl;
+        leyendaSSModificado("CLIENTE", 2);
     }
 }
 
 void ArchivoCliente::eliminarCliente() {
 
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     int idEliminar;
     int posicion;
     bool idValido = false;
 
     if (cantidad == 0) {
-        cout << endl << "--------------------------------------------------" << endl;
-        cout << "No hay ningun cliente registrado para eliminar." << endl;
-        cout << "--------------------------------------------------" << endl;
+        cout << endl << pad << "-------------------------------------------------------------" << endl;
+        cout << pad << "        No hay ningun cliente registrado para eliminar.      " << endl;
+        cout << pad << "-------------------------------------------------------------" << endl;
         return;
     }
 
-    cout << endl << "==================================================" << endl;
-    cout << "CLIENTES ACTIVOS DISPONIBLES PARA ELIMINAR:" << endl;
-    cout << "==================================================" << endl;
+    cout << endl << pad << "=============================================================" << endl;
+    cout << pad << "        CLIENTES ACTIVOS DISPONIBLES PARA ELIMINAR:          " << endl;
+    cout << pad << "=============================================================" << endl;
     listarClientes();
-    cout << "==================================================" << endl;
+    cout << pad << "=============================================================" << endl;
 
     do {
-        cout << "Ingrese el ID del cliente a eliminar (0 para volver): ";
+        cout << endl << pad << "Ingrese el ID del cliente a eliminar (0 para volver): ";
         cin >> idEliminar;
 
         if (idEliminar == 0) {
@@ -114,13 +116,13 @@ void ArchivoCliente::eliminarCliente() {
         posicion = buscarRegistro(idEliminar);
 
         if (posicion == -1) {
-            cout << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
-            cout << "--------------------------------------------------------------------------" << endl;
+            cout << pad << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
+            cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
             if (!regAux.getEstado()) {
-                cout << "Ese cliente ya fue dado de baja del sistema." << endl;
-                cout << "--------------------------------------------------------------------------" << endl;
+                cout << pad << "Ese cliente ya fue dado de baja del sistema." << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
             } else {
                 idValido = true;
             }
@@ -132,7 +134,7 @@ void ArchivoCliente::eliminarCliente() {
     reg.setEstado(false);
 
     if (modificarRegistro(reg, posicion)) {
-        cout << endl << "CLIENTE ELIMINADO" << endl;
+        leyendaSSEliminado("CLIENTE", 2);
     }
 }
 
@@ -195,11 +197,12 @@ void ArchivoCliente::listarDirectorioContacto() {
 
 void ArchivoCliente::mostrarClienteById(int idCliente) {
 
+    string pad = obtenerPad(61);
     int posicion = buscarRegistro(idCliente);
 
     if (posicion == -1) {
 
-        cout << "CLIENTE NO ENCONTRADO" << endl;
+        cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         return;
     }
 
@@ -210,6 +213,7 @@ void ArchivoCliente::mostrarClienteById(int idCliente) {
 
 void ArchivoCliente::mostrarClienteByDni(int dni) {
 
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
 
     for (int i = 0; i < cantidad; i++) {
@@ -221,10 +225,11 @@ void ArchivoCliente::mostrarClienteByDni(int dni) {
         }
     }
 
-    cout << "CLIENTE NO ENCONTRADO" << endl;
+    cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
 }
 
 void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
@@ -239,12 +244,13 @@ void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
     }
 
     if (!encontrado) {
-            cout << "CLIENTE NO ENCONTRADO" << endl;
+            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         }
 
 }
 
 void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
@@ -259,12 +265,13 @@ void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
     }
 
     if (!encontrado) {
-            cout << "CLIENTE NO ENCONTRADO" << endl;
+            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         }
 
 }
 
 void ArchivoCliente::mostrarClienteByEmail(const char* email){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
@@ -279,12 +286,13 @@ void ArchivoCliente::mostrarClienteByEmail(const char* email){
     }
 
     if (!encontrado) {
-            cout << "CLIENTE NO ENCONTRADO" << endl;
+            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         }
 
 }
 
 void ArchivoCliente::mostrarClienteByEstado(bool estado){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
@@ -299,12 +307,13 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
     }
 
     if (!encontrado) {
-            cout << "CLIENTE NO ENCONTRADO" << endl;
+            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         }
 
 }
 
 void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
@@ -319,12 +328,13 @@ void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
     }
 
     if (!encontrado) {
-            cout << "CLIENTE NO ENCONTRADO" << endl;
+            cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
         }
 
 }
 
 void ArchivoCliente::mostrarClienteByTelefono(int telefono){
+    string pad = obtenerPad(61);
     int cantidad = contarRegistros();
 
     for (int i = 0; i < cantidad; i++) {
@@ -335,11 +345,12 @@ void ArchivoCliente::mostrarClienteByTelefono(int telefono){
             return;
         }
     }
-    cout << "CLIENTE NO ENCONTRADO" << endl;
+    cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
 }
 
 void ArchivoCliente::agregarCliente() {
 
+    string pad = obtenerPad(61);
     Cliente reg;
     Cliente archivo;
 
@@ -355,16 +366,12 @@ void ArchivoCliente::agregarCliente() {
     reg.cargarDatosCliente();
 
     if (guardarRegistro(reg)) {
-        cout << endl;
-        cout << "=========================================" << endl;
-        cout << "   CLIENTE GUARDADO CORRECTAMENTE" << endl;
-        cout << "   ID de cliente: " << reg.getIdCliente() << endl;
-        cout << "=========================================" << endl;
-        cout << "Presione Enter para continuar...";
+        leyendaSSGuardado("CLIENTE", 2);
+        cout << pad << "Presione Enter para continuar...";
         cin.get();
     }
     else {
-        cout << endl << "ERROR AL GUARDAR CLIENTE" << endl;
+        leyendaSSErrorAlGuardar("CLIENTE");
         cin.get();
     }
 }
