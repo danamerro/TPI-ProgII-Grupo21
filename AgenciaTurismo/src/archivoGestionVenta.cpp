@@ -272,7 +272,6 @@ void ArchivoGestionVenta::agregarVenta() {
         cout << endl;
         cout << "=========================================" << endl;
         cout << "   VENTA REGISTRADA CORRECTAMENTE" << endl;
-        cout << "   ID de venta: " << reg.getIdVenta() << endl;
         cout << "=========================================" << endl;
 
         reg.emitirTicket("RESERVA", vue.getFechaVuelo());
