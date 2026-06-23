@@ -1,5 +1,7 @@
 #pragma once
 
+class Cliente;
+
 class GestionVenta {
     private:
         int _idVenta;
@@ -46,6 +48,6 @@ class GestionVenta {
         void confirmarVenta();
         void cancelarVenta();
         float calcularTotal();
-        void emitirTicket(const char* tipo, const char* fechaVuelo);
+        void emitirTicket(const char* tipo, const char* fechaVuelo, Cliente cliente, const char* destino);
         void mostrarVenta() const;
 };

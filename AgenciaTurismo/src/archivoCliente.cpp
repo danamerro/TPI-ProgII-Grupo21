@@ -373,3 +373,11 @@ bool ArchivoCliente::existeCliente(int idCliente) {
 
     return buscarRegistro(idCliente) != -1;
 }
+
+Cliente ArchivoCliente::obtenerClientePorId(int idCliente) {
+    int pos = buscarRegistro(idCliente);
+    if (pos == -1) {
+        return Cliente();
+    }
+    return leerRegistro(pos);
+}

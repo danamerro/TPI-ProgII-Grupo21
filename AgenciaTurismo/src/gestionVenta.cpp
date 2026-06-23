@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "gestionVenta.h"
+#include "cliente.h"
 
 GestionVenta::GestionVenta() {
 
@@ -131,26 +132,33 @@ void GestionVenta::cancelarVenta() {
     _estadoVenta = 2;
 }
 
-void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo) {
+void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo, Cliente cliente, const char* destino) {
 
     cout << endl;
     cout << "===================================" << endl;
-    cout << "     TICKET DE " << tipo << endl;
+    cout << "        TICKET DE " << tipo << endl;
     cout << "===================================" << endl;
+    cout << endl;
 
-    cout << "ID Venta: " << _idVenta << endl;
-    cout << "ID Cliente: " << _idCliente << endl;
-    cout << "ID Paquete: " << _idPaquete << endl;
+    cout << "-- DATOS DEL CLIENTE --" << endl;
+    cout << "Cliente:  " << cliente.getNombre() << " " << cliente.getApellido() << endl;
+    cout << "Telefono: " << cliente.getTelefono() << endl;
+    cout << "Email:    " << cliente.getEmail() << endl;
+    cout << endl;
 
+    cout << "-- DATOS DEL VIAJE --" << endl;
+    cout << "Destino:     " << destino << endl;
     cout << "Fecha Venta: " << _fechaVenta << endl;
     cout << "Fecha Vuelo: " << fechaVuelo << endl;
+    cout << endl;
 
-    cout << "Cantidad Cupos: " << _cantidadCupos << endl;
-
+    cout << "-- DETALLE --" << endl;
+    cout << "Cantidad Cupos:  " << _cantidadCupos << endl;
     cout << "Precio Unitario: $" << _precioUnitario << endl;
     cout << "Total: " << _cantidadCupos << " x $" << _precioUnitario << " = $" << _total << endl;
 
     cout << "===================================" << endl;
+    cout << endl;
 }
 
 void GestionVenta::mostrarVenta() const {

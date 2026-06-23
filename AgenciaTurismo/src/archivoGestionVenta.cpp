@@ -274,7 +274,9 @@ void ArchivoGestionVenta::agregarVenta() {
         cout << "   VENTA REGISTRADA CORRECTAMENTE" << endl;
         cout << "=========================================" << endl;
 
-        reg.emitirTicket("RESERVA", vue.getFechaVuelo());
+        ArchivoCliente archivoCli;
+        Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
+        reg.emitirTicket("RESERVA", vue.getFechaVuelo(), cli, paq.getDestino());
 
         cout << "Presione Enter para continuar...";
         cin.ignore();
@@ -318,7 +320,9 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
         ArchivoVuelo archivoVuelo;
         Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
         Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
-        reg.emitirTicket("CONFIRMACION", vue.getFechaVuelo());
+        ArchivoCliente archivoCli;
+        Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
+        reg.emitirTicket("CONFIRMACION", vue.getFechaVuelo(), cli, paq.getDestino());
     }
 }
 

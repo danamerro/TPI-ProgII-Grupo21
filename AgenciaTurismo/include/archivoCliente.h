@@ -26,4 +26,5 @@ class ArchivoCliente : public Archivo<Cliente> {
 
         void agregarCliente();
         bool existeCliente(int idCliente);
+        Cliente obtenerClientePorId(int idCliente);
 };
