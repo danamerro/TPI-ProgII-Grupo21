@@ -1,11 +1,10 @@
 #pragma once
+#include "menu.h"
 
-class MenuPrincipal {
-    private:
-        void mostrarOpciones() const;
-
+class MenuPrincipal : public Menu {
+    protected:
+        void mostrarOpciones() const override;
+        void procesarOpcion(int opcion) override;
     public:
         MenuPrincipal();
-
-        void ejecutar();
 };

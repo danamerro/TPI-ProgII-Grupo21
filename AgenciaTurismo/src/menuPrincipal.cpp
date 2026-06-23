@@ -31,58 +31,45 @@ void MenuPrincipal::mostrarOpciones() const {
     cout << pad << "               Seleccione una opcion: ";
 }
 
-void MenuPrincipal::ejecutar() {
-    int opcion;
-
-    do {
-        mostrarOpciones();
-        cin >> opcion;
-
-        system("cls");
-        switch (opcion) {
-            case 1: {
-                MenuGestionClientes menuClientes;
-                menuClientes.ejecutar();
-                break;
-            }
-            case 2: {
-                MenuGestionPaquetes menuPaquetes;
-                menuPaquetes.ejecutar();
-                break;
-            }
-            case 3: {
-                MenuGestionVentas menuVentas;
-                menuVentas.ejecutar();
-                break;
-            }
-            case 4: {
-                MenuGestionHoteles menuHoteles;
-                menuHoteles.ejecutar();
-                break;
-            }
-            case 5: {
-                MenuGestionVuelos menuVuelos;
-                menuVuelos.ejecutar();
-                break;
-            }
-            case 6: {
-                MenuGestionTraslados menuTraslados;
-                menuTraslados.ejecutar();
-                break;
-            }
-            case 7: {
-                MenuGestionExcursiones menuExcursiones;
-                menuExcursiones.ejecutar();
-                break;
-            }
-            //agrego esta linea podes borrarla, lo escribo para que detecte cambios
-            case 0:
-                cout << "Saliendo del sistema..." << endl;
-                break;
-            default:
-                cout << "Opcion incorrecta. Intente nuevamente." << endl;
-                break;
+void MenuPrincipal::procesarOpcion(int opcion) {
+    switch (opcion) {
+        case 1: {
+            MenuGestionClientes menuClientes;
+            menuClientes.ejecutar();
+            break;
         }
-        cout << endl;
-    } while (opcion != 0);
+        case 2: {
+            MenuGestionPaquetes menuPaquetes;
+            menuPaquetes.ejecutar();
+            break;
+        }
+        case 3: {
+            MenuGestionVentas menuVentas;
+            menuVentas.ejecutar();
+            break;
+        }
+        case 4: {
+            MenuGestionHoteles menuHoteles;
+            menuHoteles.ejecutar();
+            break;
+        }
+        case 5: {
+            MenuGestionVuelos menuVuelos;
+            menuVuelos.ejecutar();
+            break;
+        }
+        case 6: {
+            MenuGestionTraslados menuTraslados;
+            menuTraslados.ejecutar();
+            break;
+        }
+        case 7: {
+            MenuGestionExcursiones menuExcursiones;
+            menuExcursiones.ejecutar();
+            break;
+        }
+        default:
+            cout << "Opcion incorrecta. Intente nuevamente." << endl;
+            break;
+    }
 }
