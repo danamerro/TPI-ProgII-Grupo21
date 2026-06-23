@@ -143,6 +143,8 @@ void ArchivoCliente::listarClientes() {
     Cliente reg;
 
     int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
 
@@ -153,7 +155,12 @@ void ArchivoCliente::listarClientes() {
             reg.mostrarCliente();
 
             cout << endl;
+            encontrado = true;
         }
+    }
+
+    if (!encontrado) {
+        cout << endl << pad << "        NO HAY CLIENTES ACTIVOS REGISTRADOS EN EL SISTEMA    " << endl;
     }
 }
 
@@ -162,6 +169,8 @@ void ArchivoCliente::listarClientesDadosDeBaja() {
     Cliente reg;
 
     int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
 
@@ -172,7 +181,12 @@ void ArchivoCliente::listarClientesDadosDeBaja() {
             reg.mostrarCliente();
 
             cout << endl;
+            encontrado = true;
         }
+    }
+
+    if (!encontrado) {
+        cout << endl << pad << "        NO HAY CLIENTES DADOS DE BAJA EN EL SISTEMA          " << endl;
     }
 }
 
@@ -181,6 +195,8 @@ void ArchivoCliente::listarDirectorioContacto() {
     Cliente reg;
 
     int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
 
@@ -191,7 +207,12 @@ void ArchivoCliente::listarDirectorioContacto() {
             reg.mostrarContacto();
 
             cout << endl;
+            encontrado = true;
         }
+    }
+
+    if (!encontrado) {
+        cout << endl << pad << "        NO HAY CLIENTES ACTIVOS PARA MOSTRAR CONTACTOS       " << endl;
     }
 }
 
@@ -346,6 +367,20 @@ void ArchivoCliente::mostrarClienteByTelefono(int telefono){
         }
     }
     cout << endl << pad << "CLIENTE NO ENCONTRADO" << endl;
+}
+
+bool ArchivoCliente::hayClientesActivos() {
+    int cantidad = contarRegistros();
+
+    for (int i = 0; i < cantidad; i++) {
+        Cliente reg = leerRegistro(i);
+
+        if (reg.getEstado()) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void ArchivoCliente::agregarCliente() {

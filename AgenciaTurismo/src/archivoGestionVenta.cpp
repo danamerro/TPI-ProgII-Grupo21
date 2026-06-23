@@ -231,6 +231,17 @@ void ArchivoGestionVenta::agregarVenta() {
 
     if (verLista == 2) {
         ArchivoCliente archivoCliente;
+
+        if (!archivoCliente.hayClientesActivos()) {
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "        NO HAY CLIENTES ACTIVOS REGISTRADOS EN EL SISTEMA    " << endl;
+            cout << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "Presione Enter para continuar...";
+            cin.ignore();
+            cin.get();
+            return;
+        }
+
         cout << endl << pad << "------------------- CLIENTES ACTIVOS ------------------------" << endl;
         archivoCliente.listarClientes();
         cout << pad << "-------------------------------------------------------------" << endl;
