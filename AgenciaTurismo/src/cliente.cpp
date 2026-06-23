@@ -108,8 +108,6 @@ void Cliente::cargarDatosCliente(){
 
 }
 
-
-
 void Cliente::mostrarCliente() const{
 
     cout<<"ID: "<<_idCliente<<endl;

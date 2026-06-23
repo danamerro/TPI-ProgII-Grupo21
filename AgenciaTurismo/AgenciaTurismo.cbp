@@ -47,6 +47,7 @@
 		<Unit filename="include/cliente.h" />
 		<Unit filename="include/excursion.h" />
 		<Unit filename="include/gestionVenta.h" />
+		<Unit filename="include/helpers.h" />
 		<Unit filename="include/hotel.h" />
 		<Unit filename="include/menu.h" />
 		<Unit filename="include/menuGestionClientes.h" />
@@ -73,6 +74,7 @@
 		<Unit filename="src/cliente.cpp" />
 		<Unit filename="src/excursion.cpp" />
 		<Unit filename="src/gestionVenta.cpp" />
+		<Unit filename="src/helpers.cpp" />
 		<Unit filename="src/hotel.cpp" />
 		<Unit filename="src/menu.cpp" />
 		<Unit filename="src/menuGestionClientes.cpp" />

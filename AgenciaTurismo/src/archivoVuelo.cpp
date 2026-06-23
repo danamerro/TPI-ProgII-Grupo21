@@ -1,4 +1,5 @@
 #include "archivoVuelo.h"
+#include "helpers.h"
 
 #include <iostream>
 #include <cstring>
@@ -25,11 +26,10 @@ int ArchivoVuelo::buscarRegistro(int idVuelo) {
     return -1;
 }
 
-
 void ArchivoVuelo::eliminarVuelo(int idVuelo){
     int posicion = buscarRegistro(idVuelo);
     if(posicion == -1){
-        cout << "VUELO NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("VUELO", 2);
         return;
     }
 
@@ -38,7 +38,7 @@ void ArchivoVuelo::eliminarVuelo(int idVuelo){
     reg.setEstado(false);
 
     if(modificarRegistro(reg, posicion)){
-        cout << "VUELO ELIMINADO" << endl;
+        leyendaSSEliminado("VUELO", 2);
     }
 }
 
@@ -46,7 +46,7 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
     int posicion = buscarRegistro(idVuelo);
 
     if(posicion == -1){
-        cout << "VUELO NO ENCONTRADO" << endl;
+        leyendaSSNoEncontrado("VUELO", 2);
         return;
     }
     Vuelo reg = leerRegistro(posicion);
@@ -55,11 +55,8 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
         reg.mostrarVuelo();
     }
     else{
-        cout << "VUELO ELIMINADO" << endl;
+        leyendaSSEliminado("VUELO", 2);
     }
-
-
-
 }
 
 void ArchivoVuelo::listarVuelos() {
@@ -80,26 +77,24 @@ void ArchivoVuelo::listarVuelos() {
 void ArchivoVuelo::modificarVuelo(int idVuelo) {
     int posicion = buscarRegistro(idVuelo);
     if(posicion == -1){
-        cout << "VUELO NO ENCONTRADO " << endl;
+        leyendaSSNoEncontrado("VUELO", 2);
         return;
     }
 
     Vuelo reg = leerRegistro(posicion);
 
-    cout << endl;
-    cout << "INGRESE LOS NUEVOS DATOS" << endl;
-    cout << endl;
-
+    leyendaingresoNuevosDatos();
     reg.cargarDatosVuelo();
 
     if(modificarRegistro(reg, posicion)){
-        cout << "VUELO MODIFICADO" << endl;
+        leyendaSSModificado("VUELO", 2);
     }
 }
 
 void ArchivoVuelo::agregarVuelo(){
     Vuelo reg;
     Vuelo archivo;
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
 
@@ -113,10 +108,10 @@ void ArchivoVuelo::agregarVuelo(){
     reg.cargarDatosVuelo();
 
     if(guardarRegistro(reg)){
-        cout << "VUELO GUARDADO CORRECTAMENTE";
+        leyendaSSGuardado("VUELO", 2);
     }
     else{
-        cout << "ERROR AL GUARDAR VUELO" << endl;
+        leyendaSSErrorAlGuardar("VUELO");
     }
 }
 
@@ -127,38 +122,40 @@ bool ArchivoVuelo::existeVuelo(int idVuelo){
 void ArchivoVuelo::mostrarVuelosByDestino(const char* destino) {
     int cantidad = contarRegistros();
     bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
         Vuelo reg = leerRegistro(i);
 
         if (reg.getEstado() && strcasecmp(reg.getDestino(), destino) == 0) {
             reg.mostrarVuelo();
-            cout << "-----------------------------------------" << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
             encontrado = true;
         }
     }
 
     if (!encontrado) {
-        cout << "No se encontraron vuelos activos con destino a: " << destino << endl;
+        cout << endl << pad << "No se encontraron vuelos activos con destino a: " << destino << endl;
     }
 }
 
 void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
     int cantidad = contarRegistros();
     bool encontrado = false;
+    string pad = obtenerPad(61);
 
     for (int i = 0; i < cantidad; i++) {
         Vuelo reg = leerRegistro(i);
 
         if (reg.getEstado() && strcasecmp(reg.getOrigen(), origen) == 0) {
             reg.mostrarVuelo();
-            cout << "-----------------------------------------" << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
             encontrado = true;
         }
     }
 
     if (!encontrado) {
-        cout << "No se encontraron vuelos activos con origen en: " << origen << endl;
+        cout << endl << pad << "No se encontraron vuelos activos con origen en: " << origen << endl;
     }
 }
 
@@ -168,4 +165,76 @@ Vuelo ArchivoVuelo::obtenerVueloPorId(int idVuelo) {
         return Vuelo();
     }
     return leerRegistro(posicion);
+}
+void ArchivoVuelo::mostrarVuelosByNombre(const char* nombre) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+            reg.mostrarVuelo();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron vuelos con el nombre: " << nombre << endl;
+    }
+}
+
+void ArchivoVuelo::mostrarVuelosByPrecioRange(float min, float max) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getCosto() >= min && reg.getCosto() <= max) {
+            reg.mostrarVuelo();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron vuelos en el rango: $" << min << " - $" << max << endl;
+    }
+}
+
+void ArchivoVuelo::mostrarVuelosByDuracion(int duracion) {
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        Vuelo reg = leerRegistro(i);
+        if (reg.getEstado() && reg.getDuracion() == duracion) {
+            reg.mostrarVuelo();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No se encontraron vuelos con duracion de " << duracion << " minutos." << endl;
+    }
+}
+
+void ArchivoVuelo::listarVuelosDadosDeBaja() {
+    Vuelo reg;
+    int cantidad = contarRegistros();
+    bool encontrado = false;
+    string pad = obtenerPad(61);
+
+    for (int i = 0; i < cantidad; i++) {
+        reg = leerRegistro(i);
+        if (!reg.getEstado()) {
+            reg.mostrarVuelo();
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        cout << endl << pad << "No hay vuelos dados de baja en el sistema." << endl;
+    }
 }

@@ -6,6 +6,7 @@ class MenuGestionTraslados : public Menu {
     private:
         ArchivoTraslado _archivo;
         void subMenuConsultas();
+        void subMenuListados();
 
     protected:
         void mostrarOpciones() const override;

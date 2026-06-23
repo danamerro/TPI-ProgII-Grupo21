@@ -5,7 +5,8 @@
 class MenuGestionPaquetes : public Menu {
     private:
         ArchivoPaquete _archivo;
-        void subMenuConsultasAvanzadas(); // Se queda como un método privado auxiliar propio
+        void subMenuConsultas();
+        void subMenuListados();
 
      protected:
         void mostrarOpciones() const override;

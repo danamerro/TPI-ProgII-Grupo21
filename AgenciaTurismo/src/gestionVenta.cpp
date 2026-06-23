@@ -105,23 +105,13 @@ float GestionVenta::calcularTotal() {
     return _cantidadCupos * _precioUnitario;
 }
 
-bool GestionVenta::crearDatosVenta() {
-
-    cout << "Ingrese ID Cliente (0 para volver): ";
-    cin >> _idCliente;
-    if (_idCliente == 0) {
-        return false;
-    }
-
-    cout << "Ingrese ID Paquete: ";
-    cin >> _idPaquete;
+void GestionVenta::cargarDatosVenta() {
 
     cin.ignore();
-
     cout << "Ingrese Fecha Venta (dd/mm/yyyy): ";
     cin.getline(_fechaVenta, 11);
 
-    cout << "Ingrese Cantidad de Cupos: ";
+    cout << "Ingrese Cantidad de Cupos(personas que van a viajar): ";
     cin >> _cantidadCupos;
 
     _estadoVenta = 0;
@@ -131,8 +121,6 @@ bool GestionVenta::crearDatosVenta() {
     //2 = Cancelada
 
     _estado = true;
-
-    return true;
 }
 
 void GestionVenta::confirmarVenta() {

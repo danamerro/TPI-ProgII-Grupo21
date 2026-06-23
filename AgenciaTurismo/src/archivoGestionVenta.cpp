@@ -210,10 +210,13 @@ void ArchivoGestionVenta::agregarVenta() {
         reg.setIdVenta(1);
     } else {
         archivo = leerRegistro(cantidad - 1);
-        reg.setIdVenta(archivo.getIdVenta()+1);
+        reg.setIdVenta(archivo.getIdVenta() + 1);
     }
 
     int verLista;
+    int idCliente;
+    int idPaquete;
+
     cout << endl << "Conoce el ID del cliente?" << endl;
     cout << "1. Si, ya lo tengo" << endl;
     cout << "2. No, ver lista de clientes activos" << endl;
@@ -227,13 +230,35 @@ void ArchivoGestionVenta::agregarVenta() {
         cout << "--------------------------------" << endl;
     }
 
-    if(!reg.crearDatosVenta()){
+    cout << "Ingrese el ID del cliente (0 para volver): ";
+    cin >> idCliente;
+    if (idCliente == 0) {
         cout << "OPERACION CANCELADA." << endl;
         cout << "Presione Enter para continuar...";
         cin.ignore();
         cin.get();
         return;
     }
+    reg.setIdCliente(idCliente);
+
+    cout << endl << "Conoce el ID del paquete?" << endl;
+    cout << "1. Si, ya lo tengo" << endl;
+    cout << "2. No, ver lista de paquetes activos" << endl;
+    cout << "Opcion: ";
+    cin >> verLista;
+
+    if (verLista == 2) {
+        ArchivoPaquete archivoPaquetes;
+        cout << endl << "------- PAQUETES ACTIVOS -------" << endl;
+        archivoPaquetes.listarPaquetes();
+        cout << "--------------------------------" << endl;
+    }
+
+    cout << "Ingrese el ID del paquete: ";
+    cin >> idPaquete;
+    reg.setIdPaquete(idPaquete);
+
+    reg.cargarDatosVenta();
 
     ArchivoPaquete archivoPaquete;
     ArchivoVuelo archivoVuelo;
@@ -300,20 +325,14 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
 
 void ArchivoGestionVenta::cancelarVenta(int idVenta) {
 
-    int posicion =
-        buscarRegistro(idVenta);
+    int posicion = buscarRegistro(idVenta);
 
     if (posicion == -1) {
-
-        cout
-            << "VENTA NO ENCONTRADA"
-            << endl;
-
+        cout << "VENTA NO ENCONTRADA" << endl;
         return;
     }
 
-    GestionVenta reg =
-        leerRegistro(posicion);
+    GestionVenta reg = leerRegistro(posicion);
 
     reg.cancelarVenta();
 
