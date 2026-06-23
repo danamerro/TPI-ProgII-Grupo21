@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "cliente.h"
+#include "helpers.h"
 
 Cliente::Cliente() {
     _idCliente = 0;
@@ -83,29 +84,29 @@ bool Cliente::getEstado() const{
 }
 
 void Cliente::cargarDatosCliente(){
-    cout << "Ingrese dni del cliente: ";
-    cin >> _dni;
+    string pad = obtenerPad(61);
 
+    cout << endl << pad << "Ingrese dni del cliente: ";
+    cin >> _dni;
     cin.ignore();
 
-    cout << "Ingrese nombre del cliente: ";
+    cout << pad << "Ingrese nombre del cliente: ";
     cin.getline(_nombre, 20);
 
-    cout << "Ingrese apellido del cliente: ";
+    cout << pad << "Ingrese apellido del cliente: ";
     cin.getline(_apellido, 20);
 
-    cout << "Ingrese telefono del cliente: ";
-    cin  >>_telefono;
-
+    cout << pad << "Ingrese telefono del cliente: ";
+    cin >> _telefono;
     cin.ignore();
-    cout << "Ingrese direccion del cliente: ";
+
+    cout << pad << "Ingrese direccion del cliente: ";
     cin.getline(_direccion, 50);
 
-    cout << "Ingrese email del cliente: ";
+    cout << pad << "Ingrese email del cliente: ";
     cin.getline(_email, 20);
 
     _estado = true;
-
 }
 
 void Cliente::mostrarCliente() const{
