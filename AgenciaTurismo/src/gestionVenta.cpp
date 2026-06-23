@@ -118,10 +118,6 @@ void GestionVenta::cargarDatosVenta() {
     cin >> _cantidadCupos;
 
     _estadoVenta = 0;
-    // Pendiente a charlar, poder manejar los estados como:
-    //0 = Pendiente
-    //1 = Confirmada
-    //2 = Cancelada
 
     _estado = true;
 }

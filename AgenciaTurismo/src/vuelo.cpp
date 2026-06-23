@@ -115,5 +115,6 @@ void Vuelo::mostrarVuelo() const {
     cout << pad << "Origen: " << _origen << endl;
     cout << pad << "Destino: " << _destino << endl;
     cout << pad << "Duración: " << _duracion << endl;
+    cout << pad << "Fecha vuelo: " << _fechaVuelo << endl;
     cout << pad << "Precio: $" << _costo << endl;
 }
