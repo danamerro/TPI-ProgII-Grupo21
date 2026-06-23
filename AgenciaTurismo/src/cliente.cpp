@@ -110,19 +110,22 @@ void Cliente::cargarDatosCliente(){
 }
 
 void Cliente::mostrarCliente() const{
+    string pad = obtenerPad(61);
 
-    cout<<"ID: "<<_idCliente<<endl;
-    cout<<"DNI: "<<_dni<<endl;
-    cout<<"Nombre: "<<_nombre<<endl;
-    cout<<"Apellido: "<<_apellido<<endl;
-    cout<<"Telefono: "<<_telefono<<endl;
-    cout<<"Direccion: "<<_direccion<<endl;
-    cout<<"Email: "<<_email<<endl;
+    cout << endl << pad << "ID: " << _idCliente << endl;
+    cout << pad << "DNI: " << _dni << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Apellido: " << _apellido << endl;
+    cout << pad << "Telefono: " << _telefono << endl;
+    cout << pad << "Direccion: " << _direccion << endl;
+    cout << pad << "Email: " << _email << endl;
 }
 
 void Cliente::mostrarContacto() const{
-    cout << "Nombre: " << _nombre << " " << _apellido << endl;
-    cout << "Telefono: " << _telefono << endl;
-    cout << "Email: " << _email << endl;
-    cout << "Direccion: " << _direccion << endl;
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "Nombre: " << _nombre << " " << _apellido << endl;
+    cout << pad << "Telefono: " << _telefono << endl;
+    cout << pad << "Email: " << _email << endl;
+    cout << pad << "Direccion: " << _direccion << endl;
 }
