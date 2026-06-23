@@ -23,7 +23,9 @@ class ArchivoCliente : public Archivo<Cliente> {
         void mostrarClienteByEstado(bool estado);
         void mostrarClienteByTelefono(int telefono);
         void mostrarClienteByDireccion(const char* direccion);
+        bool hayClientesActivos();
 
         void agregarCliente();
         bool existeCliente(int idCliente);
+        Cliente obtenerClientePorId(int idCliente);
 };

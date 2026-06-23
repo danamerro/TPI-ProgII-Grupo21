@@ -7,6 +7,8 @@ using namespace std;
 #include "archivoGestionVenta.h"
 #include "archivoCliente.h"
 #include "archivoPaquete.h"
+#include "archivoVuelo.h"
+#include "helpers.h"
 
 ArchivoGestionVenta::ArchivoGestionVenta() : Archivo<GestionVenta>("ventas.dat"){}
 
@@ -32,13 +34,14 @@ int ArchivoGestionVenta::buscarRegistro(int idVenta) {
 }
 
 void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
+    string pad = obtenerPad(61);
 
     int posicion =
         buscarRegistro(idVenta);
 
     if (posicion == -1) {
 
-        cout<< "VENTA NO ENCONTRADA"<< endl;
+        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
 
         return;
     }
@@ -50,6 +53,7 @@ void ArchivoGestionVenta::mostrarVentaByID(int idVenta) {
 }
 
 void ArchivoGestionVenta::mostrarVentasByIdCliente(int idCliente) {
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
     bool encontrada = false;
@@ -65,12 +69,13 @@ void ArchivoGestionVenta::mostrarVentasByIdCliente(int idCliente) {
     }
 
     if (!encontrada) {
-        cout << "El cliente no tiene ventas registradas." << endl;
+        cout << endl << pad << "El cliente no tiene ventas registradas." << endl;
         cout << endl;
     }
 }
 
 void ArchivoGestionVenta::mostrarVentasByIdPaquete(int idPaquete) {
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
     bool encontrada = false;
@@ -86,12 +91,13 @@ void ArchivoGestionVenta::mostrarVentasByIdPaquete(int idPaquete) {
     }
 
     if (!encontrada) {
-        cout << "No hay ventas registradas para ese paquete." << endl;
+        cout << endl << pad << "No hay ventas registradas para ese paquete." << endl;
         cout << endl;
     }
 }
 
 void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
+    string pad = obtenerPad(61);
 
     int cantidad = contarRegistros();
     bool encontrada = false;
@@ -107,30 +113,10 @@ void ArchivoGestionVenta::mostrarVentasByFechaVenta(const char* fecha) {
     }
 
     if (!encontrada) {
-        cout << "No hay ventas registradas en esa fecha." << endl;
+        cout << endl << pad << "No hay ventas registradas en esa fecha." << endl;
     }
 }
 
-/* ELIMINAR */
-void ArchivoGestionVenta::mostrarVentasByFechaViaje(const char* fecha) {
-
-    int cantidad = contarRegistros();
-    bool encontrada = false;
-
-    for (int i = 0; i < cantidad; i++) {
-        GestionVenta reg = leerRegistro(i);
-
-        if (strcmp(reg.getFechaViaje(), fecha) == 0) {
-            reg.mostrarVenta();
-            cout << endl;
-            encontrada = true;
-        }
-    }
-
-    if (!encontrada) {
-        cout << "No hay ventas con esa fecha de viaje." << endl;
-    }
-}
 
 void ArchivoGestionVenta::listarVentas() {
 
@@ -163,10 +149,7 @@ void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
 
         reg = leerRegistro(i);
 
-        if (
-            reg.getEstado() &&
-            reg.getEstadoVenta() == 1
-        ) {
+        if (reg.getEstado() &&reg.getEstadoVenta() == 1) {
 
             reg.mostrarVenta();
 
@@ -224,58 +207,102 @@ void ArchivoGestionVenta::listarTransaccionesPendientes() {
 void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
+    GestionVenta archivo;
 
     int cantidad = contarRegistros();
 
     if (cantidad == 0) {
         reg.setIdVenta(1);
     } else {
-        GestionVenta ultima = leerRegistro(cantidad - 1);
-        reg.setIdVenta(ultima.getIdVenta() + 1);
+        archivo = leerRegistro(cantidad - 1);
+        reg.setIdVenta(archivo.getIdVenta() + 1);
     }
 
+    string pad = obtenerPad(61);
     int verLista;
-    int listaPaquete;
+    int idCliente;
+    int idPaquete;
 
-    cout << endl << "Conoce el ID del cliente?" << endl;
-    cout << "1. Si, ya lo tengo" << endl;
-    cout << "2. No, ver lista de clientes activos" << endl;
-    cout << "Opcion: ";
+    cout << endl << pad << "Conoce el ID del cliente?" << endl;
+    cout << pad << "1. Si, ya lo tengo" << endl;
+    cout << pad << "2. No, ver lista de clientes activos" << endl;
+    cout << pad << "Opcion: ";
     cin >> verLista;
 
     if (verLista == 2) {
         ArchivoCliente archivoCliente;
-        cout << endl << "------- CLIENTES ACTIVOS -------" << endl;
+
+        if (!archivoCliente.hayClientesActivos()) {
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "        NO HAY CLIENTES ACTIVOS REGISTRADOS EN EL SISTEMA    " << endl;
+            cout << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "Presione Enter para continuar...";
+            cin.ignore();
+            cin.get();
+            return;
+        }
+
+        cout << endl << pad << "------------------- CLIENTES ACTIVOS ------------------------" << endl;
         archivoCliente.listarClientes();
-        cout << "--------------------------------" << endl;
+        cout << pad << "-------------------------------------------------------------" << endl;
     }
 
-    cout << endl << "Conoce el ID del paquete?" << endl;
-    cout << "1. Si, ya lo tengo" << endl;
-    cout << "2. No, ver lista de paquetes activos" << endl;
-    cout << "Opcion: ";
-    cin >> listaPaquete;
+    cout << endl << pad << "Ingrese el ID del cliente (0 para volver): ";
+    cin >> idCliente;
+    if (idCliente == 0) {
+        cout << endl << pad << "OPERACION CANCELADA." << endl;
+        cout << pad << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
+        return;
+    }
+    reg.setIdCliente(idCliente);
 
-    if (listaPaquete == 2) {
-        ArchivoPaquete archivoPaquete;
-        cout << endl << "------- PAQUETES ACTIVOS -------" << endl;
-        archivoPaquete.listarPaquetes();
-        cout << "--------------------------------" << endl;
+    cout << endl << pad << "Conoce el ID del paquete?" << endl;
+    cout << pad << "1. Si, ya lo tengo" << endl;
+    cout << pad << "2. No, ver lista de paquetes activos" << endl;
+    cout << pad << "Opcion: ";
+    cin >> verLista;
+
+    if (verLista == 2) {
+        ArchivoPaquete archivoPaquetes;
+        cout << endl << pad << "------------------- PAQUETES ACTIVOS ------------------------" << endl;
+        archivoPaquetes.listarPaquetes();
+        cout << pad << "-------------------------------------------------------------" << endl;
     }
 
-    reg.crearDatosVenta();
+    cout << endl << pad << "Ingrese el ID del paquete: ";
+    cin >> idPaquete;
+    reg.setIdPaquete(idPaquete);
 
-    if (
-        guardarRegistro(reg)
-    ) {
-        cout
-            << "VENTA REGISTRADA (ID " << reg.getIdVenta() << ")"
-            << endl;
+    reg.cargarDatosVenta();
+
+    ArchivoPaquete archivoPaquete;
+    ArchivoVuelo archivoVuelo;
+    Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
+    Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
+
+    reg.setPrecioUnitario(paq.getPrecio());
+    reg.setTotal(reg.calcularTotal());
+
+    if (guardarRegistro(reg)) {
+        cout << endl;
+        cout << pad << "=============================================================" << endl;
+        cout << pad << "                VENTA REGISTRADA CORRECTAMENTE               " << endl;
+        cout << pad << "=============================================================" << endl;
+
+        ArchivoCliente archivoCli;
+        Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
+        reg.emitirTicket("RESERVA", vue.getFechaVuelo(), cli, paq.getDestino());
+
+        cout << pad << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
     }
     else {
-        cout
-            << "ERROR AL GUARDAR"
-            << endl;
+        cout << endl << pad << "ERROR AL GUARDAR LA VENTA" << endl;
+        cin.ignore();
+        cin.get();
     }
 }
 
@@ -285,15 +312,14 @@ bool ArchivoGestionVenta::existeVenta(int idVenta) {
 }
 
 void ArchivoGestionVenta::confirmarVenta(int idVenta) {
+    string pad = obtenerPad(61);
 
     int posicion =
         buscarRegistro(idVenta);
 
     if (posicion == -1) {
 
-        cout
-            << "VENTA NO ENCONTRADA"
-            << endl;
+        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
 
         return;
     }
@@ -304,30 +330,33 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
     reg.confirmarVenta();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << "VENTA CONFIRMADA" << endl;
+        cout << endl << pad << "VENTA CONFIRMADA" << endl;
+
+        ArchivoPaquete archivoPaquete;
+        ArchivoVuelo archivoVuelo;
+        Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
+        Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
+        ArchivoCliente archivoCli;
+        Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
+        reg.emitirTicket("CONFIRMACION", vue.getFechaVuelo(), cli, paq.getDestino());
     }
 }
 
 void ArchivoGestionVenta::cancelarVenta(int idVenta) {
+    string pad = obtenerPad(61);
 
-    int posicion =
-        buscarRegistro(idVenta);
+    int posicion = buscarRegistro(idVenta);
 
     if (posicion == -1) {
-
-        cout
-            << "VENTA NO ENCONTRADA"
-            << endl;
-
+        cout << endl << pad << "VENTA NO ENCONTRADA" << endl;
         return;
     }
 
-    GestionVenta reg =
-        leerRegistro(posicion);
+    GestionVenta reg = leerRegistro(posicion);
 
     reg.cancelarVenta();
 
     if (modificarRegistro(reg, posicion)) {
-        cout << "VENTA CANCELADA" << endl;
+        cout << endl << pad << "VENTA CANCELADA" << endl;
     }
 }

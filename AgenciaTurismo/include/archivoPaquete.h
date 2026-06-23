@@ -20,6 +20,7 @@ class ArchivoPaquete :public Archivo<Paquete>{
         void modificarPaquete(int idPaquete);
         void agregarPaquete();
         bool existePaquete(int idPaquete);
+        Paquete obtenerPaquetePorId(int idPaquete);
         void mostrarPaquetesByNombre(const char* nombre);
         void mostrarPaquetesByPrecioRange(float min, float max);
         void mostrarPaquetesByCupo(int cupo);

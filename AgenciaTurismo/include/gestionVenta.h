@@ -1,12 +1,13 @@
 #pragma once
 
+class Cliente;
+
 class GestionVenta {
     private:
         int _idVenta;
         int _idCliente;
         int _idPaquete;
         char _fechaVenta[11];
-        char _fechaViaje[11];
         int _cantidadCupos;
         float _precioUnitario;
         float _total;
@@ -28,9 +29,6 @@ class GestionVenta {
         const char* getFechaVenta() const;
         void setFechaVenta(const char* fechaVenta);
 
-        const char* getFechaViaje() const;
-        void setFechaViaje(const char* fechaViaje);
-
         int getCantidadCupos() const;
         void setCantidadCupos(int cantidadCupos);
 
@@ -46,11 +44,10 @@ class GestionVenta {
         bool getEstado() const;
         void setEstado(bool estado);
 
-        void crearVenta();
-        void crearDatosVenta();
+        void cargarDatosVenta();
         void confirmarVenta();
         void cancelarVenta();
         float calcularTotal();
-        void emitirTicketConfirmacion();
+        void emitirTicket(const char* tipo, const char* fechaVuelo, Cliente cliente, const char* destino);
         void mostrarVenta() const;
 };

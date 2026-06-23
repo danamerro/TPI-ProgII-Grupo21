@@ -15,6 +15,7 @@ Vuelo::Vuelo() {
     strcpy(_nombre, "");
     strcpy(_origen, "");
     strcpy(_destino, "");
+    strcpy(_fechaVuelo, "");
 
     _estado = true;
 }
@@ -67,6 +68,14 @@ const char* Vuelo::getDestino() const{
     return _destino;
 }
 
+const char* Vuelo::getFechaVuelo() const{
+    return _fechaVuelo;
+}
+
+void Vuelo::setFechaVuelo(const char* valor){
+    strcpy(_fechaVuelo, valor);
+}
+
 void Vuelo::setEstado(bool valor){
     _estado = valor;
 }
@@ -89,9 +98,11 @@ void Vuelo::cargarDatosVuelo(){
     cout << pad << "Ingrese destino: ";
     cin.getline(_destino, 30);
 
+    cout << pad << "Ingrese fecha de vuelo (dd/mm/yyyy): ";
+    cin.getline(_fechaVuelo, 11);
+
     _duracion = numeroValido( pad + "Ingrese duración (minutos): ");
     _costo = floatValido( pad + "Ingrese precio : $");
-
     _estado = true;
 }
 
@@ -104,5 +115,6 @@ void Vuelo::mostrarVuelo() const {
     cout << pad << "Origen: " << _origen << endl;
     cout << pad << "Destino: " << _destino << endl;
     cout << pad << "Duración: " << _duracion << endl;
+    cout << pad << "Fecha vuelo: " << _fechaVuelo << endl;
     cout << pad << "Precio: $" << _costo << endl;
 }

@@ -9,6 +9,7 @@ class Vuelo
         char _nombre[30];
         char _origen[30];
         char _destino[30];
+        char _fechaVuelo[11];
         bool _estado;
 
     public:
@@ -31,6 +32,9 @@ class Vuelo
 
         const char* getDestino()const;
         void setDestino(const char* valor);
+
+        const char* getFechaVuelo() const;
+        void setFechaVuelo(const char* valor);
 
         bool getEstado() const;
         void setEstado(bool valor);

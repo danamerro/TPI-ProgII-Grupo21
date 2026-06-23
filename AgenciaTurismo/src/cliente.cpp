@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "cliente.h"
+#include "helpers.h"
 
 Cliente::Cliente() {
     _idCliente = 0;
@@ -82,53 +83,49 @@ bool Cliente::getEstado() const{
     return _estado;
 }
 
-void Cliente::cargarCliente(){
-    cout << "Ingrese ID del cliente: ";
-    cin >> _idCliente;
-
-    cargarDatosCliente();
-}
-
 void Cliente::cargarDatosCliente(){
-    cout << "Ingrese dni del cliente: ";
-    cin >> _dni;
+    string pad = obtenerPad(61);
 
-    cin.ignore();
 
-    cout << "Ingrese nombre del cliente: ";
+    _dni = numeroValido(pad + "Ingrese dni del cliente: ");
+
+
+
+    cout << pad << "Ingrese nombre del cliente: ";
     cin.getline(_nombre, 20);
 
-    cout << "Ingrese apellido del cliente: ";
+    cout << pad << "Ingrese apellido del cliente: ";
     cin.getline(_apellido, 20);
 
-    cout << "Ingrese telefono del cliente: ";
-    cin  >>_telefono;
 
-    cin.ignore();
-    cout << "Ingrese direccion del cliente: ";
+    _telefono = numeroValido(pad + "Ingrese telefono del cliente: ");
+
+    cout << pad << "Ingrese direccion del cliente: ";
     cin.getline(_direccion, 50);
 
-    cout << "Ingrese email del cliente: ";
+    cout << pad << "Ingrese email del cliente: ";
     cin.getline(_email, 20);
 
     _estado = true;
-
 }
 
 void Cliente::mostrarCliente() const{
+    string pad = obtenerPad(61);
 
-    cout<<"ID: "<<_idCliente<<endl;
-    cout<<"DNI: "<<_dni<<endl;
-    cout<<"Nombre: "<<_nombre<<endl;
-    cout<<"Apellido: "<<_apellido<<endl;
-    cout<<"Telefono: "<<_telefono<<endl;
-    cout<<"Direccion: "<<_direccion<<endl;
-    cout<<"Email: "<<_email<<endl;
+    cout << endl << pad << "ID: " << _idCliente << endl;
+    cout << pad << "DNI: " << _dni << endl;
+    cout << pad << "Nombre: " << _nombre << endl;
+    cout << pad << "Apellido: " << _apellido << endl;
+    cout << pad << "Telefono: " << _telefono << endl;
+    cout << pad << "Direccion: " << _direccion << endl;
+    cout << pad << "Email: " << _email << endl;
 }
 
 void Cliente::mostrarContacto() const{
-    cout << "Nombre: " << _nombre << " " << _apellido << endl;
-    cout << "Telefono: " << _telefono << endl;
-    cout << "Email: " << _email << endl;
-    cout << "Direccion: " << _direccion << endl;
+    string pad = obtenerPad(61);
+
+    cout << endl << pad << "Nombre: " << _nombre << " " << _apellido << endl;
+    cout << pad << "Telefono: " << _telefono << endl;
+    cout << pad << "Email: " << _email << endl;
+    cout << pad << "Direccion: " << _direccion << endl;
 }
