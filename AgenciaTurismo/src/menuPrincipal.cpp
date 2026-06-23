@@ -1,5 +1,6 @@
 #include <iostream>
 #include "menuPrincipal.h"
+#include "helpers.h"
 #include "menuGestionClientes.h"
 #include "menuGestionPaquetes.h"
 #include "menuGestionVentas.h"
@@ -13,19 +14,21 @@ using namespace std;
 MenuPrincipal::MenuPrincipal() {}
 
 void MenuPrincipal::mostrarOpciones() const {
-    cout << "=========================================" << endl;
-    cout << "        AGENCIA DE TURISMO - MENU         " << endl;
-    cout << "=========================================" << endl;
-    cout << "1. Clientes" << endl;
-    cout << "2. Paquetes" << endl;
-    cout << "3. Ventas" << endl;
-    cout << "4. Hoteles" << endl;
-    cout << "5. Vuelos" << endl;
-    cout << "6. Traslados" << endl;
-    cout << "7. Excursiones" << endl;
-    cout << "0. Salir" << endl;
-    cout << "=========================================" << endl;
-    cout << "Seleccione una opcion: ";
+    string pad = obtenerPad(61);
+
+    cout << pad << "=============================================================" << endl;
+    cout << pad << "                  AGENCIA DE TURISMO - MENU                  " << endl;
+    cout << pad << "=============================================================" << endl;
+    cout << pad << "               1. Clientes" << endl;
+    cout << pad << "               2. Paquetes" << endl;
+    cout << pad << "               3. Ventas" << endl;
+    cout << pad << "               4. Hoteles" << endl;
+    cout << pad << "               5. Vuelos" << endl;
+    cout << pad << "               6. Traslados" << endl;
+    cout << pad << "               7. Excursiones" << endl;
+    cout << pad << "               0. Salir" << endl;
+    cout << pad << "=============================================================" << endl;
+    cout << pad << "               Seleccione una opcion: ";
 }
 
 void MenuPrincipal::ejecutar() {
