@@ -21,39 +21,28 @@ void MenuGestionClientes::mostrarOpciones() const {
     cout << pad << "               Seleccione una opcion: ";
 }
 
-void MenuGestionClientes::ejecutar() {
-    int opcion;
+void MenuGestionClientes::procesarOpcion(int opcion) {
     string pad = obtenerPad(61);
 
-    do {
-        mostrarOpciones();
-        cin >> opcion;
-
-        switch (opcion) {
-            case 1:
-                subMenuGestion();
-                break;
-            case 2:
-                subMenuListados();
-                break;
-            case 3:
-                subMenuConsultas();
-                break;
-            case 0:
-                cout << endl << pad << "Regresando al menu principal..." << endl;
-                break;
-            default:
-                cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
-                break;
-        }
-        cout << endl;
-    } while (opcion != 0);
+    switch (opcion) {
+        case 1:
+            subMenuGestion();
+            break;
+        case 2:
+            subMenuListados();
+            break;
+        case 3:
+            subMenuConsultas();
+            break;
+        default:
+            cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
+            break;
+    }
 }
 
 void MenuGestionClientes::subMenuGestion() {
-    int subOpcion;
-    ArchivoCliente archivo;
     string pad = obtenerPad(61);
+    int subOpcion;
 
     do {
         cout << endl << pad << "-------------------------------------------------------------" << endl;
@@ -70,15 +59,15 @@ void MenuGestionClientes::subMenuGestion() {
         switch (subOpcion) {
             case 1:
                 cout << endl << pad << "-------------------- ALTA DE CLIENTE ------------------------" << endl;
-                archivo.agregarCliente();
+                _archivo.agregarCliente();
                 break;
             case 2:
                 cout << endl << pad << "------------------- MODIFICAR CLIENTE -----------------------" << endl;
-                archivo.modificarCliente();
+                _archivo.modificarCliente();
                 break;
             case 3:
                 cout << endl << pad << "-------------------- ELIMINAR CLIENTE -----------------------" << endl;
-                archivo.eliminarCliente();
+                _archivo.eliminarCliente();
                 break;
             case 0:
                 break;
@@ -91,9 +80,8 @@ void MenuGestionClientes::subMenuGestion() {
 }
 
 void MenuGestionClientes::subMenuListados() {
-    int subOpcion;
-    ArchivoCliente archivo;
     string pad = obtenerPad(61);
+    int subOpcion;
 
     do {
         cout << endl << pad << "-------------------------------------------------------------" << endl;
@@ -110,15 +98,15 @@ void MenuGestionClientes::subMenuListados() {
         switch (subOpcion) {
             case 1:
                 cout << endl << pad << "------------------- CLIENTES ACTIVOS ------------------------" << endl;
-                archivo.listarClientes();
+                _archivo.listarClientes();
                 break;
             case 2:
                 cout << endl << pad << "---------------- CLIENTES DADOS DE BAJA ---------------------" << endl;
-                archivo.listarClientesDadosDeBaja();
+                _archivo.listarClientesDadosDeBaja();
                 break;
             case 3:
                 cout << endl << pad << "------------------ DIRECTORIO DE CONTACTO -------------------" << endl;
-                archivo.listarDirectorioContacto();
+                _archivo.listarDirectorioContacto();
                 break;
             case 0:
                 break;
@@ -131,6 +119,7 @@ void MenuGestionClientes::subMenuListados() {
 }
 
 void MenuGestionClientes::subMenuConsultas() {
+    string pad = obtenerPad(61);
     int subOpcion;
     int idAux;
     char nombre[20];
@@ -138,8 +127,6 @@ void MenuGestionClientes::subMenuConsultas() {
     char email[20];
     bool estado;
     char direccion[50];
-    ArchivoCliente archivo;
-    string pad = obtenerPad(61);
 
     do {
         cout << endl << pad << "-------------------------------------------------------------" << endl;
@@ -163,34 +150,34 @@ void MenuGestionClientes::subMenuConsultas() {
                 cout << endl << pad << "          Ingrese ID del cliente a consultar: ";
                 cin >> idAux;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteById(idAux);
+                _archivo.mostrarClienteById(idAux);
                 break;
             case 2:
                 cout << endl << pad << "          Ingrese DNI del cliente a consultar: ";
                 cin >> idAux;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByDni(idAux);
+                _archivo.mostrarClienteByDni(idAux);
                 break;
             case 3:
                 cin.ignore();
                 cout << endl << pad << "          Ingrese nombre del cliente a consultar: ";
                 cin.getline(nombre, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByNombre(nombre);
+                _archivo.mostrarClienteByNombre(nombre);
                 break;
             case 4:
                 cin.ignore();
                 cout << endl << pad << "          Ingrese apellido del cliente a consultar: ";
                 cin.getline(apellido, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByApellido(apellido);
+                _archivo.mostrarClienteByApellido(apellido);
                 break;
             case 5:
                 cin.ignore();
                 cout << endl << pad << "          Ingrese el email del cliente a consultar: ";
                 cin.getline(email, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByEmail(email);
+                _archivo.mostrarClienteByEmail(email);
                 break;
             case 6:
                 cout << endl << pad << "          Ingrese el estado del cliente a consultar: " << endl;
@@ -199,20 +186,20 @@ void MenuGestionClientes::subMenuConsultas() {
                 cout << pad << "          Opcion: ";
                 cin >> estado;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByEstado(estado);
+                _archivo.mostrarClienteByEstado(estado);
                 break;
             case 7:
                 cout << endl << pad << "          Ingrese el telefono del cliente a consultar: ";
                 cin >> idAux;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByTelefono(idAux);
+                _archivo.mostrarClienteByTelefono(idAux);
                 break;
             case 8:
                 cin.ignore();
                 cout << endl << pad << "          Ingrese la direccion del cliente a consultar: ";
                 cin.getline(direccion, 50);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
-                archivo.mostrarClienteByDireccion(direccion);
+                _archivo.mostrarClienteByDireccion(direccion);
                 break;
             case 0:
                 break;
