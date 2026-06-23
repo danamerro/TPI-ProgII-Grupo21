@@ -70,11 +70,16 @@ void MenuInicio::acercaDe() const {
     cout << pad << "-------------------------------------------------------------" << endl;
     cout << pad << "                  ACERCA DE LA AGENCIA" << endl;
     cout << pad << "-------------------------------------------------------------" << endl;
+    cout << pad << "  Luna Viajes es una agencia de turismo dedicada a" << endl;
+    cout << pad << "  organizar tu viaje de principio a fin: vuelos, hoteles," << endl;
+    cout << pad << "  excursiones, traslados y paquetes completos pensados" << endl;
+    cout << pad << "  para que solo te ocupes de disfrutar." << endl;
+    cout << endl;
     cout << pad << "  Nombre:     Luna Viajes" << endl;
-    cout << pad << "  Direccion:  (completar)" << endl;
-    cout << pad << "  Telefono:   (completar)" << endl;
-    cout << pad << "  Email:      (completar)" << endl;
-    cout << pad << "  Horarios:   (completar)" << endl;
+    cout << pad << "  Direccion:  Av. Siempreviva 742, CABA" << endl;
+    cout << pad << "  Telefono:   (011) 4000-0000" << endl;
+    cout << pad << "  Email:      contacto@lunaviajes.com" << endl;
+    cout << pad << "  Horarios:   Lunes a Viernes de 9 a 18 hs" << endl;
     cout << pad << "-------------------------------------------------------------" << endl;
 }
 
