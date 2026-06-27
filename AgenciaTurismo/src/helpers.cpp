@@ -30,6 +30,9 @@ char genero(int numero) {
     if (numero == 2) {
         return 'O';
     }
+    if (numero == 3) {
+        return 'AS';
+    }
     return ' ';
 }
 

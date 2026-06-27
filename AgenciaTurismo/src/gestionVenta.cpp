@@ -117,17 +117,16 @@ void GestionVenta::cargarDatosVenta() {
     cout << pad << "Ingrese Cantidad de Cupos(personas que van a viajar): ";
     cin >> _cantidadCupos;
 
-    _estadoVenta = 0;
-
-    _estado = true;
+    setEstadoVenta(0);
+    setEstado(true);
 }
 
 void GestionVenta::confirmarVenta() {
-    _estadoVenta = 1;
+    setEstadoVenta(1);
 }
 
 void GestionVenta::cancelarVenta() {
-    _estadoVenta = 2;
+    setEstadoVenta(2);
 }
 
 void GestionVenta::emitirTicket(const char* tipo, const char* fechaVuelo, Cliente cliente, const char* destino) {
@@ -164,7 +163,7 @@ void GestionVenta::mostrarVenta() const {
     string pad = obtenerPad(61);
 
     string estadoTexto;
-    if (_estadoVenta == 0) {
+    if (getEstadoVenta() == 0) {
         estadoTexto = "Pendiente";
     } else if (_estadoVenta == 1) {
         estadoTexto = "Confirmada";
