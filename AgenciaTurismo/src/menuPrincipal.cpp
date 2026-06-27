@@ -26,12 +26,14 @@ void MenuPrincipal::mostrarOpciones() const {
     cout << pad << "               5. Vuelos" << endl;
     cout << pad << "               6. Traslados" << endl;
     cout << pad << "               7. Excursiones" << endl;
-    cout << pad << "               0. Salir" << endl;
+    cout << pad << "               0. Volver a inicio" << endl;
     cout << pad << "=============================================================" << endl;
     cout << pad << "               Seleccione una opcion: ";
 }
 
 void MenuPrincipal::procesarOpcion(int opcion) {
+    system("cls");
+
     switch (opcion) {
         case 1: {
             MenuGestionClientes menuClientes;

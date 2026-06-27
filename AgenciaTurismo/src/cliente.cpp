@@ -86,7 +86,6 @@ bool Cliente::getEstado() const{
 void Cliente::cargarDatosCliente(){
     string pad = obtenerPad(61);
 
-
     _dni = numeroValido(pad + "Ingrese dni del cliente: ");
 
     cout << pad << "Ingrese nombre del cliente: ";
@@ -104,7 +103,7 @@ void Cliente::cargarDatosCliente(){
     cout << pad << "Ingrese email del cliente: ";
     cin.getline(_email, 20);
 
-    _estado = true;
+    setEstado(true);
 }
 
 void Cliente::mostrarCliente() const{

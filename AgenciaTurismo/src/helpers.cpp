@@ -124,3 +124,10 @@ float floatValido(const string& consulta) {
         }
     }
 }
+
+void limpiarPantalla() {
+    string pad = obtenerPad(61);
+    cout << pad << "Presione Enter para continuar...";
+    cin.get();
+    system("cls");
+}
