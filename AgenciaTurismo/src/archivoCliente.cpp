@@ -40,6 +40,8 @@ void ArchivoCliente::modificarCliente() {
         cout << endl << pad << "-------------------------------------------------------------" << endl;
         cout << pad << "        No hay ningun cliente registrado para modificar.     " << endl;
         cout << pad << "-------------------------------------------------------------" << endl;
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -54,13 +56,14 @@ void ArchivoCliente::modificarCliente() {
         cin >> idModificar;
 
         if (idModificar == 0) {
+            limpiarPantalla();
             return;
         }
 
         posicion = buscarRegistro(idModificar);
 
         if (posicion == -1) {
-            cout << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
+            cout << endl << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
             cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
@@ -74,6 +77,7 @@ void ArchivoCliente::modificarCliente() {
     } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
+    system("cls");
 
     leyendaingresoNuevosDatos();
 
@@ -81,6 +85,7 @@ void ArchivoCliente::modificarCliente() {
 
     if (modificarRegistro(reg, posicion)) {
         leyendaSSModificado("CLIENTE", 2);
+        limpiarPantalla();
     }
 }
 
@@ -96,6 +101,8 @@ void ArchivoCliente::eliminarCliente() {
         cout << endl << pad << "-------------------------------------------------------------" << endl;
         cout << pad << "        No hay ningun cliente registrado para eliminar.      " << endl;
         cout << pad << "-------------------------------------------------------------" << endl;
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -110,13 +117,14 @@ void ArchivoCliente::eliminarCliente() {
         cin >> idEliminar;
 
         if (idEliminar == 0) {
+            limpiarPantalla();
             return;
         }
 
         posicion = buscarRegistro(idEliminar);
 
         if (posicion == -1) {
-            cout << pad << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
+            cout << endl << pad << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
             cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
@@ -130,11 +138,14 @@ void ArchivoCliente::eliminarCliente() {
     } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
-
     reg.setEstado(false);
+
+    system("cls");
 
     if (modificarRegistro(reg, posicion)) {
         leyendaSSEliminado("CLIENTE", 2);
+        cin.ignore();
+        limpiarPantalla();
     }
 }
 
@@ -160,7 +171,8 @@ void ArchivoCliente::listarClientes() {
     }
 
     if (!encontrado) {
-        cout << endl << pad << "        NO HAY CLIENTES ACTIVOS REGISTRADOS EN EL SISTEMA    " << endl;
+        leyendaSSNoEncontrado("CLIENTE", 2);
+        limpiarPantalla();
     }
 }
 
@@ -186,7 +198,8 @@ void ArchivoCliente::listarClientesDadosDeBaja() {
     }
 
     if (!encontrado) {
-        cout << endl << pad << "        NO HAY CLIENTES DADOS DE BAJA EN EL SISTEMA          " << endl;
+        leyendaSSNoEncontrado("CLIENTE", 2);
+        limpiarPantalla();
     }
 }
 
@@ -212,7 +225,8 @@ void ArchivoCliente::listarDirectorioContacto() {
     }
 
     if (!encontrado) {
-        cout << endl << pad << "        NO HAY CLIENTES ACTIVOS PARA MOSTRAR CONTACTOS       " << endl;
+        leyendaSSNoEncontrado("CLIENTE", 2);
+        limpiarPantalla();
     }
 }
 
@@ -223,12 +237,17 @@ void ArchivoCliente::mostrarClienteById(int idCliente) {
 
     if (posicion == -1) {
         leyendaSSNoEncontrado("CLIENTE", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
     Cliente reg = leerRegistro(posicion);
 
     reg.mostrarCliente();
+    cout << endl;
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoCliente::mostrarClienteByDni(int dni) {
@@ -241,11 +260,18 @@ void ArchivoCliente::mostrarClienteByDni(int dni) {
 
         if (reg.getDni() == dni) {
             reg.mostrarCliente();
+            cout << endl;
+            cin.ignore();
+            limpiarPantalla();
             return;
+
         }
     }
 
     leyendaSSNoEncontrado("CLIENTE", 2);
+    cout << endl;
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
@@ -257,16 +283,14 @@ void ArchivoCliente::mostrarClienteByNombre(const char* nombre){
         Cliente reg = leerRegistro(i);
 
         if(strcasecmp(reg.getNombre(), nombre)==0){
-            reg.mostrarCliente();
-            cout << endl;
             encontrado = true;
+            reg.mostrarCliente();
         }
     }
 
     if (!encontrado) {
             leyendaSSNoEncontrado("CLIENTE", 2);
         }
-
 }
 
 void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
@@ -278,16 +302,14 @@ void ArchivoCliente::mostrarClienteByApellido(const char* apellido){
         Cliente reg = leerRegistro(i);
 
         if(strcasecmp(reg.getApellido(), apellido)==0){
-            reg.mostrarCliente();
-            cout << endl;
             encontrado = true;
+            reg.mostrarCliente();
         }
     }
 
     if (!encontrado) {
             leyendaSSNoEncontrado("CLIENTE", 2);
         }
-
 }
 
 void ArchivoCliente::mostrarClienteByEmail(const char* email){
@@ -299,9 +321,8 @@ void ArchivoCliente::mostrarClienteByEmail(const char* email){
         Cliente reg = leerRegistro(i);
 
         if(strcasecmp(reg.getEmail(), email)==0){
-            reg.mostrarCliente();
-            cout << endl;
             encontrado = true;
+            reg.mostrarCliente();
         }
     }
 
@@ -320,16 +341,14 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
         Cliente reg = leerRegistro(i);
 
         if(reg.getEstado()== estado){
-            reg.mostrarCliente();
-            cout << endl;
             encontrado = true;
+            reg.mostrarCliente();
         }
     }
 
     if (!encontrado) {
             leyendaSSNoEncontrado("CLIENTE", 2);
         }
-
 }
 
 void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
@@ -341,9 +360,8 @@ void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
         Cliente reg = leerRegistro(i);
 
         if(strcasecmp(reg.getDireccion(), direccion)==0){
-            reg.mostrarCliente();
-            cout << endl;
             encontrado = true;
+            reg.mostrarCliente();
         }
     }
 
@@ -401,12 +419,11 @@ void ArchivoCliente::agregarCliente() {
 
     if (guardarRegistro(reg)) {
         leyendaSSGuardado("CLIENTE", 2);
-        cout << pad << "Presione Enter para continuar...";
-        cin.get();
+        limpiarPantalla();
     }
     else {
         leyendaSSErrorAlGuardar("CLIENTE");
-        cin.get();
+        limpiarPantalla();
     }
 }
 

@@ -1,13 +1,15 @@
 #pragma once
+#include "menu.h"
 
-class MenuInicio {
+class MenuInicio : public Menu {
     private:
-        void mostrarPortada() const;
         void acercaDe() const;
         void creditos() const;
 
+    protected:
+        void mostrarOpciones() const override;
+        void procesarOpcion(int opcion) override;
+
     public:
         MenuInicio();
-
-        void ejecutar();
 };

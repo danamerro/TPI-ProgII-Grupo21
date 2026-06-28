@@ -34,6 +34,8 @@ void ArchivoPaquete::eliminarPaquete(int idPaquete){
     int posicion = buscarRegistro(idPaquete);
     if(posicion == -1){
         leyendaSSNoEncontrado("PAQUETE", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -44,6 +46,8 @@ void ArchivoPaquete::eliminarPaquete(int idPaquete){
     if(modificarRegistro(reg, posicion)){
         leyendaSSEliminado("PAQUETE", 2);
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoPaquete::mostrarPaqueteByID(int idPaquete){
@@ -92,14 +96,20 @@ void ArchivoPaquete::modificarPaquete(int id) {
 
     if (posicion == -1) {
         leyendaSSNoEncontrado("PAQUETE", 2);
+        cin.ignore();
+        limpiarPantalla();
     } else {
         Paquete regAux = leerRegistro(posicion);
         if (!regAux.getEstado()) {
             leyendaSSEliminado("PAQUETE", 2);
+            cin.ignore();
+            limpiarPantalla();
         }
     }
 
     Paquete reg = leerRegistro(posicion);
+    system("cls");
+
     cout << endl << pad << "------------- MODIFICANDO PAQUETE ID: " << id << "---------------------" << endl;
     cout << pad << "Ingrese los nuevos datos del paquete..." << endl;
 
@@ -115,6 +125,9 @@ void ArchivoPaquete::modificarPaquete(int id) {
     } else {
         leyendaSSErrorAlGuardar("PAQUETE");
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoPaquete::agregarPaquete(){
@@ -143,6 +156,8 @@ void ArchivoPaquete::agregarPaquete(){
     else{
         leyendaSSErrorAlGuardar("PAQUETE");
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 bool ArchivoPaquete::existePaquete(int idPaquete){
@@ -206,7 +221,10 @@ int ArchivoPaquete::enlazarServicioGenerico(const char* nombreServicio, int tipo
         cout << endl << pad << "SE GUARDO CORRECTAMENTE EL " << nombreServicio << " CON ID: " << id << endl;
         return id;
     }
+    cout << endl;
+    limpiarPantalla();
 
+    cout << endl << pad << "-------------- INGRESE "<< nombreServicio <<" AL PAQUETE --------------------" << endl;
     cout << endl << pad << "----------------- LISTA DE "<< nombreServicio <<"-------------------------" << endl;
     switch (tipoServicio) {
         case 1: archivoHotel.listarHoteles(); break;

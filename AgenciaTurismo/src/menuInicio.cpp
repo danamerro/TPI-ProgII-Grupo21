@@ -8,8 +8,9 @@ using namespace std;
 
 MenuInicio::MenuInicio() {}
 
-void MenuInicio::mostrarPortada() const {
+void MenuInicio::mostrarOpciones() const {
     string pad = obtenerPad(61);
+    system("cls");
 
     cout << pad << "*===========================================================*" << endl;
     cout << pad << "|                                                           |" << endl;
@@ -29,43 +30,37 @@ void MenuInicio::mostrarPortada() const {
     cout << pad << "                   Seleccione una opcion: ";
 }
 
-void MenuInicio::ejecutar() {
-    int opcion;
+
+void MenuInicio::procesarOpcion(int opcion) {
     string pad = obtenerPad(61);
+    system("cls");
 
-    do {
-        mostrarPortada();
-        cin >> opcion;
-        cout << endl;
-
-        system("cls");
-        switch (opcion) {
-            case 1: {
-                MenuPrincipal menu;
-                menu.ejecutar();
-                break;
-            }
-            case 2:
-                acercaDe();
-                break;
-            case 3:
-                creditos();
-                break;
-            case 0:
-                cout << pad << "-------------------------------------------------------------" << endl;
-                cout << pad << "          Gracias por usar el sistema. Hasta luego!          " << endl;
-                cout << pad << "-------------------------------------------------------------" << endl;
-                break;
-            default:
-                cout << pad << "Opcion incorrecta. Intente nuevamente." << endl;
-                break;
+    switch (opcion) {
+        case 1: {
+            MenuPrincipal menu;
+            menu.ejecutar();
+            break;
         }
-        cout << endl;
-    } while (opcion != 0);
+        case 2:
+            acercaDe();
+            break;
+        case 3:
+            creditos();
+            break;
+        case 0:
+            cout << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "          Gracias por usar el sistema. Hasta luego!          " << endl;
+            cout << pad << "-------------------------------------------------------------" << endl;
+            break;
+        default:
+            cout << pad << "Opcion incorrecta. Intente nuevamente." << endl;
+            break;
+    }
 }
 
 void MenuInicio::acercaDe() const {
     string pad = obtenerPad(61);
+    system("cls");
 
     cout << pad << "-------------------------------------------------------------" << endl;
     cout << pad << "                  ACERCA DE LA AGENCIA" << endl;
@@ -81,10 +76,15 @@ void MenuInicio::acercaDe() const {
     cout << pad << "  Email:      contacto@lunaviajes.com" << endl;
     cout << pad << "  Horarios:   Lunes a Viernes de 9 a 18 hs" << endl;
     cout << pad << "-------------------------------------------------------------" << endl;
+
+    cout << endl << pad << "Presione Enter para volver al menu...";
+    cin.ignore();
+    cin.get();
 }
 
 void MenuInicio::creditos() const {
     string pad = obtenerPad(61);
+    system("cls");
 
     cout << pad << "-------------------------------------------------------------" << endl;
     cout << pad << "                       CREDITOS                       " << endl;
@@ -97,4 +97,7 @@ void MenuInicio::creditos() const {
     cout << endl;
     cout << pad << "  Tecnicatura Universitaria en Programacion - UTN" << endl;
     cout << pad << "-------------------------------------------------------------" << endl;
+    cout << endl << pad << "Presione Enter para volver al menu...";
+    cin.ignore();
+    cin.get();
 }

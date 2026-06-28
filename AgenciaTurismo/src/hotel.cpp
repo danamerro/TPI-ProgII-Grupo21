@@ -89,7 +89,6 @@ void Hotel::cargarDatosHotel(){
     string pad = obtenerPad(61);
 
     cin.ignore();
-
     cout << endl << pad << "Ingrese nombre: ";
     cin.getline(_nombre, 30);
 
@@ -102,10 +101,7 @@ void Hotel::cargarDatosHotel(){
     cout << pad << "Ingrese descripcion: ";
     cin.getline(_descripcion, 150);
 
-    _costo = floatValido( pad + "Ingrese el precio: $");
-
-    cin.ignore();
-
     _estado = true;
 
+    _costo = floatValido( pad + "Ingrese el precio: $");
 }
