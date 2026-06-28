@@ -30,6 +30,8 @@ void ArchivoVuelo::eliminarVuelo(int idVuelo){
     int posicion = buscarRegistro(idVuelo);
     if(posicion == -1){
         leyendaSSNoEncontrado("VUELO", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -40,6 +42,8 @@ void ArchivoVuelo::eliminarVuelo(int idVuelo){
     if(modificarRegistro(reg, posicion)){
         leyendaSSEliminado("VUELO", 2);
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::mostrarVueloByID(int idVuelo){
@@ -47,6 +51,8 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("VUELO", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
     Vuelo reg = leerRegistro(posicion);
@@ -57,6 +63,9 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
     else{
         leyendaSSEliminado("VUELO", 2);
     }
+    cin.ignore();
+    cout << endl;
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::listarVuelos() {
@@ -72,16 +81,22 @@ void ArchivoVuelo::listarVuelos() {
             cout << endl;
         }
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::modificarVuelo(int idVuelo) {
     int posicion = buscarRegistro(idVuelo);
     if(posicion == -1){
         leyendaSSNoEncontrado("VUELO", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
     Vuelo reg = leerRegistro(posicion);
+    system("cls");
 
     leyendaingresoNuevosDatos();
     reg.cargarDatosVuelo();
@@ -89,6 +104,8 @@ void ArchivoVuelo::modificarVuelo(int idVuelo) {
     if(modificarRegistro(reg, posicion)){
         leyendaSSModificado("VUELO", 2);
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::agregarVuelo(){
@@ -113,6 +130,8 @@ void ArchivoVuelo::agregarVuelo(){
     else{
         leyendaSSErrorAlGuardar("VUELO");
     }
+
+    limpiarPantalla();
 }
 
 bool ArchivoVuelo::existeVuelo(int idVuelo){
@@ -137,6 +156,8 @@ void ArchivoVuelo::mostrarVuelosByDestino(const char* destino) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos activos con destino a: " << destino << endl;
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
@@ -157,6 +178,8 @@ void ArchivoVuelo::mostrarVuelosByOrigen(const char* origen) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos activos con origen en: " << origen << endl;
     }
+
+    limpiarPantalla();
 }
 
 Vuelo ArchivoVuelo::obtenerVueloPorId(int idVuelo) {
@@ -171,17 +194,24 @@ void ArchivoVuelo::mostrarVuelosByNombre(const char* nombre) {
     bool encontrado = false;
     string pad = obtenerPad(61);
 
-    for (int i = 0; i < cantidad; i++) {
-        Vuelo reg = leerRegistro(i);
-        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
-            reg.mostrarVuelo();
-            cout << endl << pad << "-------------------------------------------------------------" << endl;
-            encontrado = true;
+    if(cantidad > 0 ){
+        for (int i = 0; i < cantidad; i++) {
+            Vuelo reg = leerRegistro(i);
+            if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+                reg.mostrarVuelo();
+                cout << endl << pad << "-------------------------------------------------------------" << endl;
+                encontrado = true;
+            }
         }
+    } else {
+        leyendaSSNoEncontrado("VUELO", 1);
     }
+
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos con el nombre: " << nombre << endl;
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::mostrarVuelosByPrecioRange(float min, float max) {
@@ -200,6 +230,8 @@ void ArchivoVuelo::mostrarVuelosByPrecioRange(float min, float max) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos en el rango: $" << min << " - $" << max << endl;
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::mostrarVuelosByDuracion(int duracion) {
@@ -218,6 +250,8 @@ void ArchivoVuelo::mostrarVuelosByDuracion(int duracion) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos con duracion de " << duracion << " minutos." << endl;
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::mostrarVuelosByFechaVuelo(const char* fechaVuelo) {
@@ -236,6 +270,8 @@ void ArchivoVuelo::mostrarVuelosByFechaVuelo(const char* fechaVuelo) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron vuelos con fecha: " << fechaVuelo << endl;
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoVuelo::listarVuelosDadosDeBaja() {
@@ -255,4 +291,7 @@ void ArchivoVuelo::listarVuelosDadosDeBaja() {
     if (!encontrado) {
         cout << endl << pad << "No hay vuelos dados de baja en el sistema." << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
