@@ -32,6 +32,8 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("EXCURSION", 1);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -42,6 +44,9 @@ void ArchivoExcursion::eliminarExcursion(int idExcursion){
     if(modificarRegistro(reg, posicion)){
         leyendaSSEliminado("EXCURSION", 1);
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
@@ -50,6 +55,8 @@ void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("EXCURSION", 1);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
     Excursion reg = leerRegistro(posicion);
@@ -60,6 +67,10 @@ void ArchivoExcursion::mostrarExcursionByID(int idExcursion){
     else{
         leyendaSSEliminado("EXCURSION", 1);
     }
+
+    cout << endl;
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoExcursion::listarExcursiones() {
@@ -84,10 +95,13 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
 
     if(posicion == -1){
         leyendaSSNoEncontrado("EXCURSION", 1);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
     Excursion reg = leerRegistro(posicion);
+    system("cls");
 
     leyendaingresoNuevosDatos();
     reg.cargarDatosExcursion();
@@ -95,6 +109,8 @@ void ArchivoExcursion::modificarExcursion(int idExcursion) {
     if(modificarRegistro(reg, posicion)){
         leyendaSSModificado("EXCURSION", 1);
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoExcursion::agregarExcursion(){
@@ -119,6 +135,8 @@ void ArchivoExcursion::agregarExcursion(){
     else{
        leyendaSSErrorAlGuardar("EXCURSION");
     }
+
+    limpiarPantalla();
 }
 
 bool ArchivoExcursion::existeExcursion(int idExcursion){
@@ -159,6 +177,9 @@ void ArchivoExcursion::mostrarExcursionesByPrecioRange(float min, float max) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron excursiones en el rango de precio: $" << min << " - $" << max << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoExcursion::mostrarExcursionesByDuracion(int duracion) {

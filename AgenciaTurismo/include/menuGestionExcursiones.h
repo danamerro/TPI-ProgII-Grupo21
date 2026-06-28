@@ -5,6 +5,7 @@
 class MenuGestionExcursiones : public Menu {
     private:
         ArchivoExcursion _archivo;
+        void subMenuGestion();
         void subMenuConsultas();
         void subMenuListados();
 
