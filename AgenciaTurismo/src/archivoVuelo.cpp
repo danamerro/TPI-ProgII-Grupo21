@@ -51,8 +51,6 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("VUELO", 2);
-        cin.ignore();
-        limpiarPantalla();
         return;
     }
     Vuelo reg = leerRegistro(posicion);
@@ -63,9 +61,6 @@ void ArchivoVuelo::mostrarVueloByID(int idVuelo){
     else{
         leyendaSSEliminado("VUELO", 2);
     }
-    cin.ignore();
-    cout << endl;
-    limpiarPantalla();
 }
 
 void ArchivoVuelo::listarVuelos() {
@@ -81,9 +76,6 @@ void ArchivoVuelo::listarVuelos() {
             cout << endl;
         }
     }
-
-    cin.ignore();
-    limpiarPantalla();
 }
 
 void ArchivoVuelo::modificarVuelo(int idVuelo) {

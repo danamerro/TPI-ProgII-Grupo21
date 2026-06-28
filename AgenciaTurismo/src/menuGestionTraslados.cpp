@@ -120,6 +120,9 @@ void MenuGestionTraslados::subMenuConsultas() {
                 cin >> id;
                 cout << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladoByID(id);
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 2:

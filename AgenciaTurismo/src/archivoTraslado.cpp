@@ -54,8 +54,6 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("TRASLADO", 2);
-        cin.ignore();
-        limpiarPantalla();
         return;
     }
     Traslado reg = leerRegistro(posicion);
@@ -66,10 +64,6 @@ void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
     else{
         leyendaSSEliminado("TRASLADO", 2);
     }
-
-    cout << endl;
-    cin.ignore();
-    limpiarPantalla();
 }
 
 void ArchivoTraslado::listarTraslados() {

@@ -127,6 +127,9 @@ void MenuGestionHoteles::subMenuConsultas() {
                 cin >> id;
                 cout << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarHotelByID(id);
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 2:

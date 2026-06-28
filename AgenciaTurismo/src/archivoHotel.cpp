@@ -51,22 +51,15 @@ void ArchivoHotel::mostrarHotelByID(int idHotel){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("HOTEL", 2);
-        cin.ignore();
-        limpiarPantalla();
         return;
     }
     Hotel reg = leerRegistro(posicion);
 
     if(reg.getEstado()){
         reg.mostrarHotel();
-        cout << endl;
-        cin.ignore();
-        limpiarPantalla();
     }
     else{
         leyendaSSEliminado("HOTEL", 2);
-        cin.ignore();
-        limpiarPantalla();
     }
 }
 

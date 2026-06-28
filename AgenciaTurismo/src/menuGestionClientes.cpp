@@ -167,7 +167,6 @@ void MenuGestionClientes::subMenuConsultas() {
                 break;
             case 2:
                 cout << endl << pad << "-------------------------------------------------------------" << endl;
-
                 cout << pad << "          Ingrese DNI del cliente a consultar: ";
                 cin >> idAux;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;

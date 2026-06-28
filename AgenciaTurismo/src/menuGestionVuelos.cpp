@@ -125,6 +125,9 @@ void MenuGestionVuelos::subMenuConsultas() {
                 cin >> id;
                 cout << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVueloByID(id);
+                cin.ignore();
+                cout << endl;
+                limpiarPantalla();
                 break;
 
             case 2:
@@ -205,7 +208,10 @@ void MenuGestionVuelos::subMenuListados() {
         switch (subOpcion) {
             case 1:
                 cout << endl << pad << "--------------------- VUELOS ACTIVOS ------------------------" << endl;
+                cout << endl;
                 _archivo.listarVuelos();
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 2:

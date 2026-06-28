@@ -146,6 +146,11 @@ void Paquete::mostrarPaquete() const{
     ArchivoExcursion archivoExcursion;
     ArchivoVuelo archivoVuelo;
 
+    Hotel regHotel = archivoHotel.leerRegistro(_idHotel);
+    Traslado regTraslado = archivoTraslado.leerRegistro(_idTraslado);
+    Excursion regExcursion = archivoExcursion.leerRegistro(_idExcursion);
+    Vuelo regVuelo = archivoVuelo.leerRegistro(_idVuelo);
+
     cout << endl << pad << "ID paquete: " << _idPaquete << endl;
     cout << pad << "Nombre: " << _nombre << endl;
     cout << pad << "Descripcion: " << _descripcion << endl;
@@ -153,11 +158,17 @@ void Paquete::mostrarPaquete() const{
     cout << pad << "Cupo: " << _cupo << endl;
     cout << pad << "Destino: " << _destino << endl;
     cout << pad << "--> SERVICIO DE ALOJAMIENTO" << endl;
-    archivoHotel.mostrarHotelByID(_idHotel);
+    cout << pad << "    Hotel: " << regHotel.getNombre() << endl;
+    cout << pad << "    Estrellas: " << regHotel.getEstrellas() << endl;
+    cout << pad << "    Dirección: " << regHotel.getDireccion() << endl;
     cout << pad << "--> SERVICIO DE TRASLADO" << endl;
-    archivoTraslado.mostrarTrasladoByID(_idTraslado);
+    cout << pad << "    Destino: " << regTraslado.getDestino() << endl;
+    cout << pad << "    Duraccion: " << regTraslado.getDuracion() << endl;
     cout << pad << "--> SERVICIO DE EXCURSION"<< endl;
-    archivoExcursion.mostrarExcursionByID(_idExcursion);
+    cout << pad << "    Nombre: " << regExcursion.getNombre() << endl;
+    cout << pad << "    Duraccion: " << regExcursion.getDuracion() << endl;
     cout << pad << "--> SERVICIO DE VUELO" << endl;
-    archivoVuelo.mostrarVueloByID(_idVuelo);
+    cout << pad << "    Nombre: " << regVuelo.getNombre() << endl;
+    cout << pad << "    Fecha de vuelo: " << regVuelo.getFechaVuelo() << endl;
+    cout << pad << "    Nombre: " << regVuelo.getDuracion() << endl;
 }
