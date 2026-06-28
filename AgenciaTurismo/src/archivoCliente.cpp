@@ -59,12 +59,11 @@ void ArchivoCliente::modificarCliente() {
             limpiarPantalla();
             return;
         }
-        system("cls");
 
         posicion = buscarRegistro(idModificar);
 
         if (posicion == -1) {
-            cout << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
+            cout << endl << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
             cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
@@ -78,6 +77,7 @@ void ArchivoCliente::modificarCliente() {
     } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
+    system("cls");
 
     leyendaingresoNuevosDatos();
 
@@ -121,12 +121,10 @@ void ArchivoCliente::eliminarCliente() {
             return;
         }
 
-        system("cls");
-
         posicion = buscarRegistro(idEliminar);
 
         if (posicion == -1) {
-            cout << pad << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
+            cout << endl << pad << "El ID " << idEliminar << " no corresponde a un cliente registrado." << endl;
             cout << pad << "-------------------------------------------------------------" << endl;
         } else {
             Cliente regAux = leerRegistro(posicion);
@@ -140,8 +138,9 @@ void ArchivoCliente::eliminarCliente() {
     } while (!idValido);
 
     Cliente reg = leerRegistro(posicion);
-
     reg.setEstado(false);
+
+    system("cls");
 
     if (modificarRegistro(reg, posicion)) {
         leyendaSSEliminado("CLIENTE", 2);

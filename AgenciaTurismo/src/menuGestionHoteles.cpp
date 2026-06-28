@@ -11,56 +11,91 @@ void MenuGestionHoteles::mostrarOpciones() const {
     string pad = obtenerPad(61);
 
     cout << pad << "=============================================================" << endl;
-    cout << pad << "               -> GESTION DE HOTELES                     " << endl;
+    cout << pad << "                     -> MENU DE HOTELES                     " << endl;
     cout << pad << "=============================================================" << endl;
-    cout << pad << "               1. Agregar Hotel                      " << endl;
-    cout << pad << "               2. Modificar Hotel                    " << endl;
-    cout << pad << "               3. Eliminar Hotel                     " << endl;
-    cout << pad << "               4. Consultas                                  " << endl;
-    cout << pad << "               5. Listados                                   " << endl;
-    cout << pad << "               0. Volver al menu principal                   " << endl;
+    cout << pad << "               1. Gestion Hotel" << endl;
+    cout << pad << "               2. Listados" << endl;
+    cout << pad << "               3. Consultas" << endl;
+    cout << pad << "               0. Volver al menu principal" << endl;
     cout << pad << "=============================================================" << endl;
     cout << pad << "               Seleccione una opcion: ";
 }
 
+
 void MenuGestionHoteles::procesarOpcion(int opcion) {
-    int idAux;
     string pad = obtenerPad(61);
+    system("cls");
 
     switch (opcion) {
+        case 1:
+            subMenuGestion();
+            break;
+        case 2:
+            subMenuListados();
+            break;
+        case 3:
+            subMenuConsultas();
+            break;
+        case 0 :
+            break;
+        default:
+            cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
+            break;
+    }
+}
+
+
+void MenuGestionHoteles::subMenuGestion() {
+    string pad = obtenerPad(61);
+    int idAux;
+    int subOpcion;
+
+    do {
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "                  -> GESTION DE HOTEL                      " << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "               1. Agregar hotel" << endl;
+                cout << pad << "               2. Modificar hotel" << endl;
+                cout << pad << "               3. Eliminar hotel" << endl;
+                cout << pad << "               0. Volver al menu de hotel" << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "               Seleccione una sub-opcion: ";
+        cin >> subOpcion;
+        system("cls");
+
+        switch (subOpcion) {
         case 1:
             cout << endl << pad << "--------------------- ALTA DE HOTEL -------------------------" << endl;
             _archivo.agregarHotel();
             break;
 
         case 2:
-            cout << endl << pad << "----------------- HOTELES REGISTRADOS -----------------------" << endl;
+            cout << endl << pad << "----------------- MODIFICAR HOTEL -----------------------" << endl;
             _archivo.listarHoteles();
-            cout << endl << pad << "Ingrese el ID del hotel a modificar:";
+            cout << endl << pad << "Ingrese el ID del hotel a modificar: ";
             cin >> idAux;
             _archivo.modificarHotel(idAux);
             break;
 
         case 3:
-            cout << endl << pad << "----------------- HOTELES REGISTRADOS -----------------------" << endl;
+            cout << endl << pad << "----------------- ELIMNAR HOTEL -----------------------" << endl;
             _archivo.listarHoteles();
             cout << endl << pad << "Ingrese el ID del hotel a dar de baja: ";
             cin >> idAux;
             _archivo.eliminarHotel(idAux);
             break;
 
-        case 4:
-            subMenuConsultas();
-            break;
-
-        case 5:
-            subMenuListados();
+        case 0:
             break;
 
         default:
-            cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
+            cout << endl << pad << "Opcion invalida." << endl;
             break;
-    }
+        }
+
+        cout << endl;
+
+    } while (subOpcion != 0);
 }
 
 void MenuGestionHoteles::subMenuConsultas() {
@@ -84,34 +119,35 @@ void MenuGestionHoteles::subMenuConsultas() {
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
-        cin.ignore();
+        system("cls");
 
         switch (subOpcion) {
             case 1:
-                cout << endl << pad << "          Ingrese el ID: ";
+                cout << endl << pad << " Ingrese el ID: ";
                 cin >> id;
                 cout << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarHotelByID(id);
                 break;
 
             case 2:
-                cout << endl << pad << "          Ingrese el nombre: ";
+                cin.ignore();
+                cout << endl << pad << " Ingrese el nombre: ";
                 cin.getline(nombre, 30);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarHotelesByNombre(nombre);
                 break;
 
             case 3:
-                cout << endl << pad << "          Ingrese el precio minimo: $";
+                cout << endl << pad << " Ingrese el precio minimo: $";
                 cin >> pMin;
-                        cout << pad << "          Ingrese el precio maximo: $";
+                        cout << pad << " Ingrese el precio maximo: $";
                 cin >> pMax;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarHotelesByRangoPrecio(pMin, pMax);
                 break;
 
             case 4:
-                cout << endl << pad << "          Ingrese la estrellas del hotel: ";
+                cout << endl << pad << " Ingrese la estrellas del hotel: ";
                 cin >> estrella;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarHotelesByEstrellas(estrella);
@@ -139,21 +175,27 @@ void MenuGestionHoteles::subMenuListados() {
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               1. Hoteles activos" << endl;
                 cout << pad << "               2. Hoteles dados de baja" << endl;
-                cout << pad << "               0. Volver al menu de excursiones" << endl;
+                cout << pad << "               0. Volver al menu de hotel" << endl;
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
-        cin.ignore();
 
+        system("cls");
         switch (subOpcion) {
             case 1:
-                cout << endl << pad << "---------------- TODAS LOS HOTELES ACTIVOS -----------------" << endl;
+                cout << endl << pad << "---------------------- HOTELES ACTIVOS ----------------------" << endl;
                 _archivo.listarHoteles();
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 2:
-                cout << endl << pad << "-------------- TODAS LOS HOTELES DADOS DE BAJA -------------" << endl;
+                cout << endl << pad << "-------------------- HOTELES DADOS DE BAJA ------------------" << endl;
                 _archivo.listarHotelesDadosDeBaja();
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 0:

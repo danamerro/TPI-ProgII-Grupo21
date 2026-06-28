@@ -14,7 +14,6 @@ GestionVenta::GestionVenta() {
     _idPaquete = 0;
 
     strcpy(_fechaVenta, "");
-    //strcpy(_fechaViaje, "");
 
     _cantidadCupos = 0;
     _precioUnitario = 0;
@@ -54,15 +53,7 @@ const char* GestionVenta::getFechaVenta() const {
 void GestionVenta::setFechaVenta(const char* fechaVenta) {
     strcpy(_fechaVenta, fechaVenta);
 }
-/*
-const char* GestionVenta::getFechaViaje() const {
-    return _fechaViaje;
-}
 
-void GestionVenta::setFechaViaje(const char* fechaViaje) {
-    strcpy(_fechaViaje, fechaViaje);
-}
-*/
 int GestionVenta::getCantidadCupos() const {
     return _cantidadCupos;
 }

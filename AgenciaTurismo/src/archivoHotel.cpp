@@ -28,8 +28,11 @@ int ArchivoHotel::buscarRegistro(int idHotel) {
 
 void ArchivoHotel::eliminarHotel(int idHotel){
     int posicion = buscarRegistro(idHotel);
+    cin.ignore();
+
     if(posicion == -1){
         leyendaSSNoEncontrado("HOTEL", 2);
+        limpiarPantalla();
         return;
     }
 
@@ -39,6 +42,7 @@ void ArchivoHotel::eliminarHotel(int idHotel){
 
     if(modificarRegistro(reg, posicion)){
         leyendaSSEliminado("HOTEL", 2);
+        limpiarPantalla();
     }
 }
 
@@ -47,15 +51,22 @@ void ArchivoHotel::mostrarHotelByID(int idHotel){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("HOTEL", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
     Hotel reg = leerRegistro(posicion);
 
     if(reg.getEstado()){
         reg.mostrarHotel();
+        cout << endl;
+        cin.ignore();
+        limpiarPantalla();
     }
     else{
         leyendaSSEliminado("HOTEL", 2);
+        cin.ignore();
+        limpiarPantalla();
     }
 }
 
@@ -79,18 +90,23 @@ void ArchivoHotel::listarHoteles() {
 
 void ArchivoHotel::modificarHotel(int idHotel) {
     int posicion = buscarRegistro(idHotel);
+
     if(posicion == -1){
         leyendaSSNoEncontrado("HOTEL", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
     Hotel reg = leerRegistro(posicion);
-    leyendaingresoNuevosDatos();
+    system("cls");
 
+    leyendaingresoNuevosDatos();
     reg.cargarDatosHotel();
 
     if(modificarRegistro(reg, posicion)){
         leyendaSSModificado("HOTEL", 2);
+        limpiarPantalla();
     }
 }
 
@@ -111,9 +127,11 @@ void ArchivoHotel::agregarHotel(){
 
     if(guardarRegistro(reg)){
         leyendaSSGuardado("HOTEL", 2);
+        limpiarPantalla();
     }
     else{
         leyendaSSErrorAlGuardar("HOTEL");
+        limpiarPantalla();
     }
 }
 
@@ -126,19 +144,25 @@ void ArchivoHotel::mostrarHotelesByNombre(const char* nombre) {
     bool encontrado = false;
     string pad = obtenerPad(61);
 
-    for (int i = 0; i < cantidad; i++) {
-        Hotel reg = leerRegistro(i);
+    if(cantidad > 0){
+        for (int i = 0; i < cantidad; i++) {
+            Hotel reg = leerRegistro(i);
 
-        if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
-            reg.mostrarHotel();
-            cout << endl << pad << "-------------------------------------------------------------" << endl;
-            encontrado = true;
+            if (reg.getEstado() && strcasecmp(reg.getNombre(), nombre) == 0) {
+                reg.mostrarHotel();
+                cout << endl << pad << "-------------------------------------------------------------" << endl;
+                encontrado = true;
+            }
         }
+    } else {
+            leyendaSSNoEncontrado("HOTEL", 2);
     }
 
     if (!encontrado) {
-        cout << endl << pad << "No se encontraron hoteles con el nombre: " << nombre << endl;
+        leyendaSSNoEncontrado("HOTEL", 2);
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoHotel::mostrarHotelesByEstrellas(const char* estrellas) {
@@ -159,6 +183,9 @@ void ArchivoHotel::mostrarHotelesByEstrellas(const char* estrellas) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron hoteles de " << estrellas << " estrellas." << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoHotel::mostrarHotelesByRangoPrecio(float min, float max) {
@@ -179,6 +206,9 @@ void ArchivoHotel::mostrarHotelesByRangoPrecio(float min, float max) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron hoteles en el rango de precio: $" << min << " - $" << max << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoHotel::listarHotelesDadosDeBaja() {
