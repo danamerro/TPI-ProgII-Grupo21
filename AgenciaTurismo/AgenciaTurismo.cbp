@@ -41,6 +41,7 @@
 		<Unit filename="include/archivoExcursion.h" />
 		<Unit filename="include/archivoGestionVenta.h" />
 		<Unit filename="include/archivoHotel.h" />
+		<Unit filename="include/archivoInformes.h" />
 		<Unit filename="include/archivoPaquete.h" />
 		<Unit filename="include/archivoTraslado.h" />
 		<Unit filename="include/archivoVuelo.h" />
@@ -57,6 +58,7 @@
 		<Unit filename="include/menuGestionTraslados.h" />
 		<Unit filename="include/menuGestionVentas.h" />
 		<Unit filename="include/menuGestionVuelos.h" />
+		<Unit filename="include/menuInformes.h" />
 		<Unit filename="include/menuInicio.h" />
 		<Unit filename="include/menuPrincipal.h" />
 		<Unit filename="include/paquete.h" />
@@ -68,6 +70,7 @@
 		<Unit filename="src/archivoExcursion.cpp" />
 		<Unit filename="src/archivoGestionVenta.cpp" />
 		<Unit filename="src/archivoHotel.cpp" />
+		<Unit filename="src/archivoInformes.cpp" />
 		<Unit filename="src/archivoPaquete.cpp" />
 		<Unit filename="src/archivoTraslado.cpp" />
 		<Unit filename="src/archivoVuelo.cpp" />
@@ -84,6 +87,7 @@
 		<Unit filename="src/menuGestionTraslados.cpp" />
 		<Unit filename="src/menuGestionVentas.cpp" />
 		<Unit filename="src/menuGestionVuelos.cpp" />
+		<Unit filename="src/menuInformes.cpp" />
 		<Unit filename="src/menuInicio.cpp" />
 		<Unit filename="src/menuPrincipal.cpp" />
 		<Unit filename="src/paquete.cpp" />

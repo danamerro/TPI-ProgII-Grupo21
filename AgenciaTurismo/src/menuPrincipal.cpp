@@ -8,6 +8,7 @@
 #include "menuGestionVuelos.h"
 #include "menuGestionTraslados.h"
 #include "menuGestionExcursiones.h"
+#include "menuInformes.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ void MenuPrincipal::mostrarOpciones() const {
     cout << pad << "               5. Vuelos" << endl;
     cout << pad << "               6. Traslados" << endl;
     cout << pad << "               7. Excursiones" << endl;
+    cout << pad << "               8. Informes" << endl;
     cout << pad << "               0. Volver a inicio" << endl;
     cout << pad << "=============================================================" << endl;
     cout << pad << "               Seleccione una opcion: ";
@@ -68,6 +70,11 @@ void MenuPrincipal::procesarOpcion(int opcion) {
         case 7: {
             MenuGestionExcursiones menuExcursiones;
             menuExcursiones.ejecutar();
+            break;
+        }
+        case 8: {
+            MenuInformes menuInformes;
+            menuInformes.ejecutar();
             break;
         }
         default:
