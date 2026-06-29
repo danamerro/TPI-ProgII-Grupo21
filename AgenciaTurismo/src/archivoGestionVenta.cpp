@@ -231,6 +231,9 @@ void ArchivoGestionVenta::agregarVenta() {
 
     GestionVenta reg;
     GestionVenta archivo;
+    ArchivoCliente archivoCliente;
+    ArchivoPaquete archivoPaquete;
+    ArchivoVuelo archivoVuelo;
 
     int cantidad = contarRegistros();
 
@@ -280,6 +283,18 @@ void ArchivoGestionVenta::agregarVenta() {
         return;
     }
 
+    if(!archivoCliente.existeCliente(idCliente)){
+        cout << endl << pad << "-------------------------------------------------------------" << endl;
+        cout << pad << "        EL ID DE CLIENTE INGRESADO NO EXISTE                 " << endl;
+        cout << pad << "        NO SE PUEDE REGISTRAR LA VENTA                       " << endl;
+        cout << pad << "-------------------------------------------------------------" << endl;
+        cout << endl << pad << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
+        system("cls");
+        return;
+    }
+
     reg.setIdCliente(idCliente);
 
     cout << endl << pad << "Conoce el ID del paquete?" << endl;
@@ -297,12 +312,23 @@ void ArchivoGestionVenta::agregarVenta() {
 
     cout << endl << pad << "Ingrese el ID del paquete: ";
     cin >> idPaquete;
+
+    if(!archivoPaquete.existePaquete(idPaquete)){
+        cout << endl << pad << "-------------------------------------------------------------" << endl;
+        cout << pad << "        EL ID DE PAQUETE INGRESADO NO EXISTE                 " << endl;
+        cout << pad << "        NO SE PUEDE REGISTRAR LA VENTA                       " << endl;
+        cout << pad << "-------------------------------------------------------------" << endl;
+        cout << endl << pad << "Presione Enter para continuar...";
+        cin.ignore();
+        cin.get();
+        system("cls");
+        return;
+    }
+
     reg.setIdPaquete(idPaquete);
 
     reg.cargarDatosVenta();
 
-    ArchivoPaquete archivoPaquete;
-    ArchivoVuelo archivoVuelo;
     Paquete paq = archivoPaquete.obtenerPaquetePorId(reg.getIdPaquete());
     Vuelo   vue = archivoVuelo.obtenerVueloPorId(paq.getIdVuelo());
 
