@@ -30,27 +30,27 @@ void MenuInformes::procesarOpcion(int opcion) {
     switch (opcion) {
         case 1:
             cout << endl << pad << "--------- CLIENTES CON RESERVAS CONFIRMADAS ---------" << endl;
-            _logicaInformes.clientesPorEstadoVenta(1);
+            _archivo.clientesPorEstadoVenta(1);
             break;
         case 2:
             cout << endl << pad << "--------- CLIENTES CON RESERVAS PENDIENTES ---------" << endl;
-            _logicaInformes.clientesPorEstadoVenta(0);
+            _archivo.clientesPorEstadoVenta(0);
             break;
         case 3:
             cout << endl << pad << "--------- CLIENTES CON RESERVAS CANCELADAS ---------" << endl;
-            _logicaInformes.clientesPorEstadoVenta(2);
+            _archivo.clientesPorEstadoVenta(2);
             break;
         case 4: {
             cin.ignore();
             cout << endl << pad << "Ingrese el destino a consultar: ";
             cin.getline(destino, 100);
-            _logicaInformes.recaudacionPorDestino(destino);
+            _archivo.recaudacionPorDestino(destino);
             break;
         }
         case 5:
             cin.ignore();
             cout << endl << pad << "------------ DESTINOS RECORD POR MES ------------" << endl;
-            _logicaInformes.recordDestinoPorMes();
+            _archivo.recordDestinoPorMes();
             break;
         case 0:
             break;

@@ -4,7 +4,7 @@
 
 class MenuInformes : public Menu {
     private:
-        ArchivoInformes _logicaInformes;
+        ArchivoInformes _archivo;
 
     protected:
         void mostrarOpciones() const override;
