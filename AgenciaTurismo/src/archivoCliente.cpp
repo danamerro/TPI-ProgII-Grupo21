@@ -63,8 +63,15 @@ void ArchivoCliente::modificarCliente() {
         posicion = buscarRegistro(idModificar);
 
         if (posicion == -1) {
-            cout << endl << pad << "El ID " << idModificar << " no corresponde a un cliente registrado." << endl;
+            cout << endl << pad << "-------------------------------------------------------------" << endl;
+            cout << pad << "        EL ID INGRESADO NO CORRESPONDE A UN CLIENTE          " << endl;
+            cout << pad << "        REGISTRADO EN EL SISTEMA                             " << endl;
             cout << pad << "-------------------------------------------------------------" << endl;
+            cout << endl << pad << "Presione Enter para continuar...";
+            cin.ignore();
+            cin.get();
+            system("cls");
+            return;
         } else {
             Cliente regAux = leerRegistro(posicion);
             if (!regAux.getEstado()) {
