@@ -10,56 +10,83 @@ void MenuGestionTraslados::mostrarOpciones() const {
     string pad = obtenerPad(61);
 
     cout << pad << "=============================================================" << endl;
-    cout << pad << "               -> GESTION DE TRASLADOS                       " << endl;
+    cout << pad << "                     -> MENU DE TRASLADOS                     " << endl;
     cout << pad << "=============================================================" << endl;
-    cout << pad << "               1. Agregar Traslado                      " << endl;
-    cout << pad << "               2. Modificar Traslado                    " << endl;
-    cout << pad << "               3. Eliminar Traslado                     " << endl;
-    cout << pad << "               4. Consultas                                  " << endl;
-    cout << pad << "               5. Listados                                   " << endl;
-    cout << pad << "               0. Volver al menu principal                   " << endl;
+    cout << pad << "               1. Gestion Traslado" << endl;
+    cout << pad << "               2. Listados" << endl;
+    cout << pad << "               3. Consultas" << endl;
+    cout << pad << "               0. Volver al menu principal" << endl;
     cout << pad << "=============================================================" << endl;
     cout << pad << "               Seleccione una opcion: ";
 }
 
 void MenuGestionTraslados::procesarOpcion(int opcion) {
-    int idAux;
     string pad = obtenerPad(61);
+    system("cls");
 
     switch (opcion) {
         case 1:
-            cout << endl << pad << "------------------- ALTA DE TRASLADO  -----------------------" << endl;
-            _archivo.agregarTraslado();
+            subMenuGestion();
             break;
-
         case 2:
-            cout << endl << pad << "------------------- TRASLADOS REGISTRADAS ------------------- " << endl << endl;
-            _archivo.listarTraslados();
-            cout << endl << pad << "Ingrese el ID del paquete a modificar:";
-            cin >> idAux;
-            _archivo.modificarTraslado(idAux);
-            break;
-
-        case 3:
-            cout << endl << pad << "------------------- TRASLADOS REGISTRADAS ------------------- " << endl << endl;
-            _archivo.listarTraslados();
-            cout << endl << pad << "Ingrese el ID del traslado a eliminar:";
-            cin >> idAux;
-            _archivo.eliminarTraslado(idAux);
-            break;
-
-        case 4:
-            subMenuConsultas();
-            break;
-
-        case 5:
             subMenuListados();
             break;
-
+        case 3:
+            subMenuConsultas();
+            break;
+        case 0 :
+            break;
         default:
             cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
             break;
     }
+}
+
+void MenuGestionTraslados::subMenuGestion() {
+    string pad = obtenerPad(61);
+    int idAux;
+    int subOpcion;
+
+    do {
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "                  -> GESTION DE TRASLADO                     " << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "               1. Agregar traslado" << endl;
+                cout << pad << "               2. Modificar traslado" << endl;
+                cout << pad << "               3. Eliminar traslado" << endl;
+                cout << pad << "               0. Volver al menu de traslado" << endl;
+                cout << pad << "-------------------------------------------------------------" << endl;
+                cout << pad << "               Seleccione una sub-opcion: ";
+        cin >> subOpcion;
+        system("cls");
+
+        switch (subOpcion) {
+            case 1:
+                cout << endl << pad << "-------------------- ALTA DE TRASLADO -----------------------" << endl;
+                _archivo.agregarTraslado();
+                break;
+            case 2:
+                cout << endl << pad << "------------------- MODIFICAR TRASLADO ----------------------" << endl;
+                _archivo.listarTraslados();
+                cout << endl << pad << "Ingrese el ID del paquete a modificar:";
+                cin >> idAux;
+                _archivo.modificarTraslado(idAux);
+                break;
+            case 3:
+                cout << endl << pad << "-------------------- ELIMINAR TRASLADO ----------------------" << endl;
+                _archivo.listarTraslados();
+                cout << endl << pad << "Ingrese el ID del traslado a eliminar:";
+                cin >> idAux;
+                _archivo.eliminarTraslado(idAux);
+                break;
+            case 0:
+                break;
+            default:
+                cout << endl << pad << "Opcion invalida." << endl;
+                break;
+        }
+        cout << endl;
+    } while (subOpcion != 0);
 }
 
 void MenuGestionTraslados::subMenuConsultas() {
@@ -85,41 +112,46 @@ void MenuGestionTraslados::subMenuConsultas() {
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
-        cin.ignore();
+        system("cls");
 
         switch (subOpcion) {
             case 1:
-                cout << endl << pad << "          Ingrese el ID: ";
+                cout << endl << pad << " Ingrese el ID: ";
                 cin >> id;
                 cout << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladoByID(id);
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 2:
-                cout << endl << pad << "       Ingrese la duracion exacta a buscar (minutos): ";
+                cout << endl << pad << " Ingrese la duracion exacta a buscar (minutos): ";
                 cin >> duracion;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladosByDuracion(duracion);
                 break;
 
             case 3:
-                cout << endl << pad << "          Ingrese el precio minimo: $";
+                cout << endl << pad << " Ingrese el precio minimo: $";
                 cin >> pMin;
-                        cout << pad << "          Ingrese el precio maximo: $";
+                        cout << pad << " Ingrese el precio maximo: $";
                 cin >> pMax;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladosByPrecioRange(pMin, pMax);
                 break;
 
             case 4:
-                cout << endl << pad << "                     Ingrese el origen: ";
+                cin.ignore();
+                cout << endl << pad << " Ingrese el origen: ";
                 cin.getline(origen, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladosByOrigen(origen);
                 break;
 
             case 5:
-                cout << endl << pad << "                     Ingrese el destino: ";
+                cin.ignore();
+                cout << endl << pad << " Ingrese el destino: ";
                 cin.getline(destino, 20);
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarTrasladosByDestino(destino);
@@ -136,7 +168,6 @@ void MenuGestionTraslados::subMenuConsultas() {
     } while (subOpcion != 0);
 }
 
-
 void MenuGestionTraslados::subMenuListados() {
     int subOpcion;
     string pad = obtenerPad(61);
@@ -147,21 +178,26 @@ void MenuGestionTraslados::subMenuListados() {
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               1. Traslados activos" << endl;
                 cout << pad << "               2. Traslados dados de baja" << endl;
-                cout << pad << "               0. Volver al menu de excursiones" << endl;
+                cout << pad << "               0. Volver al menu de traslado" << endl;
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
-        cin.ignore();
+        system("cls");
 
         switch (subOpcion) {
             case 1:
-                cout << endl << pad << "-------------- TODAS LOS TRASLADOS ACTIVAS -----------------" << endl;
+                cout << endl << pad << "-------------------- TRASLADOS ACTIVOS ----------------------" << endl;
                 _archivo.listarTraslados();
+                cin.ignore();
+                cout << endl;
+                limpiarPantalla();
                 break;
 
             case 2:
-                cout << endl << pad << "------------ TODOS LOS TRASLADOS DADAS DE BAJA -------------" << endl;
+                cout << endl << pad << "------------------- TRASLADOS DADOS DE BAJA -...-------------" << endl;
                 _archivo.listarTrasladosDadosDeBaja();
+                cin.ignore();
+                limpiarPantalla();
                 break;
 
             case 0:

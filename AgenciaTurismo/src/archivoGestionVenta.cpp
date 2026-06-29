@@ -139,19 +139,28 @@ void ArchivoGestionVenta::listarVentas() {
 void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
 
     GestionVenta reg;
+    int ventaNoConfirmada = 0;
 
-    int cantidad =
-        contarRegistros();
+    int cantidad = contarRegistros();
 
-    for (int i = 0; i < cantidad; i++) {
+    if(cantidad == 0 ){
+        leyendaSSNoEncontrado("VENTAS", 3);
+    } else {
+        for (int i = 0; i < cantidad; i++) {
 
-        reg = leerRegistro(i);
+            reg = leerRegistro(i);
 
-        if (reg.getEstado() &&reg.getEstadoVenta() == 1) {
+            if (reg.getEstado() && reg.getEstadoVenta() == 1) {
 
-            reg.mostrarVenta();
+                reg.mostrarVenta();
 
-            cout << endl;
+                cout << endl;
+            } else {
+                ventaNoConfirmada ++;
+            }
+        }
+        if(ventaNoConfirmada == 0){
+            leyendaSSNoEncontrado("VENTA", 3);
         }
     }
 }
@@ -159,22 +168,31 @@ void ArchivoGestionVenta::listarTransaccionesFinalizadas() {
 void ArchivoGestionVenta::listarTransaccionesCanceladas() {
 
     GestionVenta reg;
+    int ventaNoCanceladas = 0;
 
     int cantidad =
         contarRegistros();
 
-    for (int i = 0; i < cantidad; i++) {
+    if(cantidad == 0 ){
+        leyendaSSNoEncontrado("VENTAS", 3);
+    } else {
+        for (int i = 0; i < cantidad; i++) {
 
-        reg = leerRegistro(i);
+            reg = leerRegistro(i);
 
-        if (
-            reg.getEstado() &&
-            reg.getEstadoVenta() == 2
-        ) {
+            if (
+                reg.getEstado() &&
+                reg.getEstadoVenta() == 2
+            ) {
 
-            reg.mostrarVenta();
-
-            cout << endl;
+                reg.mostrarVenta();
+                cout << endl;
+            } else {
+                ventaNoCanceladas++;
+            }
+        }
+         if(ventaNoCanceladas == 0){
+            leyendaSSNoEncontrado("VENTA", 3);
         }
     }
 }
@@ -183,22 +201,29 @@ void ArchivoGestionVenta::listarTransaccionesPendientes() {
 
     GestionVenta reg;
 
+    int ventasNoPendientes = 0;
+
     int cantidad =
         contarRegistros();
 
-    for (int i = 0; i < cantidad; i++) {
+    if(cantidad == 0){
+        leyendaSSNoEncontrado("VENTAS", 3);
+    } else {
+
+        for (int i = 0; i < cantidad; i++) {
 
         reg = leerRegistro(i);
 
-        if (
-            reg.getEstado() &&
-            reg.getEstadoVenta() == 0
-        ) {
-
+        if ( reg.getEstado() && reg.getEstadoVenta() == 0) {
             reg.mostrarVenta();
-
             cout << endl;
+        } else {
+            ventasNoPendientes ++;
         }
+      }
+      if(ventasNoPendientes == 0){
+        leyendaSSNoEncontrado("VENTA", 3);
+      }
     }
 }
 
@@ -254,6 +279,7 @@ void ArchivoGestionVenta::agregarVenta() {
         cin.get();
         return;
     }
+
     reg.setIdCliente(idCliente);
 
     cout << endl << pad << "Conoce el ID del paquete?" << endl;
@@ -292,18 +318,14 @@ void ArchivoGestionVenta::agregarVenta() {
         ArchivoCliente archivoCli;
         Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
         reg.emitirTicket("RESERVA", vue.getFechaVuelo(), cli, paq.getDestino());
-
-        cout << pad << "Presione Enter para continuar...";
-        cin.ignore();
-        cin.get();
     }
     else {
     cout << endl << pad << "=============================================================" << endl;
             cout << pad << "                ERROR AL GUARDAR LA VENTA                    "<< endl;
             cout << pad << "=============================================================" << endl;
-         cin.ignore();
-        cin.get();
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 bool ArchivoGestionVenta::existeVenta(int idVenta) {
@@ -319,6 +341,8 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
 
     if (posicion == -1) {
         leyendaSSNoEncontrado("VENTA", 1);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -340,6 +364,8 @@ void ArchivoGestionVenta::confirmarVenta(int idVenta) {
         Cliente cli = archivoCli.obtenerClientePorId(reg.getIdCliente());
         reg.emitirTicket("CONFIRMACION", vue.getFechaVuelo(), cli, paq.getDestino());
     }
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoGestionVenta::cancelarVenta(int idVenta) {
@@ -349,6 +375,8 @@ void ArchivoGestionVenta::cancelarVenta(int idVenta) {
 
     if (posicion == -1) {
         leyendaSSNoEncontrado("VENTA", 1);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -361,4 +389,7 @@ void ArchivoGestionVenta::cancelarVenta(int idVenta) {
             cout << pad << "                    VENTA CANCELADA                          "<< endl;
             cout << pad << "=============================================================" << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }

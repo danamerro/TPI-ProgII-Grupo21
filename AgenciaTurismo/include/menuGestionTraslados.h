@@ -5,6 +5,7 @@
 class MenuGestionTraslados : public Menu {
     private:
         ArchivoTraslado _archivo;
+        void subMenuGestion();
         void subMenuConsultas();
         void subMenuListados();
 

@@ -5,6 +5,7 @@
 class MenuGestionVuelos : public Menu {
     private:
         ArchivoVuelo _archivo;
+        void subMenuGestion();
         void subMenuConsultas();
         void subMenuListados();
 

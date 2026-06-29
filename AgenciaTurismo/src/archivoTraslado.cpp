@@ -32,6 +32,8 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
 
     if(posicion == -1){
         leyendaSSNoEncontrado("TRASLADO", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
@@ -42,6 +44,8 @@ void ArchivoTraslado::eliminarTraslado(int idTraslado){
          leyendaSSEliminado("TRASLADO", 2);
     }
 
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::mostrarTrasladoByID(int idTraslado){
@@ -82,10 +86,14 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
 
     if(posicion == -1){
         leyendaSSNoEncontrado("TRASLADO", 2);
+        cin.ignore();
+        limpiarPantalla();
         return;
     }
 
     Traslado reg = leerRegistro(posicion);
+    system("cls");
+
     leyendaingresoNuevosDatos();
 
     reg.cargarDatosTraslado();
@@ -93,6 +101,7 @@ void ArchivoTraslado::modificarTraslado(int idTraslado) {
     if(modificarRegistro(reg, posicion)){
         leyendaSSModificado("TRASLADO", 2);
     }
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::agregarTraslado(){
@@ -117,6 +126,8 @@ void ArchivoTraslado::agregarTraslado(){
     else{
         leyendaSSErrorAlGuardar("TRASLADO");
     }
+
+    limpiarPantalla();
 }
 
 bool ArchivoTraslado::existeTraslado(int idTraslado){
@@ -139,6 +150,8 @@ void ArchivoTraslado::mostrarTrasladosByOrigen(const char* origen) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron traslados desde el origen: " << origen << endl;
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::mostrarTrasladosByDestino(const char* destino) {
@@ -157,6 +170,8 @@ void ArchivoTraslado::mostrarTrasladosByDestino(const char* destino) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron traslados hacia el destino: " << destino << endl;
     }
+
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::mostrarTrasladosByPrecioRange(float min, float max) {
@@ -175,6 +190,9 @@ void ArchivoTraslado::mostrarTrasladosByPrecioRange(float min, float max) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron traslados en el rango: $" << min << " - $" << max << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::mostrarTrasladosByDuracion(int duracion) {
@@ -193,6 +211,9 @@ void ArchivoTraslado::mostrarTrasladosByDuracion(int duracion) {
     if (!encontrado) {
         cout << endl << pad << "No se encontraron traslados con una duracion de " << duracion << " minutos." << endl;
     }
+
+    cin.ignore();
+    limpiarPantalla();
 }
 
 void ArchivoTraslado::listarTrasladosDadosDeBaja() {

@@ -5,6 +5,7 @@
 class MenuGestionPaquetes : public Menu {
     private:
         ArchivoPaquete _archivo;
+        void subMenuGestion();
         void subMenuConsultas();
         void subMenuListados();
 

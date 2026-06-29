@@ -30,6 +30,9 @@ char genero(int numero) {
     if (numero == 2) {
         return 'O';
     }
+    if (numero == 3) {
+        return 'AS';
+    }
     return ' ';
 }
 
@@ -123,4 +126,17 @@ float floatValido(const string& consulta) {
             return numero;
         }
     }
+}
+
+void limpiarPantalla() {
+    string pad = obtenerPad(61);
+    cout << pad << "Presione Enter para continuar...";
+
+    if (cin.rdbuf()->in_avail() > 0) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    cin.get();
+
+    system("cls");
 }

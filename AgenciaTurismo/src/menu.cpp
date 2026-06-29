@@ -18,7 +18,7 @@ void Menu::ejecutar() {
         cin >> opcion;
 
         if (opcion == 0) {
-            cout << pad <<  "Saliendo del sistema..." << endl;
+            system("cls");
         } else {
             procesarOpcion(opcion);
         }

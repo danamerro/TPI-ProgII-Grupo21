@@ -77,12 +77,10 @@ void Excursion::cargarDatosExcursion(){
     cout << pad << "Ingrese la descripción: ";
     cin.getline(_descripcion, 60);
 
+    _estado = true;
+
     _duracion = numeroValido( pad + "Ingrese la duración (minutos) :");
     _costo = floatValido( pad + "Ingrese el precio: $");
-
-    cin.ignore();
-
-    _estado = true;
 }
 
 void Excursion::mostrarExcursion() const{

@@ -24,6 +24,7 @@ void MenuGestionVentas::mostrarOpciones() const {
 
 void MenuGestionVentas::procesarOpcion(int opcion) {
     string pad = obtenerPad(61);
+    system("cls");
 
     switch (opcion) {
         case 1:
@@ -34,6 +35,8 @@ void MenuGestionVentas::procesarOpcion(int opcion) {
             break;
         case 3:
             subMenuConsultas();
+            break;
+        case 0 :
             break;
         default:
             cout << endl << pad << "Opcion incorrecta. Intente nuevamente." << endl;
@@ -57,6 +60,8 @@ void MenuGestionVentas::subMenuGestion() {
                 cout << pad << "-------------------------------------------------------------" << endl;
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
+
+        system("cls");
 
         switch (subOpcion) {
             case 1:
@@ -102,22 +107,32 @@ void MenuGestionVentas::subMenuListados() {
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
 
+        system("cls");
+
         switch (subOpcion) {
             case 1:
                 cout << endl << pad << "-------------------- TODAS LAS VENTAS -----------------------" << endl;
                 _archivo.listarVentas();
+                cin.ignore();
+                limpiarPantalla();
                 break;
             case 2:
                 cout << endl << pad << "-------------------- VENTAS PENDIENTES ----------------------" << endl;
                 _archivo.listarTransaccionesPendientes();
+                cin.ignore();
+                limpiarPantalla();
                 break;
             case 3:
                 cout << endl << pad << "------------------- VENTAS CONFIRMADAS ----------------------" << endl;
                 _archivo.listarTransaccionesFinalizadas();
+                cin.ignore();
+                limpiarPantalla();
                 break;
             case 4:
                 cout << endl << pad << "-------------------- VENTAS CANCELADAS ----------------------" << endl;
                 _archivo.listarTransaccionesCanceladas();
+                cin.ignore();
+                limpiarPantalla();
                 break;
             case 0:
                 break;
@@ -148,12 +163,17 @@ void MenuGestionVentas::subMenuConsultas() {
                 cout << pad << "               Seleccione una sub-opcion: ";
         cin >> subOpcion;
 
+        system("cls");
+
         switch (subOpcion) {
             case 1:
                 cout << endl << pad << "          Ingrese el ID de la venta: ";
                 cin >> idAux;
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVentaByID(idAux);
+                cin.ignore();
+                cout << endl;
+                limpiarPantalla();
                 break;
             case 2:
                 cout << endl << pad << "          Ingrese el ID del cliente (0 para volver): ";
@@ -163,6 +183,9 @@ void MenuGestionVentas::subMenuConsultas() {
                 }
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVentasByIdCliente(idAux);
+                cin.ignore();
+                cout << endl;
+                limpiarPantalla();
                 break;
             case 3:
                 cout << endl << pad << "          Ingrese el ID del paquete (0 para volver): ";
@@ -172,6 +195,9 @@ void MenuGestionVentas::subMenuConsultas() {
                 }
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVentasByIdPaquete(idAux);
+                cout << endl;
+                cin.ignore();
+                limpiarPantalla();
                 break;
             case 4:
                 cin.ignore();
@@ -182,6 +208,8 @@ void MenuGestionVentas::subMenuConsultas() {
                 }
                 cout << endl << pad << "------------------------- RESULTADOS ------------------------" << endl;
                 _archivo.mostrarVentasByFechaVenta(fecha);
+                cout << endl;
+                limpiarPantalla();
                 break;
             case 0:
                 break;
