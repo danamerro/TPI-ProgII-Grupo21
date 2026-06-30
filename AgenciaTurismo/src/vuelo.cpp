@@ -102,7 +102,7 @@ void Vuelo::cargarDatosVuelo(){
     cin.getline(_fechaVuelo, 11);
 
     _duracion = numeroValido( pad + "Ingrese duración (minutos): ");
-    _costo = floatValido( pad + "Ingrese precio : $");
+    _costo = numeroValido( pad + "Ingrese precio : $");
     _estado = true;
 }
 

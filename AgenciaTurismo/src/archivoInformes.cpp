@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <iomanip>
 #include "archivoInformes.h"
 #include "archivoCliente.h"
 #include "archivoPaquete.h"
@@ -79,7 +80,7 @@ void ArchivoInformes::recaudacionPorDestino(const char* destino) {
 
     if (encontrado) {
         cout << endl << pad << "Destino: " << destino << endl;
-        cout << pad << "Recaudacion Total Confirmada: $" << recaudacionTotal << endl;
+        cout << pad << "Recaudacion Total Confirmada: $" << fixed << setprecision(2) << recaudacionTotal << endl;
     } else {
         cout << endl << pad << "No hay recaudacion registrada o el destino no existe." << endl;
     }

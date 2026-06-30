@@ -1,0 +1,289 @@
+# depslib dependency file v1.0
+1782004197 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\main.cpp
+	<iostream>
+	"menuInicio.h"
+	<clocale>
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menuinicio.h
+	"menu.h"
+
+1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menu.h
+
+1781832335 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivo.cpp
+	<iostream>
+	<cstring>
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivoexcursion.cpp
+	"archivoExcursion.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivoexcursion.h
+	"archivo.h"
+	"excursion.h"
+
+1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivo.h
+	<iostream>
+	<cstring>
+	<cstdio>
+
+1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\excursion.h
+
+1782798211 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\helpers.h
+	<string>
+
+1782793090 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivogestionventa.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	"archivoGestionVenta.h"
+	"archivoCliente.h"
+	"archivoPaquete.h"
+	"archivoVuelo.h"
+	"helpers.h"
+
+1782588348 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivogestionventa.h
+	"archivo.h"
+	"gestionVenta.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\gestionventa.h
+
+1782794244 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivocliente.h
+	"archivo.h"
+	"cliente.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\cliente.h
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivopaquete.h
+	"archivo.h"
+	"paquete.h"
+
+1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\paquete.h
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivovuelo.h
+	"archivo.h"
+	"vuelo.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\vuelo.h
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivohotel.cpp
+	"archivoHotel.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782602597 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivohotel.h
+	"archivo.h"
+	"hotel.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\hotel.h
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivoinformes.cpp
+	<iostream>
+	<cstring>
+	"archivoInformes.h"
+	"archivoCliente.h"
+	"archivoPaquete.h"
+	"archivoGestionVenta.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivoinformes.h
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivopaquete.cpp
+	"archivoPaquete.h"
+	"archivoHotel.h"
+	"archivoTraslado.h"
+	"archivoExcursion.h"
+	"archivoVuelo.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\archivotraslado.h
+	"archivo.h"
+	"traslado.h"
+
+1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\traslado.h
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivotraslado.cpp
+	"archivoTraslado.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivovuelo.cpp
+	"archivoVuelo.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782795370 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\cliente.cpp
+	<iostream>
+	<cstring>
+	"cliente.h"
+	"helpers.h"
+
+1782795378 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\excursion.cpp
+	"excursion.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\gestionventa.cpp
+	<iostream>
+	<cstring>
+	"gestionVenta.h"
+	"cliente.h"
+	"helpers.h"
+
+1782798260 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\helpers.cpp
+	<iostream>
+	<string>
+	<windows.h>
+	"helpers.h"
+	<limits>
+
+1782795387 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\hotel.cpp
+	"hotel.h"
+	<iostream>
+	<cstring>
+	"helpers.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menu.cpp
+	<iostream>
+	<windows.h>
+	"menu.h"
+	"helpers.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionclientes.cpp
+	<iostream>
+	"menuGestionClientes.h"
+	"archivoCliente.h"
+	"helpers.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionclientes.h
+	"menu.h"
+	"archivoCliente.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionexcursiones.cpp
+	<iostream>
+	"menuGestionExcursiones.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionexcursiones.h
+	"menu.h"
+	"archivoExcursion.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionhoteles.cpp
+	<iostream>
+	"menuGestionHoteles.h"
+	"archivoHotel.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionhoteles.h
+	"menu.h"
+	"archivoHotel.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionpaquetes.cpp
+	<iostream>
+	"menuGestionPaquetes.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionpaquetes.h
+	"menu.h"
+	"archivoPaquete.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestiontraslados.cpp
+	<iostream>
+	"menuGestionTraslados.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestiontraslados.h
+	"menu.h"
+	"archivoTraslado.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionventas.cpp
+	<iostream>
+	<cstring>
+	"menuGestionVentas.h"
+	"archivoGestionVenta.h"
+	"helpers.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionventas.h
+	"menu.h"
+	"archivoGestionVenta.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menugestionvuelos.cpp
+	<iostream>
+	"menuGestionVuelos.h"
+	"archivoVuelo.h"
+	"helpers.h"
+
+1782738196 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menugestionvuelos.h
+	"menu.h"
+	"archivoVuelo.h"
+
+1782705710 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menuinformes.cpp
+	<iostream>
+	"menuInformes.h"
+	"helpers.h"
+
+1782705710 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menuinformes.h
+	"menu.h"
+	"archivoInformes.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menuinicio.cpp
+	<iostream>
+	<string>
+	"menuInicio.h"
+	"menuPrincipal.h"
+	"helpers.h"
+
+1782220062 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\menuprincipal.h
+	"menu.h"
+
+1782738196 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\menuprincipal.cpp
+	<iostream>
+	"menuPrincipal.h"
+	"helpers.h"
+	"menuGestionClientes.h"
+	"menuGestionPaquetes.h"
+	"menuGestionVentas.h"
+	"menuGestionHoteles.h"
+	"menuGestionVuelos.h"
+	"menuGestionTraslados.h"
+	"menuGestionExcursiones.h"
+	"menuInformes.h"
+
+1782799547 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\paquete.cpp
+	"paquete.h"
+	"helpers.h"
+	<iomanip>
+	<iostream>
+	<cstring>
+	"archivoExcursion.h"
+	"archivoHotel.h"
+	"archivoTraslado.h"
+	"archivoVuelo.h"
+
+1782795410 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\traslado.cpp
+	"traslado.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782795395 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\vuelo.cpp
+	"vuelo.h"
+	"helpers.h"
+	<iostream>
+	<cstring>
+
+1782795675 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivocliente.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	"archivoCliente.h"
+	"cliente.h"
+	"helpers.h"
+

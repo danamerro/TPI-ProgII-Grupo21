@@ -85,29 +85,7 @@ void leyendaSSErrorAlGuardar(const std::string& servicio) {
             cout << pad << "=============================================================" << endl;
 }
 
-int numeroValido(const string& consulta) {
-    int numero;
-    string pad = obtenerPad(61);
-
-    while (true) {
-        cout << consulta;
-        cin >> numero;
-
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << endl << pad << "=============================================================" << endl;
-            cout << pad << "               ERROR, INGRESA UN NUMERO ENTERO               " << endl;
-            cout << pad << "=============================================================" << endl;
-        }
-        else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            return numero;
-        }
-    }
-}
-
-float floatValido(const string& consulta) {
+float numeroValido(const string& consulta) {
     float numero;
     string pad = obtenerPad(61);
 
@@ -139,4 +117,34 @@ void limpiarPantalla() {
     cin.get();
 
     system("cls");
+}
+
+void imprimirTextoCentrado(const std::string& texto, int anchoElemento) {
+    std::string pad = obtenerPad(anchoElemento);
+
+    int limiteTexto = anchoElemento;
+    int inicio = 0;
+
+    while (inicio < texto.length()) {
+        if (inicio + limiteTexto >= texto.length()) {
+            std::cout << pad << texto.substr(inicio) << std::endl;
+            break;
+        }
+
+        int fin = inicio + limiteTexto;
+        while (fin > inicio && texto[fin] != ' ') {
+            fin--;
+        }
+
+        if (fin == inicio) {
+            fin = inicio + limiteTexto;
+        }
+
+        std::cout << pad << texto.substr(inicio, fin - inicio) << std::endl;
+
+        inicio = fin;
+        if (inicio < texto.length() && texto[inicio] == ' ') {
+            inicio++;
+        }
+    }
 }

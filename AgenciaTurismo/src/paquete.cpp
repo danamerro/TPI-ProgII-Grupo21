@@ -1,6 +1,6 @@
 #include "paquete.h"
 #include "helpers.h"
-
+#include <iomanip>
 #include <iostream>
 #include <cstring>
 #include "archivoExcursion.h"
@@ -133,7 +133,7 @@ void Paquete::cargarDatosPaquete(){
     cin.getline(_destino, 100);
 
     _cupo = numeroValido( pad + "Ingrese el cupo: ");
-    _precio = floatValido( pad + "Ingrese el precio: $");
+    _precio = numeroValido( pad + "Ingrese el precio: $");
 
     _estado = true;
 }
@@ -153,8 +153,9 @@ void Paquete::mostrarPaquete() const{
 
     cout << endl << pad << "ID paquete: " << _idPaquete << endl;
     cout << pad << "Nombre: " << _nombre << endl;
-    cout << pad << "Descripcion: " << _descripcion << endl;
-    cout << pad << "Precio: $" << _precio << endl;
+    cout << pad << "Descripcion: " << endl;
+    imprimirTextoCentrado(_descripcion, 61);
+    cout << pad << "Precio: $" << fixed << setprecision(2) << _precio << endl;
     cout << pad << "Cupo: " << _cupo << endl;
     cout << pad << "Destino: " << _destino << endl;
     cout << pad << "--> SERVICIO DE ALOJAMIENTO" << endl;

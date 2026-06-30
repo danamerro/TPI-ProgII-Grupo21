@@ -80,7 +80,7 @@ void Excursion::cargarDatosExcursion(){
     _estado = true;
 
     _duracion = numeroValido( pad + "Ingrese la duración (minutos) :");
-    _costo = floatValido( pad + "Ingrese el precio: $");
+    _costo = numeroValido( pad + "Ingrese el precio: $");
 }
 
 void Excursion::mostrarExcursion() const{
