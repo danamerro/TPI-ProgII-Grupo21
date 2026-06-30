@@ -133,7 +133,7 @@ void Paquete::cargarDatosPaquete(){
     cin.getline(_destino, 100);
 
     _cupo = numeroValido( pad + "Ingrese el cupo: ");
-    _precio = floatValido( pad + "Ingrese el precio: $");
+    _precio = numeroValido( pad + "Ingrese el precio: $");
 
     _estado = true;
 }

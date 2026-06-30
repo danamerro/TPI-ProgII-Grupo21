@@ -77,7 +77,7 @@ void Traslado::cargarDatosTraslado(){
     cin.getline(_destino, 20);
 
     _duracion = numeroValido( pad + "Ingrese duración (minutos): ");
-    _precio = floatValido( pad + "Ingrese precio : $" );
+    _precio = numeroValido( pad + "Ingrese precio : $" );
 
     _estado = true;
 

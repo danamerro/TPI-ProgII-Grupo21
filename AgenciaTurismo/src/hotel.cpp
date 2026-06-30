@@ -103,5 +103,5 @@ void Hotel::cargarDatosHotel(){
 
     _estado = true;
 
-    _costo = floatValido( pad + "Ingrese el precio: $");
+    _costo = numeroValido( pad + "Ingrese el precio: $");
 }
