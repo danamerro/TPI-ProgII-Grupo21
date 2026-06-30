@@ -358,24 +358,40 @@ void ArchivoCliente::mostrarClienteByEstado(bool estado){
         }
 }
 
-void ArchivoCliente::mostrarClienteByDireccion(const char* direccion){
+void ArchivoCliente::mostrarClienteByDireccion(const char* direccion) {
     string pad = obtenerPad(61);
     int cantidad = contarRegistros();
     bool encontrado = false;
 
+    char direccionBuscadaMin[50];
+    int direccionIngresada = strlen(direccion);
+    for (int i = 0; i < direccionIngresada && i < 49; i++) {
+        direccionBuscadaMin[i] = tolower(direccion[i]);
+    }
+    direccionBuscadaMin[direccionIngresada] = '\0';
+
     for (int i = 0; i < cantidad; i++) {
         Cliente reg = leerRegistro(i);
 
-        if(strcasecmp(reg.getDireccion(), direccion)==0){
-            encontrado = true;
-            reg.mostrarCliente();
+        if (reg.getEstado()) {
+            char direccionRegistroMin[50];
+            int regClienteDir = strlen(reg.getDireccion());
+            for (int j = 0; j < regClienteDir && j < 49; j++) {
+                direccionRegistroMin[j] = tolower(reg.getDireccion()[j]);
+            }
+            direccionRegistroMin[regClienteDir] = '\0';
+
+            if (strstr(direccionRegistroMin, direccionBuscadaMin) != nullptr) {
+                encontrado = true;
+                reg.mostrarCliente();
+                cout << endl << pad << "-------------------------------------------------------------" << endl;
+            }
         }
     }
 
     if (!encontrado) {
-            leyendaSSNoEncontrado("CLIENTE", 2);
-        }
-
+        leyendaSSNoEncontrado("CLIENTE", 2);
+    }
 }
 
 void ArchivoCliente::mostrarClienteByTelefono(int telefono){
