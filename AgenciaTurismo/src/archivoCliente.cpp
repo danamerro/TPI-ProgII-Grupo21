@@ -179,7 +179,6 @@ void ArchivoCliente::listarClientes() {
 
     if (!encontrado) {
         leyendaSSNoEncontrado("CLIENTE", 2);
-        cin.ignore();
         limpiarPantalla();
     }
 }

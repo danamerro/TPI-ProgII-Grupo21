@@ -118,3 +118,33 @@ void limpiarPantalla() {
 
     system("cls");
 }
+
+void imprimirTextoCentrado(const std::string& texto, int anchoElemento) {
+    std::string pad = obtenerPad(anchoElemento);
+
+    int limiteTexto = anchoElemento;
+    int inicio = 0;
+
+    while (inicio < texto.length()) {
+        if (inicio + limiteTexto >= texto.length()) {
+            std::cout << pad << texto.substr(inicio) << std::endl;
+            break;
+        }
+
+        int fin = inicio + limiteTexto;
+        while (fin > inicio && texto[fin] != ' ') {
+            fin--;
+        }
+
+        if (fin == inicio) {
+            fin = inicio + limiteTexto;
+        }
+
+        std::cout << pad << texto.substr(inicio, fin - inicio) << std::endl;
+
+        inicio = fin;
+        if (inicio < texto.length() && texto[inicio] == ' ') {
+            inicio++;
+        }
+    }
+}

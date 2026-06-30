@@ -11,3 +11,4 @@ void leyendaSSGuardado(const std::string& servicio, int num);
 void leyendaSSErrorAlGuardar(const std::string& servicio);
 float numeroValido(const std::string& consulta);
 void limpiarPantalla();
+void imprimirTextoCentrado(const std::string& texto, int anchoElemento = 61);

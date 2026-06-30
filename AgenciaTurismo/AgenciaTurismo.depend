@@ -30,7 +30,7 @@
 
 1782005057 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\excursion.h
 
-1782795362 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\helpers.h
+1782798211 c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\include\helpers.h
 	<string>
 
 1782793090 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivogestionventa.cpp
@@ -137,7 +137,7 @@
 	"cliente.h"
 	"helpers.h"
 
-1782795336 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\helpers.cpp
+1782798260 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\helpers.cpp
 	<iostream>
 	<string>
 	<windows.h>
@@ -256,9 +256,10 @@
 	"menuGestionExcursiones.h"
 	"menuInformes.h"
 
-1782795402 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\paquete.cpp
+1782799547 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\paquete.cpp
 	"paquete.h"
 	"helpers.h"
+	<iomanip>
 	<iostream>
 	<cstring>
 	"archivoExcursion.h"
@@ -278,7 +279,7 @@
 	<iostream>
 	<cstring>
 
-1782794569 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivocliente.cpp
+1782795675 source:c:\users\gabri\documents\tpi-progii-grupo21\agenciaturismo\src\archivocliente.cpp
 	<iostream>
 	<cstdio>
 	<cstring>
